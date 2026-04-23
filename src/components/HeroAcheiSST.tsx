@@ -122,14 +122,14 @@ export function HeroAcheiSST() {
           {/* CATEGORY GRID */}
           <div className="bg-white border border-slate-200 rounded-3xl p-4 sm:p-6 shadow-sm">
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-              {CATEGORIES.map(({ icon: Icon, label, href, accent }) => (
+              {CATEGORIES.map(({ icon, label, href, accent }) => (
                 <a
                   key={label}
                   href={href}
                   className="group flex flex-col items-center gap-1.5 p-2 sm:p-3 rounded-2xl border border-slate-100 hover:border-navy-200 bg-slate-50 hover:bg-navy-50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <div className={`w-10 h-10 rounded-xl ${accent} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
-                    <Icon className="w-4 h-4" />
+                  <div className={`w-10 h-10 rounded-xl ${accent} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200 text-lg`}>
+                    {icon}
                   </div>
                   <span className="text-[10px] sm:text-xs font-semibold text-slate-600 group-hover:text-navy-600 text-center leading-tight transition-colors">
                     {label}

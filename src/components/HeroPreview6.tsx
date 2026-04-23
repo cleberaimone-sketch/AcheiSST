@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   Search, ArrowRight, MapPin, Star, ChevronRight,
-  Menu, X, Zap, CheckCircle2, Shield,
+  Menu, X, Zap, CheckCircle2, Shield, Users, Briefcase,
 } from 'lucide-react'
 
 const UF_LIST = [
