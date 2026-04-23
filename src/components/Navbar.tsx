@@ -55,15 +55,7 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <a
-              href="/painel/login"
-              className="bg-navy-600 hover:bg-navy-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-sm"
-            >
-              Entrar
-            </a>
-          </div>
+          {/* Desktop CTA — Temporarily removed */}
 
           {/* Mobile button */}
           <button
@@ -83,14 +75,7 @@ export function Navbar() {
                 {label}
               </a>
             ))}
-            <div className="pt-2">
-              <a
-                href="/painel/login"
-                className="block text-center bg-navy-600 text-white font-bold py-3 rounded-xl hover:bg-navy-700 transition-colors"
-              >
-                Entrar
-              </a>
-            </div>
+            {/* Mobile CTA — Temporarily removed */}
           </div>
         )}
       </div>

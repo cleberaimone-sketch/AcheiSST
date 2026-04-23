@@ -135,15 +135,7 @@ export function HeroV5() {
               <a href="/busca" className="hover:text-green-400 transition-colors">Buscar</a>
             </nav>
 
-            {/* Desktop CTAs */}
-            <div className="hidden md:flex items-center gap-3">
-              <a
-                href="/painel/login"
-                className="text-sm font-bold px-4 py-2 bg-green-500 text-slate-950 rounded-lg hover:bg-green-400 transition-all shadow-md shadow-green-500/25"
-              >
-                Entrar
-              </a>
-            </div>
+            {/* Desktop CTAs — Temporarily removed */}
 
             {/* Mobile button */}
             <button
@@ -162,12 +154,6 @@ export function HeroV5() {
               <a href="/profissionais" className="py-2 text-slate-300 hover:text-green-400 transition-colors">Profissionais</a>
               <a href="/informativos" className="py-2 text-slate-300 hover:text-green-400 transition-colors">Notícias</a>
               <a href="/busca" className="py-2 text-slate-300 hover:text-green-400 transition-colors">Buscar</a>
-              <a
-                href="/painel/login"
-                className="bg-green-500 text-slate-950 font-bold py-2.5 rounded-lg text-center hover:bg-green-400 transition-all"
-              >
-                Entrar
-              </a>
             </div>
           )}
         </div>
