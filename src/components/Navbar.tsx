@@ -36,7 +36,7 @@ export function Navbar() {
             <img
               src="/logo-horizontal.png"
               alt="AcheiSST"
-              className="h-14 w-auto object-contain"
+              className="h-14 w-48 object-contain"
             />
           </a>
 
