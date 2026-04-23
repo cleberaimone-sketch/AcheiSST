@@ -8,6 +8,7 @@ import {
   ArrowRight, Phone, Star, Youtube, Instagram, Facebook, Globe, Rss,
   ShieldCheck, Sparkles, MapPin, CheckCircle2, Medal,
 } from 'lucide-react'
+import { ProfissionaisDestaques } from './ProfissionaisDestaques'
 
 const UF_LIST = [
   'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS',
@@ -152,43 +153,8 @@ export function HeroAcheiSST() {
         </div>
       </div>
 
-      {/* ── DESTAQUES PREMIUM ─────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-2 mb-5">
-            <Sparkles className="w-5 h-5 text-amber-500" />
-            <h2 className="text-lg font-extrabold text-slate-800">Destaques Premium</h2>
-          </div>
-
-          {/* Placeholder — aguardando fornecedores reais cadastrados */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="bg-white border border-dashed border-slate-200 rounded-2xl overflow-hidden flex flex-col"
-              >
-                <div className="h-36 bg-slate-100 flex items-center justify-center">
-                  <Medal className="w-8 h-8 text-slate-300" />
-                </div>
-                <div className="p-4 flex flex-col gap-2 flex-1 items-center justify-center text-center">
-                  <span className="text-xs font-bold text-amber-600 bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-full">
-                    Slot Premium
-                  </span>
-                  <p className="text-xs text-slate-400 leading-snug">
-                    Espaço disponível para<br />fornecedor verificado
-                  </p>
-                  <a
-                    href="/cadastrar"
-                    className="text-xs font-semibold text-navy-600 hover:text-navy-700 transition-colors"
-                  >
-                    Anunciar aqui →
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── PROFISSIONAIS DESTAQUES ─────────────────────── */}
+      <ProfissionaisDestaques />
 
       {/* ── CTA FORNECEDOR ────────────────────────────── */}
       <section className="px-4 sm:px-6 lg:px-8 pb-8 bg-slate-50">
