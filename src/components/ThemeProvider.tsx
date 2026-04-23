@@ -3,9 +3,9 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
 import { LayoutTemplate } from 'lucide-react'
 
-export type Theme = 'acheisst' | 'brazil_min' | 'blue_hub' | 'preview_5' | 'preview_6' | 'preview_3'
+export type Theme = 'acheisst' | 'brazil_min' | 'blue_hub' | 'preview_5' | 'preview_6' | 'preview_3' | 'preview_7'
 
-const THEMES: Theme[] = ['acheisst', 'preview_3', 'preview_6']
+const THEMES: Theme[] = ['acheisst', 'preview_3', 'preview_6', 'preview_7']
 
 const THEME_LABELS: Record<Theme, string> = {
   acheisst:   'AcheiSST (Original)',
@@ -14,6 +14,7 @@ const THEME_LABELS: Record<Theme, string> = {
   preview_5:  'Preview 5 (Dark)',
   preview_6:  'Preview 6 (Azul)',
   preview_3:  'AcheiSST (Hub)',
+  preview_7:  'AcheiSST (Elegante)',
 }
 
 const THEME_NEXT_LABEL: Record<Theme, string> = {
@@ -21,8 +22,9 @@ const THEME_NEXT_LABEL: Record<Theme, string> = {
   brazil_min: 'Tech Brazil',
   blue_hub:   'Blue Hub',
   preview_5:  'Preview 5 (Dark)',
-  preview_6:  'Ver: AcheiSST',
+  preview_6:  'Ver: AcheiSST Elegante',
   preview_3:  'Ver: Preview 6',
+  preview_7:  'Ver: AcheiSST',
 }
 
 interface ThemeContextType {
@@ -56,6 +58,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         <span className={`text-xs font-bold ${
           theme === 'preview_6' ? 'text-blue-400' :
           theme === 'preview_3' ? 'text-sst-400' :
+          theme === 'preview_7' ? 'text-amber-400' :
           'text-slate-700'
         }`}>
           {THEME_LABELS[theme]}
