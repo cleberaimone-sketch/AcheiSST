@@ -285,7 +285,7 @@ export function HeroAcheiSST() {
         {/* Copyright */}
         <div className="max-w-5xl mx-auto mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <div className="flex items-center gap-2">
-            <img src="/logo-compact.png" alt="AcheiSST" className="h-5 w-auto opacity-70" />
+            <img src="/logo-compact.png" alt="AcheiSST" className="h-7 w-auto opacity-70" />
             <span>© 2026 AcheiSST. Todos os direitos reservados.</span>
           </div>
           <span>Informações verificadas — sempre consulte a fonte oficial.</span>

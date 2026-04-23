@@ -115,14 +115,14 @@ export function HeroV5() {
       {/* ── NAVBAR ───────────────────────────────────────── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
 
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center shadow-lg shadow-green-500/30">
-                <Zap className="w-4 h-4 text-slate-950" />
+            <a href="/" className="flex items-center gap-3">
+              <div className="w-11 h-11 bg-green-500 rounded-lg flex items-center justify-center shadow-lg shadow-green-500/30">
+                <Zap className="w-5 h-5 text-slate-950" />
               </div>
-              <span className="font-playfair font-bold text-white text-xl tracking-tight">
+              <span className="font-playfair font-bold text-white text-2xl tracking-tight">
                 Pluga<span className="text-green-400">SST</span>
               </span>
             </a>
@@ -189,15 +189,31 @@ export function HeroV5() {
             Ecossistema SST · Plataforma Nacional
           </div>
 
-          {/* Heading — Playfair Display */}
-          <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-            Tudo sobre SST{' '}
-            <span className="text-green-400">em um só lugar</span>
-          </h1>
-          <p className="font-lora text-slate-400 text-base sm:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-            A primeira plataforma que reúne fornecedores, profissionais, conteúdo
-            e ferramentas de Saúde e Segurança do Trabalho do Brasil.
-          </p>
+          {/* Hero Content with Background Image */}
+          <div
+            className="relative rounded-2xl overflow-hidden backdrop-blur-md bg-slate-900/40 border border-slate-700/40 p-12 sm:p-16 lg:p-20 mb-10"
+            style={{
+              backgroundImage: 'url(/ideias_frontpage/logotipo_oficial/mapadotrabalho.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            {/* Glass overlay for contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/60 to-slate-950/70 pointer-events-none rounded-2xl" />
+
+            {/* Content */}
+            <div className="relative z-10">
+              {/* Heading — Playfair Display */}
+              <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                Tudo sobre SST{' '}
+                <span className="text-green-400">em um só lugar</span>
+              </h1>
+              <p className="font-lora text-slate-200 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                A primeira plataforma que reúne fornecedores, profissionais, conteúdo
+                e ferramentas de Saúde e Segurança do Trabalho do Brasil.
+              </p>
+            </div>
+          </div>
 
           {/* Search bar */}
           <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">

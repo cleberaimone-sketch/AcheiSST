@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     'Encontre fornecedores, profissionais, clínicas, softwares e conteúdo de Saúde e Segurança do Trabalho no Brasil. O maior ecossistema SST do país.',
   keywords: ['SST', 'NR', 'saúde ocupacional', 'segurança do trabalho', 'eSocial', 'AcheiSST', 'fornecedores SST'],
   authors: [{ name: 'AcheiSST' }],
+  viewport: 'width=device-width, initial-scale=1',
   openGraph: {
     title: 'AcheiSST — Tudo sobre SST em um só lugar',
     description: 'Fornecedores, profissionais, clínicas e conteúdo de Saúde e Segurança do Trabalho no Brasil.',
