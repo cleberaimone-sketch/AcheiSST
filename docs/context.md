@@ -521,6 +521,77 @@ Implementado sistema de 4 temas alternáveis via botão fixo no canto inferior d
 - Lógica corrigida: `plugasst`/`acheisst` agora sempre usa verde (antes caía no `else` azul)
 - Azul mantido apenas para o tema `blue_hub`
 
+### 15.4 Atualizações de Design — Hero Section & Favicon (23/04/2026)
+
+**Aumentos de logos:**
+- Navbar: logo `h-9` → `h-14` (56px), navbar `h-16` → `h-20`
+- HeroV5: logo badge `w-8 h-8` → `w-11 h-11`, ícone `w-4 h-4` → `w-5 h-5`, texto `text-xl` → `text-2xl`
+- Footer: logo `h-5` → `h-7`
+
+**Background image — mapa do trabalho:**
+- Imagem `mapadotrabalho.jpg` (da pasta `ideias_frontpage/logotipo_oficial/`) adicionada como background full-width
+- **HeroAcheiSST:** full-width edge-to-edge com overlay gradiente branco translúcido (`from-white/85 via-white/80 to-white/85`), posicionamento `center top`, altura mínima `min-h-[500px]`, flexbox centrado
+- **HeroV5:** container com glass effect (`backdrop-blur-md`), overlay gradiente escuro (`from-slate-950/70 via-slate-900/60 to-slate-950/70`), bordas arredondadas
+- Efeito visual: imagem como fundo com overlay para manter contraste do texto
+
+**Favicon & Aba do Navegador:**
+- Title da aba: `"AcheiSST — Tudo sobre SST em um só lugar"` → `"AcheiSST"` (simplificado)
+- Favicon: `logo_acheisst.png` convertida para `favicon.ico` 32x32px com cantos arredondados (radius 6)
+- Configurado em metadata com `icons: { icon: '/favicon.ico' }`
+
+**Mobile responsivo:**
+- Meta tag viewport adicionada: `width=device-width, initial-scale=1`
+- Todos os componentes com breakpoints Tailwind (`grid-cols-1 lg:grid-cols-12`, `sm:flex-row`, `px-4 sm:px-6 lg:px-8`)
+- Testado em localhost:3000 com dev server
+
+---
+
+## 16. Roadmap de Implementação — Fases Próximas
+
+### Fase 1 — Base Sólida ✅ (Implementada)
+- [x] Diretório de notícias/informativos com filtros
+- [x] Diretório de profissionais com busca
+- [x] Hub de empresas parceiras
+- [x] Sistema de temas alternáveis (4 previews)
+- [x] Domain e DNS configurados
+- [x] Deploy em produção (Vercel)
+
+### Fase 2 — Conexões 🔄 (Em desenvolvimento)
+- [ ] **Painel de Cadastro/Login** (`/painel/login`, `/cadastrar`)
+  - Autenticação via Supabase Auth
+  - Perfis de fornecedores com validação
+  - Moderação antes de publicar
+- [ ] **Sistema de Match B2B** ("Tinder de fornecedores")
+  - Cards de fornecedores com swipe/like
+  - Histórico de interações
+  - Sugestões inteligentes
+- [ ] **Quadro de Vagas** (`/vagas`)
+  - Postagem de oportunidades
+  - Filtros por categoria e UF
+- [ ] **Eventos e Webinars** (`/eventos`)
+  - Calendário de próximos eventos SST
+  - Inscrição integrada
+- [ ] **Fórums/Q&A** (`/forum`)
+  - Perguntas e respostas da comunidade
+  - Upvote/downvote
+
+### Fase 3 — Ferramentas 🎯 (Planejada)
+- [ ] **Calculadora de Multas NR**
+- [ ] **Checklist de Conformidade** por NR
+- [ ] **Gerador de PGR** (Programa de Gestão de Riscos)
+- [ ] **Simulador eSocial**
+
+### Fase 4 — Dados & IA 📊 (Planejada)
+- [ ] **Dashboard Nacional** — mapa do Brasil com estatísticas por UF
+- [ ] **Relatórios de Tendência** — análise de vagas, empresas, eventos
+- [ ] **Newsletter IA** — resumo semanal inteligente do setor
+
+### Fase 5 — Monetização 💰 (Planejada)
+- [ ] **Freemium:** limite de buscas gratuitas, plano premium ilimitado
+- [ ] **Anúncios segmentados** — fornecedores pagam por destaque
+- [ ] **Cursos e certificações** integrados
+- [ ] **Relatórios premium** para empresas
+
 ---
 
 *Este documento deve ser atualizado a cada nova decisão de produto.*

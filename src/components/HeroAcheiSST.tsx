@@ -80,8 +80,17 @@ export function HeroAcheiSST() {
     <div className="bg-slate-50 min-h-screen">
 
       {/* ── HERO ─────────────────────────────────────── */}
-      <section className="bg-white border-b border-slate-100 pt-24 pb-10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <section
+        className="relative min-h-[500px] border-b border-slate-100 bg-cover flex items-center justify-center"
+        style={{
+          backgroundImage: 'url(/ideias_frontpage/logotipo_oficial/mapadotrabalho.jpg)',
+          backgroundPosition: 'center top',
+        }}
+      >
+        {/* Overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/80 to-white/85" />
+
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center py-12">
 
           <div className="inline-flex items-center gap-2 bg-navy-50 text-navy-600 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-navy-100">
             <span className="w-1.5 h-1.5 bg-sst-400 rounded-full animate-pulse" />
@@ -92,7 +101,7 @@ export function HeroAcheiSST() {
             Tudo sobre <span className="text-sst-400">SST</span>{' '}
             <span className="text-navy-600">em um só lugar</span>
           </h1>
-          <p className="text-slate-500 text-base mb-8 max-w-xl mx-auto">
+          <p className="text-slate-600 text-base mb-8 max-w-xl mx-auto">
             A primeira plataforma que reúne fornecedores, profissionais, conteúdo e ferramentas de Saúde e Segurança do Trabalho do Brasil.
           </p>
 
@@ -285,7 +294,7 @@ export function HeroAcheiSST() {
         {/* Copyright */}
         <div className="max-w-5xl mx-auto mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <div className="flex items-center gap-2">
-            <img src="/logo-compact.png" alt="AcheiSST" className="h-7 w-auto opacity-70" />
+            <img src="/logo-compact.png" alt="AcheiSST" className="h-10 w-auto opacity-70" />
             <span>© 2026 AcheiSST. Todos os direitos reservados.</span>
           </div>
           <span>Informações verificadas — sempre consulte a fonte oficial.</span>

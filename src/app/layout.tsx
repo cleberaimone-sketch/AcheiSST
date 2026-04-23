@@ -21,14 +21,17 @@ const lora = Lora({
 })
 
 export const metadata: Metadata = {
-  title: 'AcheiSST — Tudo sobre SST em um só lugar',
+  title: 'AcheiSST',
   description:
     'Encontre fornecedores, profissionais, clínicas, softwares e conteúdo de Saúde e Segurança do Trabalho no Brasil. O maior ecossistema SST do país.',
   keywords: ['SST', 'NR', 'saúde ocupacional', 'segurança do trabalho', 'eSocial', 'AcheiSST', 'fornecedores SST'],
   authors: [{ name: 'AcheiSST' }],
   viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
-    title: 'AcheiSST — Tudo sobre SST em um só lugar',
+    title: 'AcheiSST',
     description: 'Fornecedores, profissionais, clínicas e conteúdo de Saúde e Segurança do Trabalho no Brasil.',
     type: 'website',
     locale: 'pt_BR',
