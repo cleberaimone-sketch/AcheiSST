@@ -216,12 +216,12 @@ export function HeroPreview6() {
               <a
                 key={label}
                 href={href}
-                className="flex flex-col items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
+                className="flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
               >
-                <div className={`w-12 h-12 rounded-lg ${color} flex items-center justify-center`}>
-                  <Icon className="w-6 h-6" />
+                <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center`}>
+                  <Icon className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-semibold text-slate-700 text-center">{label}</span>
+                <span className="text-xs font-semibold text-slate-700 text-center">{label}</span>
               </a>
             ))}
           </div>

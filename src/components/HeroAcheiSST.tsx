@@ -125,12 +125,12 @@ export function HeroAcheiSST() {
                 <a
                   key={label}
                   href={href}
-                  className="group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-2xl border border-slate-100 hover:border-navy-200 bg-slate-50 hover:bg-navy-50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
+                  className="group flex flex-col items-center gap-1.5 p-2 sm:p-3 rounded-2xl border border-slate-100 hover:border-navy-200 bg-slate-50 hover:bg-navy-50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <div className={`w-11 h-11 rounded-xl ${accent} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
-                    <Icon className="w-5 h-5" />
+                  <div className={`w-10 h-10 rounded-xl ${accent} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
+                    <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-[11px] sm:text-xs font-semibold text-slate-600 group-hover:text-navy-600 text-center leading-tight transition-colors">
+                  <span className="text-[10px] sm:text-xs font-semibold text-slate-600 group-hover:text-navy-600 text-center leading-tight transition-colors">
                     {label}
                   </span>
                 </a>
