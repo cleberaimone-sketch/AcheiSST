@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Heart, MessageCircle, Phone, Zap, MapPin, Star, ChevronDown, Menu, X, Search, Stethoscope, Users, Building2, Award, ClipboardList, Briefcase } from 'lucide-react'
+import { Heart, MessageCircle, Phone, Zap, MapPin, Star, ChevronDown, Menu, X, Search } from 'lucide-react'
 
 const UF_LIST = [
   'SP', 'RJ', 'MG', 'RS', 'PR', 'BA', 'SC', 'PE', 'GO', 'DF', 'ES', 'PA',
@@ -20,12 +20,12 @@ const TIPOS_SERVICO = [
 ]
 
 const CATEGORIAS = [
-  { icon: Users, label: 'Técnicos', color: 'bg-blue-100 text-blue-700' },
-  { icon: Stethoscope, label: 'Clínicas', color: 'bg-green-100 text-green-700' },
-  { icon: Award, label: 'Engenheiros', color: 'bg-purple-100 text-purple-700' },
-  { icon: ClipboardList, label: 'Treinamento', color: 'bg-orange-100 text-orange-700' },
-  { icon: Briefcase, label: 'Consultoria', color: 'bg-pink-100 text-pink-700' },
-  { icon: Building2, label: 'Empresas', color: 'bg-indigo-100 text-indigo-700' },
+  { icon: '👥', label: 'Técnicos', color: 'bg-blue-100 text-blue-700' },
+  { icon: '🏥', label: 'Clínicas', color: 'bg-red-100 text-red-700' },
+  { icon: '🏆', label: 'Engenheiros', color: 'bg-purple-100 text-purple-700' },
+  { icon: '📋', label: 'Treinamento', color: 'bg-orange-100 text-orange-700' },
+  { icon: '💼', label: 'Consultoria', color: 'bg-pink-100 text-pink-700' },
+  { icon: '🏢', label: 'Empresas', color: 'bg-indigo-100 text-indigo-700' },
 ]
 
 const PRESTADORES_EXEMPLO = [
@@ -209,14 +209,14 @@ export function HeroPreview3AcheiSST() {
           {/* Grid de Categorias */}
           <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-6">
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-              {CATEGORIAS.map(({ icon: Icon, label, color }) => (
+              {CATEGORIAS.map(({ icon, label, color }) => (
                 <a
                   key={label}
                   href="#"
                   className="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-xl border border-slate-100 hover:border-sst-400 hover:bg-sst-50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center`}>
-                    <Icon className="w-5 h-5" />
+                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center text-xl`}>
+                    {icon}
                   </div>
                   <span className="text-[10px] sm:text-xs font-semibold text-slate-600 group-hover:text-sst-600 text-center leading-tight transition-colors">
                     {label}

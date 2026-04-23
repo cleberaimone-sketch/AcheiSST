@@ -2,10 +2,7 @@
 
 import { useState } from 'react'
 import {
-  Search, Users, Stethoscope, ShoppingBag, Cpu, BookOpen, Mic,
-  ScanSearch, GraduationCap, PlayCircle, School, Building2, HardHat,
-  CalendarDays, Briefcase, ClipboardList, Bot, Award, Newspaper,
-  ArrowRight, Phone, Star, Youtube, Instagram, Facebook, Globe, Rss,
+  Search, ArrowRight, Phone, Star,
   CheckCircle2, MapPin, Sparkles, ShieldCheck, Zap, Medal, Menu, X,
   ChevronRight,
 } from 'lucide-react'
@@ -17,24 +14,24 @@ const UF_LIST = [
 ]
 
 const CATEGORIES = [
-  { icon: Users,         label: 'Profissionais',  href: '/profissionais',                color: 'text-green-400 bg-green-400/10' },
-  { icon: Stethoscope,   label: 'Clínicas',       href: '/fornecedores?cat=clinica',     color: 'text-teal-400 bg-teal-400/10' },
-  { icon: ShoppingBag,   label: 'Lojas',          href: '/fornecedores?cat=loja',        color: 'text-orange-400 bg-orange-400/10' },
-  { icon: Cpu,           label: 'Software',       href: '/fornecedores?cat=software',    color: 'text-violet-400 bg-violet-400/10' },
-  { icon: BookOpen,      label: 'Revista',        href: '/informativos',                 color: 'text-rose-400 bg-rose-400/10' },
-  { icon: Mic,           label: 'Podcast',        href: '/conteudo?tipo=podcast',        color: 'text-pink-400 bg-pink-400/10' },
-  { icon: ScanSearch,    label: 'Peritos',        href: '/profissionais?esp=perito',     color: 'text-cyan-400 bg-cyan-400/10' },
-  { icon: GraduationCap, label: 'Professores',    href: '/profissionais?esp=professor',  color: 'text-indigo-400 bg-indigo-400/10' },
-  { icon: PlayCircle,    label: 'Cursos',         href: '/cursos',                       color: 'text-emerald-400 bg-emerald-400/10' },
-  { icon: School,        label: 'Escola',         href: '/cursos?tipo=escola',           color: 'text-lime-400 bg-lime-400/10' },
-  { icon: Building2,     label: 'Faculdade',      href: '/cursos?tipo=faculdade',        color: 'text-amber-400 bg-amber-400/10' },
-  { icon: HardHat,       label: 'Equipamentos',   href: '/fornecedores?cat=epi',         color: 'text-yellow-400 bg-yellow-400/10' },
-  { icon: CalendarDays,  label: 'Eventos',        href: '/eventos',                      color: 'text-fuchsia-400 bg-fuchsia-400/10' },
-  { icon: Briefcase,     label: 'Vagas',          href: '/vagas',                        color: 'text-sky-400 bg-sky-400/10' },
-  { icon: ClipboardList, label: 'Orçamentos',     href: '/orcamento',                    color: 'text-green-400 bg-green-400/10' },
-  { icon: Bot,           label: 'IA Tools',       href: '/ferramentas',                  color: 'text-purple-400 bg-purple-400/10' },
-  { icon: Award,         label: 'Treinamentos',   href: '/fornecedores?cat=treinamento', color: 'text-red-400 bg-red-400/10' },
-  { icon: Newspaper,     label: 'Artigos',        href: '/informativos',                 color: 'text-slate-400 bg-slate-400/10' },
+  { icon: '👤', label: 'Profissionais',  href: '/profissionais',                color: 'text-green-400 bg-green-400/10' },
+  { icon: '🏥', label: 'Clínicas',       href: '/fornecedores?cat=clinica',     color: 'text-red-400 bg-red-400/10' },
+  { icon: '🏪', label: 'Lojas',          href: '/fornecedores?cat=loja',        color: 'text-orange-400 bg-orange-400/10' },
+  { icon: '💻', label: 'Software',       href: '/fornecedores?cat=software',    color: 'text-purple-400 bg-purple-400/10' },
+  { icon: '📰', label: 'Revista',        href: '/informativos',                 color: 'text-pink-400 bg-pink-400/10' },
+  { icon: '🎙️', label: 'Podcast',        href: '/conteudo?tipo=podcast',        color: 'text-cyan-400 bg-cyan-400/10' },
+  { icon: '🔍', label: 'Peritos',        href: '/profissionais?esp=perito',     color: 'text-indigo-400 bg-indigo-400/10' },
+  { icon: '👨‍🏫', label: 'Professores',    href: '/profissionais?esp=professor',  color: 'text-emerald-400 bg-emerald-400/10' },
+  { icon: '🎬', label: 'Cursos',         href: '/cursos',                       color: 'text-lime-400 bg-lime-400/10' },
+  { icon: '🏫', label: 'Escola',         href: '/cursos?tipo=escola',           color: 'text-amber-400 bg-amber-400/10' },
+  { icon: '🏢', label: 'Faculdade',      href: '/cursos?tipo=faculdade',        color: 'text-yellow-400 bg-yellow-400/10' },
+  { icon: '⚙️', label: 'Equipamentos',   href: '/fornecedores?cat=epi',         color: 'text-fuchsia-400 bg-fuchsia-400/10' },
+  { icon: '📅', label: 'Eventos',        href: '/eventos',                      color: 'text-sky-400 bg-sky-400/10' },
+  { icon: '💼', label: 'Vagas',          href: '/vagas',                        color: 'text-green-400 bg-green-400/10' },
+  { icon: '📋', label: 'Orçamentos',     href: '/orcamento',                    color: 'text-teal-400 bg-teal-400/10' },
+  { icon: '🤖', label: 'IA Tools',       href: '/ferramentas',                  color: 'text-rose-400 bg-rose-400/10' },
+  { icon: '🎓', label: 'Treinamentos',   href: '/fornecedores?cat=treinamento', color: 'text-red-400 bg-red-400/10' },
+  { icon: '📄', label: 'Artigos',        href: '/informativos',                 color: 'text-slate-400 bg-slate-400/10' },
 ]
 
 const PREMIUM_PROVIDERS = [
@@ -89,11 +86,11 @@ const REGULATORS = [
 ]
 
 const SOCIAL = [
-  { icon: Rss,       label: 'Blog',       href: '/informativos' },
-  { icon: Youtube,   label: 'YouTube',    href: '#' },
-  { icon: Instagram, label: 'Instagram',  href: '#' },
-  { icon: Facebook,  label: 'Facebook',   href: '#' },
-  { icon: Globe,     label: 'Comunidade', href: '#' },
+  { icon: '📰', label: 'Blog',       href: '/informativos' },
+  { icon: '📺', label: 'YouTube',    href: '#' },
+  { icon: '📷', label: 'Instagram',  href: '#' },
+  { icon: '👥', label: 'Facebook',   href: '#' },
+  { icon: '🌍', label: 'Comunidade', href: '#' },
 ]
 
 export function HeroV5() {
@@ -164,14 +161,14 @@ export function HeroV5() {
         <div className="max-w-5xl mx-auto">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6">
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-              {CATEGORIES.map(({ icon: Icon, label, href, color }) => (
+              {CATEGORIES.map(({ icon, label, href, color }) => (
                 <a
                   key={label}
                   href={href}
                   className="group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-xl border border-slate-800 hover:border-green-500/40 bg-slate-950 hover:bg-green-500/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-500/5"
                 >
-                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
-                    <Icon className="w-5 h-5" />
+                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200 text-xl`}>
+                    {icon}
                   </div>
                   <span className="text-[11px] sm:text-xs font-semibold text-slate-500 group-hover:text-green-400 text-center leading-tight transition-colors">
                     {label}
@@ -367,10 +364,10 @@ export function HeroV5() {
           <div>
             <p className="text-[10px] font-black uppercase tracking-widest text-slate-600 mb-4">Comunidade</p>
             <ul className="space-y-2.5">
-              {SOCIAL.map(({ icon: Icon, label, href }) => (
+              {SOCIAL.map(({ icon, label, href }) => (
                 <li key={label}>
                   <a href={href} className="flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-300 transition-colors">
-                    <Icon className="w-4 h-4" />
+                    <span className="text-lg">{icon}</span>
                     {label}
                   </a>
                 </li>

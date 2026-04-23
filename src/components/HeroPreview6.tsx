@@ -2,11 +2,8 @@
 
 import { useState } from 'react'
 import {
-  Search, Users, Stethoscope, ShoppingBag, Cpu, BookOpen, Mic,
-  ScanSearch, GraduationCap, PlayCircle, School, Building2, HardHat,
-  CalendarDays, Briefcase, ClipboardList, Bot, Award, Newspaper,
-  ArrowRight, MapPin, Star, Heart, Share2, MessageCircle, ChevronRight,
-  Menu, X, Zap, CheckCircle2, Shield, Bell, AlertCircle,
+  Search, ArrowRight, MapPin, Star, ChevronRight,
+  Menu, X, Zap, CheckCircle2, Shield,
 } from 'lucide-react'
 
 const UF_LIST = [
@@ -16,14 +13,14 @@ const UF_LIST = [
 ]
 
 const CATEGORIES = [
-  { icon: Users,         label: 'Profissionais',  href: '/profissionais',                color: 'bg-blue-100 text-blue-700' },
-  { icon: Stethoscope,   label: 'Clínicas',       href: '/fornecedores?cat=clinica',     color: 'bg-green-100 text-green-700' },
-  { icon: ShoppingBag,   label: 'Lojas',          href: '/fornecedores?cat=loja',        color: 'bg-amber-100 text-amber-700' },
-  { icon: Cpu,           label: 'Software',       href: '/fornecedores?cat=software',    color: 'bg-indigo-100 text-indigo-700' },
-  { icon: BookOpen,      label: 'Revista',        href: '/informativos',                 color: 'bg-rose-100 text-rose-700' },
-  { icon: Mic,           label: 'Podcast',        href: '/conteudo?tipo=podcast',        color: 'bg-pink-100 text-pink-700' },
-  { icon: ScanSearch,    label: 'Peritos',        href: '/profissionais?esp=perito',     color: 'bg-cyan-100 text-cyan-700' },
-  { icon: GraduationCap, label: 'Professores',    href: '/profissionais?esp=professor',  color: 'bg-purple-100 text-purple-700' },
+  { icon: '👤', label: 'Profissionais',  href: '/profissionais',                color: 'bg-blue-100 text-blue-700' },
+  { icon: '🏥', label: 'Clínicas',       href: '/fornecedores?cat=clinica',     color: 'bg-red-100 text-red-700' },
+  { icon: '🏪', label: 'Lojas',          href: '/fornecedores?cat=loja',        color: 'bg-orange-100 text-orange-700' },
+  { icon: '💻', label: 'Software',       href: '/fornecedores?cat=software',    color: 'bg-purple-100 text-purple-700' },
+  { icon: '📰', label: 'Revista',        href: '/informativos',                 color: 'bg-pink-100 text-pink-700' },
+  { icon: '🎙️', label: 'Podcast',        href: '/conteudo?tipo=podcast',        color: 'bg-green-100 text-green-700' },
+  { icon: '🔍', label: 'Peritos',        href: '/profissionais?esp=perito',     color: 'bg-cyan-100 text-cyan-700' },
+  { icon: '👨‍🏫', label: 'Professores',    href: '/profissionais?esp=professor',  color: 'bg-indigo-100 text-indigo-700' },
 ]
 
 const TOP_EVENTS = [
@@ -212,14 +209,14 @@ export function HeroPreview6() {
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-slate-900 mb-6">Categorias</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {CATEGORIES.map(({ icon: Icon, label, href, color }) => (
+            {CATEGORIES.map(({ icon, label, href, color }) => (
               <a
                 key={label}
                 href={href}
                 className="flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50 transition-all"
               >
-                <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center`}>
-                  <Icon className="w-5 h-5" />
+                <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center text-xl`}>
+                  {icon}
                 </div>
                 <span className="text-xs font-semibold text-slate-700 text-center">{label}</span>
               </a>
