@@ -444,6 +444,41 @@ export function HeroPreview6() {
         </div>
       </footer>
 
+      {/* ── BOTTOM NAVIGATION (Mobile Only) ───────────── */}
+      <nav className="fixed bottom-0 left-0 right-0 sm:hidden bg-white border-t border-slate-200 px-4 py-3 flex items-center justify-around">
+        <a
+          href="/"
+          className="flex flex-col items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors"
+        >
+          <Users className="w-6 h-6" />
+          <span className="text-xs font-medium">Início</span>
+        </a>
+        <a
+          href="/fornecedores"
+          className="flex flex-col items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors"
+        >
+          <Search className="w-6 h-6" />
+          <span className="text-xs font-medium">Explorar</span>
+        </a>
+        <a
+          href="/informativos"
+          className="flex flex-col items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors"
+        >
+          <Briefcase className="w-6 h-6" />
+          <span className="text-xs font-medium">Serviços</span>
+        </a>
+        <a
+          href="/profissionais"
+          className="flex flex-col items-center gap-1 text-slate-600 hover:text-blue-600 transition-colors"
+        >
+          <Shield className="w-6 h-6" />
+          <span className="text-xs font-medium">Perfil</span>
+        </a>
+      </nav>
+
+      {/* Padding para bottom nav no mobile */}
+      <div className="sm:hidden h-20" />
+
     </div>
   )
 }
