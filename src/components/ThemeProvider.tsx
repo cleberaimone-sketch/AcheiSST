@@ -3,22 +3,24 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
 import { LayoutTemplate } from 'lucide-react'
 
-export type Theme = 'acheisst' | 'brazil_min' | 'blue_hub' | 'preview_5'
+export type Theme = 'acheisst' | 'brazil_min' | 'blue_hub' | 'preview_5' | 'preview_6'
 
-const THEMES: Theme[] = ['acheisst', 'brazil_min', 'blue_hub', 'preview_5']
+const THEMES: Theme[] = ['acheisst', 'preview_6']
 
 const THEME_LABELS: Record<Theme, string> = {
   acheisst:   'AcheiSST (Verde)',
   brazil_min: 'Tech Brazil',
   blue_hub:   'Blue Hub',
   preview_5:  'Preview 5 (Dark)',
+  preview_6:  'Preview 6 (Azul)',
 }
 
 const THEME_NEXT_LABEL: Record<Theme, string> = {
-  acheisst:   'Ver: Tech Brazil',
-  brazil_min: 'Ver: Blue Hub',
-  blue_hub:   'Ver: Preview 5',
-  preview_5:  'Ver: AcheiSST',
+  acheisst:   'Ver: Preview 6',
+  brazil_min: 'Tech Brazil',
+  blue_hub:   'Blue Hub',
+  preview_5:  'Preview 5 (Dark)',
+  preview_6:  'Ver: AcheiSST',
 }
 
 interface ThemeContextType {
@@ -42,21 +44,23 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
       {/* Fixed Preview Switcher */}
       <div className={`fixed bottom-6 right-6 z-[9999] p-3 rounded-2xl shadow-2xl flex flex-col gap-2 items-center min-w-[170px] transition-colors ${
-        theme === 'preview_5'
+        theme === 'preview_6'
           ? 'bg-slate-900/95 backdrop-blur-xl border border-slate-700'
           : 'bg-white/95 backdrop-blur-xl border border-slate-200'
       }`}>
-        <span className={`text-[10px] font-black uppercase tracking-widest ${theme === 'preview_5' ? 'text-slate-500' : 'text-slate-400'}`}>
+        <span className={`text-[10px] font-black uppercase tracking-widest ${theme === 'preview_6' ? 'text-slate-500' : 'text-slate-400'}`}>
           Preview Ativo
         </span>
-        <span className={`text-xs font-bold ${theme === 'preview_5' ? 'text-green-400' : 'text-slate-700'}`}>
+        <span className={`text-xs font-bold ${
+          theme === 'preview_6' ? 'text-blue-400' : 'text-slate-700'
+        }`}>
           {THEME_LABELS[theme]}
         </span>
         <button
           onClick={cycleTheme}
           className={`flex items-center gap-2 px-4 py-2 font-semibold text-xs rounded-xl transition-all hover:scale-105 w-full justify-center ${
-            theme === 'preview_5'
-              ? 'bg-green-500 text-slate-950 hover:bg-green-400'
+            theme === 'preview_6'
+              ? 'bg-blue-500 text-white hover:bg-blue-400'
               : 'bg-slate-900 text-white hover:bg-slate-700'
           }`}
         >

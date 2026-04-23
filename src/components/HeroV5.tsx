@@ -159,47 +159,34 @@ export function HeroV5() {
         </div>
       </header>
 
-      {/* ── HERO / SEARCH ────────────────────────────────── */}
-      <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-green-500/4 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-20 right-1/4 w-64 h-64 bg-green-400/3 rounded-full blur-2xl pointer-events-none" />
-
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-wide">
-            <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-            Ecossistema SST · Plataforma Nacional
-          </div>
-
-          {/* Hero Content with Background Image */}
-          <div
-            className="relative rounded-2xl overflow-hidden backdrop-blur-md bg-slate-900/40 border border-slate-700/40 p-12 sm:p-16 lg:p-20 mb-10"
-            style={{
-              backgroundImage: 'url(/ideias_frontpage/logotipo_oficial/mapadotrabalho.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            {/* Glass overlay for contrast */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/60 to-slate-950/70 pointer-events-none rounded-2xl" />
-
-            {/* Content */}
-            <div className="relative z-10">
-              {/* Heading — Playfair Display */}
-              <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-                Tudo sobre SST{' '}
-                <span className="text-green-400">em um só lugar</span>
-              </h1>
-              <p className="font-lora text-slate-200 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                A primeira plataforma que reúne fornecedores, profissionais, conteúdo
-                e ferramentas de Saúde e Segurança do Trabalho do Brasil.
-              </p>
+      {/* ── CATEGORY GRID (topo) ────────────────────────── */}
+      <section className="pt-24 px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
+              {CATEGORIES.map(({ icon: Icon, label, href, color }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-xl border border-slate-800 hover:border-green-500/40 bg-slate-950 hover:bg-green-500/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-500/5"
+                >
+                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-500 group-hover:text-green-400 text-center leading-tight transition-colors">
+                    {label}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Search bar */}
-          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
+      {/* ── SEARCH ────────────────────────────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="max-w-2xl mx-auto">
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
               <input
@@ -225,30 +212,6 @@ export function HeroV5() {
               Pesquisar <ArrowRight className="w-4 h-4" />
             </button>
           </form>
-        </div>
-      </section>
-
-      {/* ── CATEGORY GRID ────────────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-              {CATEGORIES.map(({ icon: Icon, label, href, color }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="group flex flex-col items-center gap-2 p-3 sm:p-4 rounded-xl border border-slate-800 hover:border-green-500/40 bg-slate-950 hover:bg-green-500/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-500/5"
-                >
-                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <span className="text-[11px] sm:text-xs font-semibold text-slate-500 group-hover:text-green-400 text-center leading-tight transition-colors">
-                    {label}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

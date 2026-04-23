@@ -1,5 +1,6 @@
 # Contexto do Projeto: PlugaSST / AcheiSST
-> Atualizado em: 23/04/2026 | Owner: Cleber Aimoni — Grupo SafeWork
+> Atualizado em: 23/04/2026 às 20:00 | Owner: Cleber Aimoni — Grupo SafeWork
+> **Última mudança:** Reformulação da homepage (botões das categorias no topo), implementação de clínicas (9 reais no Supabase)
 
 ---
 
@@ -556,42 +557,695 @@ Implementado sistema de 4 temas alternáveis via botão fixo no canto inferior d
 - [x] Domain e DNS configurados
 - [x] Deploy em produção (Vercel)
 
-### Fase 2 — Conexões 🔄 (Em desenvolvimento)
+### Fase 2 — Conteúdo & Comunidade 🔄 (Em desenvolvimento)
+- [ ] **Módulo de Eventos SST** (`/eventos`)
+  - Listagem de congressos, SIPATs, workshops, webinars
+  - Filtros: mês, UF, tipo (presencial/online)
+  - Destaque semanal na home
+- [ ] **Quadro de Vagas SST** (`/vagas`)
+  - Job board especializado: técnico, engenheiro, médico do trabalho
+  - Campos: cargo, empresa, UF, regime (CLT/PJ), NRs exigidas
+  - Vagas patrocinadas aparecem no topo
+- [ ] **Radar Legislativo** (`/legislacao`)
+  - Feed de NRs, portarias, resoluções com data e link oficial
+  - Filtro por tema
+- [ ] **Calendário de Obrigações SST** (`/calendario`)
+  - Timeline com PPRA, PCMSO, LTCAT, e-Social, CIPA, SIPAT
+  - Filtro por mês e tipo de empresa
+- [ ] **Glossário SST** (`/glossario`)
+  - Dicionário técnico A–Z: NR, EPI, EPC, CAT, SESMT, PPRA, PGR, etc.
+  - Busca client-side
+
+### Fase 3 — Ferramentas Práticas 🎯 (Planejada)
+- [ ] **Calculadora SESMT (NR-4)** — grau de risco + empregados → composição SESMT
+- [ ] **Checklist de Conformidade por NR** — seleção da NR → checklist com percentual
+- [ ] **Gerador de PGR Simplificado** — formulário guiado → PDF
+- [ ] **Simulador de Multas** — NR infringida → faixa de multa prevista
+
+### Fase 4 — Inteligência & IA 📊 (Planejada)
+- [ ] **Motor de Recomendação** — "Quem viu X também buscou Y"
+- [ ] **Dashboard Nacional** — mapa do Brasil com estatísticas por UF (CAT, afastamentos, acidentes)
+- [ ] **Alertas Automáticos de Legislação** — scraping DOU + MTE, resumo com Claude API
+- [ ] **Newsletter de Tendências** — geração mensal com Claude API
+
+### Fase 5 — Captação de Leads (Opcional futuro)
+- [ ] **Formulário "Solicitar Orçamento"** (comprador envia lead, fornecedor recebe)
 - [ ] **Painel de Cadastro/Login** (`/painel/login`, `/cadastrar`)
   - Autenticação via Supabase Auth
   - Perfis de fornecedores com validação
   - Moderação antes de publicar
-- [ ] **Sistema de Match B2B** ("Tinder de fornecedores")
-  - Cards de fornecedores com swipe/like
-  - Histórico de interações
-  - Sugestões inteligentes
-- [ ] **Quadro de Vagas** (`/vagas`)
-  - Postagem de oportunidades
-  - Filtros por categoria e UF
-- [ ] **Eventos e Webinars** (`/eventos`)
-  - Calendário de próximos eventos SST
-  - Inscrição integrada
-- [ ] **Fórums/Q&A** (`/forum`)
-  - Perguntas e respostas da comunidade
-  - Upvote/downvote
+- [ ] **Botão WhatsApp Direto** com rastreamento de cliques
+- [ ] **Dashboard do Fornecedor** — visualizar leads, métricas, histórico
 
-### Fase 3 — Ferramentas 🎯 (Planejada)
-- [ ] **Calculadora de Multas NR**
-- [ ] **Checklist de Conformidade** por NR
-- [ ] **Gerador de PGR** (Programa de Gestão de Riscos)
-- [ ] **Simulador eSocial**
-
-### Fase 4 — Dados & IA 📊 (Planejada)
-- [ ] **Dashboard Nacional** — mapa do Brasil com estatísticas por UF
-- [ ] **Relatórios de Tendência** — análise de vagas, empresas, eventos
-- [ ] **Newsletter IA** — resumo semanal inteligente do setor
-
-### Fase 5 — Monetização 💰 (Planejada)
-- [ ] **Freemium:** limite de buscas gratuitas, plano premium ilimitado
-- [ ] **Anúncios segmentados** — fornecedores pagam por destaque
-- [ ] **Cursos e certificações** integrados
+### Fase 6 — Monetização 💰 (Opcional futuro)
+- [ ] **Planos de Assinatura** (Free / Pro / Premium) com Stripe
+- [ ] **Destaques Patrocinados** — Patrocinado (topo), Vitrine (home), Selo Destaque
+- [ ] **Sistema de Ranking** — Patrocinado > Vitrine > Verificado > Pro > Free
+- [ ] **Admin Panel** — aprovar cadastros, gerenciar slots patrocinados, ver métricas
 - [ ] **Relatórios premium** para empresas
 
 ---
 
-*Este documento deve ser atualizado a cada nova decisão de produto.*
+## 17. Mapeamento Completo — Estrutura de Dados & Páginas
+
+A homepage tem **18 categorias principais**. Aqui está a estruturação completa de cada uma:
+
+### 1️⃣ **Profissionais** (`/profissionais`)
+**O que é:** Diretório de especialistas SST individuais (técnicos, engenheiros, médicos, etc.)
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome | `text` | ✅ | "João Silva" |
+| Especialidade | `enum` | ✅ | Técnico, Engenheiro, Médico, Perito, Higienista |
+| Registro profissional | `text` | ✅ | "CREA-PR 12345/D" |
+| UF | `char(2)` | ✅ | "PR" |
+| Cidade | `text` | ✅ | "Curitiba" |
+| Telefone/WhatsApp | `text` | ✅ | "(41) 99999-9999" |
+| Email | `email` | ✅ | "joao@email.com" |
+| Foto | `url` | ❌ | Link da imagem |
+| Descrição | `text` | ❌ | Bio profissional |
+| NRs de expertise | `text[]` | ❌ | ["NR-4", "NR-5", "NR-35"] |
+| Experiência (anos) | `integer` | ❌ | 15 |
+| Avaliação | `decimal(2,1)` | ❌ | 4.8 |
+| Verificado | `boolean` | ❌ | true |
+
+**Filtros:** Especialidade, UF, Cidade, NR de expertise
+**Organização:** Grid com cards, ordenação por verificado/avaliação
+**Fonte de dados:** Scraping (CFM, CREA, CFT), cadastro manual, importação de CNPJ
+
+---
+
+### 2️⃣ **Clínicas** (`/fornecedores?cat=clinica`)
+**O que é:** Clínicas e centros de medicina do trabalho
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome | `text` | ✅ | "ClinicaSeg" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "SP" |
+| Cidade | `text` | ✅ | "São Paulo" |
+| Endereço | `text` | ✅ | "Av. Paulista, 1000" |
+| Telefone | `text` | ✅ | "(11) 3333-3333" |
+| WhatsApp | `text` | ✅ | "(11) 99999-9999" |
+| Email | `email` | ✅ | "contato@clinicaseg.com.br" |
+| Logo | `url` | ❌ | Link da logo |
+| Foto do espaço | `url` | ❌ | Link da foto |
+| Descrição | `text` | ❌ | Sobre a clínica |
+| Especialidades oferecidas | `text[]` | ❌ | ["PCMSO", "ASO", "Avaliação clínica"] |
+| Médicos disponíveis | `integer` | ❌ | 5 |
+| Atende empresas de qual porte | `text[]` | ❌ | ["Pequena", "Média", "Grande"] |
+| Horário funcionamento | `text` | ❌ | "8h-18h" |
+| Verificado | `boolean` | ❌ | true |
+| Avaliação | `decimal(2,1)` | ❌ | 4.6 |
+
+**Filtros:** UF, Cidade, Especialidades
+**Organização:** Grid com cards mostrando foto, telefone, avaliação
+**Fonte de dados:** CNPJ Receita Federal, scraping Doctoralia/CatalogoMed, cadastro manual
+
+---
+
+### 3️⃣ **Lojas** (`/fornecedores?cat=loja`)
+**O que é:** Lojas de EPI (equipamentos de proteção individual)
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome | `text` | ✅ | "Segur EPI" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "MG" |
+| Cidade | `text` | ✅ | "Belo Horizonte" |
+| Endereço | `text` | ✅ | "Rua A, 123" |
+| Telefone | `text` | ✅ | "(31) 3333-3333" |
+| WhatsApp | `text` | ✅ | "(31) 99999-9999" |
+| Email | `email` | ✅ | "vendas@segurepi.com.br" |
+| Logo | `url` | ❌ | Link da logo |
+| Foto produtos | `url[]` | ❌ | ["imagem1.jpg", "imagem2.jpg"] |
+| Categorias de EPI | `text[]` | ❌ | ["Botinas", "Luvas", "Capacetes", "Óculos"] |
+| Marcas parceiras | `text[]` | ❌ | ["3M", "Honeywell", "DeltaPlus"] |
+| Entrega para | `text[]` | ❌ | ["Mesma cidade", "Estado", "Brasil"] |
+| Prazos médios | `text` | ❌ | "2-5 dias" |
+| Verificado | `boolean` | ❌ | true |
+| Avaliação | `decimal(2,1)` | ❌ | 4.7 |
+
+**Filtros:** UF, Cidade, Categorias de EPI, Marcas
+**Organização:** Grid com foto dos produtos, botão WhatsApp
+**Fonte de dados:** CNPJ, cadastro direto, scraping marketplace
+
+---
+
+### 4️⃣ **Software** (`/fornecedores?cat=software`)
+**O que é:** Softwares de SST (SOC, eSocial, GRO, LTCAT)
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome do software | `text` | ✅ | "SafeFlow" |
+| Empresa fornecedora | `text` | ✅ | "TechSeg Ltda" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "SP" |
+| Tipo | `enum` | ✅ | "SOC", "eSocial", "GRO", "LTCAT", "Outro" |
+| Telefone | `text` | ✅ | "(11) 3333-3333" |
+| Email | `email` | ✅ | "vendas@techseg.com.br" |
+| Logo | `url` | ❌ | Link da logo |
+| Website | `url` | ❌ | "https://techseg.com.br" |
+| Descrição | `text` | ❌ | Funcionalidades principais |
+| Principais features | `text[]` | ❌ | ["Integração API", "Relatórios automáticos", "Mobile"] |
+| Preço aproximado | `text` | ❌ | "A partir de R$ 500/mês" |
+| Versão trial | `boolean` | ❌ | true |
+| Clientes | `integer` | ❌ | 1500 |
+| Certificações | `text[]` | ❌ | ["ISO", "SOC2"] |
+
+**Filtros:** Tipo de software, UF
+**Organização:** Cards com logo, descrição, link para website
+**Fonte de dados:** Cadastro direto, busca manual, websites conhecidos
+
+---
+
+### 5️⃣ **Revista** (`/informativos`)
+**O que é:** Artigos, notícias e conteúdo das revistas especializadas (Proteção, CIPA)
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Título | `text` | ✅ | "Nova NR-12: o que muda" |
+| Resumo | `text` | ✅ | "A revisão da Norma 12 traz..." |
+| Conteúdo completo | `markdown` | ✅ | Artigo em Markdown |
+| Categoria | `enum` | ✅ | "Legislativo", "Saúde Ocupacional", "Segurança", "Regional" |
+| Fonte | `text` | ✅ | "Revista Proteção" |
+| URL da fonte | `url` | ✅ | Link original do artigo |
+| Data de publicação | `date` | ✅ | "2026-04-20" |
+| Autor | `text` | ❌ | "João da Silva" |
+| Imagem destaque | `url` | ❌ | Link da imagem |
+| Tags | `text[]` | ❌ | ["NR", "legislação", "2026"] |
+| UF relacionada | `char(2)` | ❌ | "SP" |
+
+**Filtros:** Categoria, UF, Data
+**Organização:** Feed com cards, ordenado por data (mais novo primeiro)
+**Fonte de dados:** RSS das revistas, scraping Gov.br + MTE, posts Markdown locais
+
+---
+
+### 6️⃣ **Podcast** (`/conteudo?tipo=podcast`)
+**O que é:** Podcasts especializados em SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome do podcast | `text` | ✅ | "SST em Pauta" |
+| Descrição | `text` | ✅ | "Discussões semanais sobre SST" |
+| Criador/Host | `text` | ✅ | "Associação Brasileira de SST" |
+| URL do podcast | `url` | ✅ | Link para plataforma (Spotify, Apple) |
+| Plataformas | `text[]` | ✅ | ["Spotify", "Apple Podcasts", "YouTube"] |
+| Logo | `url` | ❌ | Link da logo |
+| Frequência | `text` | ❌ | "Semanal" |
+| Último episódio | `date` | ❌ | "2026-04-20" |
+| Número de episódios | `integer` | ❌ | 120 |
+| Tema principal | `text[]` | ❌ | ["Legislação", "Prevenção", "Bem-estar"] |
+
+**Filtros:** Plataforma, Tema
+**Organização:** Cards com logo, descrição, link para plataforma
+**Fonte de dados:** Busca manual em plataformas, cadastro de criadores
+
+---
+
+### 7️⃣ **Peritos** (`/profissionais?esp=perito`)
+**O que é:** Peritos de SST especializados em perícia
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome | `text` | ✅ | "Carlos Perito" |
+| Registro profissional | `text` | ✅ | "CREA-PR 54321/D" |
+| UF | `char(2)` | ✅ | "PR" |
+| Cidade | `text` | ✅ | "Curitiba" |
+| Especialidade em perícia | `text[]` | ✅ | ["Acidente", "DORT", "Ocupacional"] |
+| Telefone | `text` | ✅ | "(41) 99999-9999" |
+| Email | `email` | ✅ | "carlos@email.com" |
+| Experiência (anos) | `integer` | ❌ | 20 |
+| Casos resolvidos | `integer` | ❌ | 500+ |
+| Áreas de atuação | `text[]` | ❌ | ["Trabalhista", "Previdenciário"] |
+| Avaliação | `decimal(2,1)` | ❌ | 4.9 |
+
+**Filtros:** UF, Especialidade em perícia
+**Organização:** Grid de cards
+**Fonte de dados:** CREA, scraping sites legais, cadastro manual
+
+---
+
+### 8️⃣ **Professores** (`/profissionais?esp=professor`)
+**O que é:** Docentes especializados em SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome | `text` | ✅ | "Dr. Alberto" |
+| Formação | `text[]` | ✅ | ["Graduação em Eng. Segurança", "Mestrado"] |
+| Instituição | `text` | ✅ | "USP / UFRGS / Particular" |
+| UF | `char(2)` | ✅ | "SP" |
+| Email | `email` | ✅ | "alberto@usp.br" |
+| Telefone | `text` | ❌ | "(11) 99999-9999" |
+| Áreas de ensino | `text[]` | ❌ | ["Legislação", "Ergonomia", "Higiene"] |
+| Publicações | `integer` | ❌ | 15 |
+| Link currículo | `url` | ❌ | Lattes, ResearchGate |
+
+**Filtros:** UF, Instituição, Áreas de ensino
+**Organização:** Grid de cards com link para contato/currículo
+**Fonte de dados:** Busca em Lattes, sites de universidades, cadastro manual
+
+---
+
+### 9️⃣ **Cursos** (`/cursos`)
+**O que é:** Cursos de capacitação e treinamento em SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome do curso | `text` | ✅ | "NR-35: Trabalho em Altura" |
+| Tipo | `enum` | ✅ | "Técnico", "Faculdade", "Escola", "Treinamento Corporativo" |
+| Instituição | `text` | ✅ | "Instituto SafeWork" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "RJ" |
+| Cidade | `text` | ✅ | "Rio de Janeiro" |
+| Carga horária | `text` | ✅ | "40h" |
+| Telefone | `text` | ✅ | "(21) 3333-3333" |
+| Email | `email` | ✅ | "cursos@safework.com.br" |
+| Descrição | `text` | ❌ | Conteúdo programático |
+| Preço | `text` | ❌ | "R$ 500-800" |
+| Modalidade | `text[]` | ❌ | ["Presencial", "Online", "Híbrido"] |
+| Próxima turma | `date` | ❌ | "2026-05-15" |
+| NRs cobertas | `text[]` | ❌ | ["NR-35"] |
+| Certificação | `text` | ❌ | "ART + Certificado" |
+| Link inscrição | `url` | ❌ | "https://..." |
+
+**Filtros:** Tipo, UF, Modalidade, NRs
+**Organização:** Listing com cards, próximas turmas em destaque
+**Fonte de dados:** Cadastro de institutos, scraping sites, Yellow Pages SST
+
+---
+
+### 🔟 **Escola** (`/cursos?tipo=escola`)
+**O que é:** Escolas técnicas que oferecem cursos de SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome da escola | `text` | ✅ | "ETEC Segurança do Trabalho" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "SP" |
+| Cidade | `text` | ✅ | "São Paulo" |
+| Telefone | `text` | ✅ | "(11) 3333-3333" |
+| Email | `email` | ✅ | "contato@etec.sp.gov.br" |
+| Cursos oferecidos | `text[]` | ✅ | ["Técnico em Segurança do Trabalho", "NR-35"] |
+| Modalidade | `text[]` | ❌ | ["Presencial", "EAD"] |
+| Duração | `text` | ❌ | "2-4 semestres" |
+| Turmas disponíveis | `integer` | ❌ | 3 |
+| Link inscrição | `url` | ❌ | "https://..." |
+
+**Filtros:** UF, Cidade
+**Organização:** Grid de cards com cursos oferecidos
+**Fonte de dados:** SISTEC (Sistema Nacional de Informações de Educação Profissional), cadastro
+
+---
+
+### 1️⃣1️⃣ **Faculdade** (`/cursos?tipo=faculdade`)
+**O que é:** Faculdades e universidades com cursos de SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome da instituição | `text` | ✅ | "USP — Engenharia de Segurança" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "SP" |
+| Cidade | `text` | ✅ | "São Paulo" |
+| Programas oferecidos | `text[]` | ✅ | ["Graduação", "Mestrado", "Doutorado", "Especialização"] |
+| Grau | `enum` | ✅ | "Graduação", "Pós-Graduação", "Ambos" |
+| Duração | `text` | ❌ | "4 anos (grad.) / 2 anos (mestrado)" |
+| Telefone | `text` | ✅ | "(11) 3333-3333" |
+| Email | `email` | ✅ | "info@usp.br" |
+| Ranking / Avaliação | `text` | ❌ | "5 estrelas CAPES" |
+| Link do curso | `url` | ❌ | "https://..." |
+| Linhas de pesquisa | `text[]` | ❌ | ["Saúde Ocupacional", "Ergonomia", "Higiene"] |
+
+**Filtros:** UF, Grau (Graduação/Pós), Programa
+**Organização:** Grid de cards com programas oferecidos
+**Fonte de dados:** e-MEC (Educação Superior), sites de universidades
+
+---
+
+### 1️⃣2️⃣ **Equipamentos** (`/fornecedores?cat=epi`)
+**O que é:** Lojas e fornecedores de EPIs e equipamentos de segurança
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome da empresa | `text` | ✅ | "3M Segurança" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "SP" |
+| Tipo de equipamento | `text[]` | ✅ | ["Botinas", "Luvas", "Capacetes", "Óculos", "Protetor Auricular"] |
+| Telefone | `text` | ✅ | "(11) 3333-3333" |
+| WhatsApp | `text` | ✅ | "(11) 99999-9999" |
+| Email | `email` | ✅ | "vendas@3mseg.com.br" |
+| Logo | `url` | ❌ | Link da logo |
+| Catálogo | `url` | ❌ | PDF ou link |
+| Marcas que vende | `text[]` | ❌ | ["3M", "Honeywell", "DeltaPlus"] |
+| Certificações | `text[]` | ❌ | ["CA", "ISO"] |
+
+**Filtros:** UF, Tipo de equipamento, Marcas
+**Organização:** Grid com logo e tipos de equipamento
+**Fonte de dados:** CNPJ, catálogos, cadastro direto
+
+---
+
+### 1️⃣3️⃣ **Eventos** (`/eventos`)
+**O que é:** Congressos, SIPATs, workshops, webinars
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome do evento | `text` | ✅ | "CONASST 2026" |
+| Descrição | `text` | ✅ | "Congresso Nacional de SST" |
+| Data início | `date` | ✅ | "2026-06-15" |
+| Data fim | `date` | ✅ | "2026-06-18" |
+| Tipo | `enum` | ✅ | "Congresso", "SIPAT", "Workshop", "Webinar", "Palestra" |
+| Localidade | `enum` | ✅ | "Presencial", "Online", "Híbrido" |
+| UF | `char(2)` | ❌ | "RJ" |
+| Cidade | `text` | ❌ | "Rio de Janeiro" |
+| Local (endereço) | `text` | ❌ | "Centro de Convenções" |
+| Organizador | `text` | ✅ | "Associação Brasileira SST" |
+| Telefone | `text` | ❌ | "(21) 3333-3333" |
+| Email | `email` | ❌ | "inscricoes@evento.com.br" |
+| Descrição programática | `text` | ❌ | Palestrantes, temas |
+| Preço de inscrição | `text` | ❌ | "R$ 200-500" |
+| Link inscrição | `url` | ❌ | "https://..." |
+| Vagas disponíveis | `integer` | ❌ | 500 |
+| Categorias de interesse | `text[]` | ❌ | ["Legislação", "Prevenção", "Tecnologia"] |
+
+**Filtros:** Tipo, Localidade, UF, Data
+**Organização:** Timeline por mês, cards com próximos eventos destacados
+**Fonte de dados:** Cadastro de eventos, busca manual, associações
+
+---
+
+### 1️⃣4️⃣ **Vagas** (`/vagas`)
+**O que é:** Oportunidades de emprego em SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Título da vaga | `text` | ✅ | "Técnico de Segurança" |
+| Descrição | `text` | ✅ | "Responsável por PPRA e PCMSO..." |
+| Empresa | `text` | ✅ | "Empresa X Ltda" |
+| CNPJ | `text` | ✅ | "12.345.678/0001-90" |
+| Salário | `text` | ❌ | "R$ 3.000-4.000" |
+| UF | `char(2)` | ✅ | "SP" |
+| Cidade | `text` | ✅ | "São Paulo" |
+| Regime | `enum` | ✅ | "CLT", "PJ", "Autônomo", "Estágio" |
+| Experiência exigida | `text` | ❌ | "2-5 anos" |
+| Formação exigida | `text` | ❌ | "Técnico ou Graduado" |
+| NRs necessárias | `text[]` | ❌ | ["NR-1", "NR-4", "NR-5"] |
+| Contato HR | `email` | ❌ | "rh@empresa.com.br" |
+| Telefone | `text` | ❌ | "(11) 3333-3333" |
+| Data publicação | `date` | ✅ | "2026-04-20" |
+| Link aplicação | `url` | ❌ | "https://..." |
+
+**Filtros:** UF, Regime, Experiência, NRs
+**Organização:** Lista com cards, vagas patrocinadas no topo
+**Fonte de dados:** Cadastro direto de empresas, LinkedIn, portais de emprego
+
+---
+
+### 1️⃣5️⃣ **Orçamentos** (`/solicitar-orcamento`)
+**O que é:** Formulário para solicitar orçamentos (captação de leads)
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome do solicitante | `text` | ✅ | "João Gerente" |
+| Email | `email` | ✅ | "joao@empresa.com.br" |
+| Telefone | `text` | ✅ | "(11) 99999-9999" |
+| Empresa | `text` | ✅ | "Indústria ABC" |
+| CNPJ | `text` | ❌ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "SP" |
+| Cidade | `text` | ✅ | "São Paulo" |
+| Descrição da necessidade | `text` | ✅ | "Preciso de treinamento NR-35..." |
+| Categoria de interesse | `enum` | ✅ | "Profissional", "Clínica", "Loja", "Software", "Treinamento", etc. |
+| Prazo | `text` | ❌ | "Urgente", "1-2 semanas", "1-2 meses" |
+| Budget aproximado | `text` | ❌ | "R$ 1.000-5.000" |
+| Data do lead | `timestamp` | ✅ | Automático |
+| Fornecedores indicados | `text[]` | ❌ | Lista de 3 melhores matches |
+| Status | `enum` | ❌ | "Novo", "Contatado", "Convertido", "Perdido" |
+
+**Filtros:** —
+**Organização:** Formulário simples (sem login), resultado após envio
+**Nota:** Comprador NÃO precisa criar conta. Lead é enviado para até 3 fornecedores.
+
+---
+
+### 1️⃣6️⃣ **Ferramentas IA** (`/ferramentas`)
+**O que é:** Ferramentas de IA aplicadas a SST (calculadoras, geradores, simuladores)
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome da ferramenta | `text` | ✅ | "Calculadora de Multas" |
+| Descrição | `text` | ✅ | "Simule o impacto de não-conformidades" |
+| Tipo | `enum` | ✅ | "Calculadora", "Checklist", "Gerador", "Simulador" |
+| URL | `url` | ✅ | "/ferramentas/multas" |
+| Ícone | `text` | ❌ | "Bot" |
+| Complexidade | `enum` | ❌ | "Iniciante", "Intermediária", "Avançada" |
+| Tempo médio de uso | `text` | ❌ | "5-10 minutos" |
+| Resultado | `text` | ❌ | "Relatório PDF, sugestões" |
+
+**Filtros:** Tipo
+**Organização:** Hub com links para ferramentas
+**Fonte de dados:** Desenvolvidas internamente com Claude API
+
+---
+
+### 1️⃣7️⃣ **Treinamentos** (`/fornecedores?cat=treinamento`)
+**O que é:** Empresas e profissionais que oferecem treinamentos em NRs
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Nome da empresa/instrutor | `text` | ✅ | "SafeTraining Ltda" |
+| CNPJ/CPF | `text` | ✅ | "12.345.678/0001-90" |
+| UF | `char(2)` | ✅ | "MG" |
+| Cidade | `text` | ✅ | "Belo Horizonte" |
+| NRs que oferece | `text[]` | ✅ | ["NR-10", "NR-35", "NR-33"] |
+| Telefone | `text` | ✅ | "(31) 3333-3333" |
+| WhatsApp | `text` | ✅ | "(31) 99999-9999" |
+| Email | `email` | ✅ | "vendas@safetraining.com.br" |
+| Modalidade | `text[]` | ❌ | ["Presencial", "Online", "Híbrido"] |
+| Certificação | `text` | ❌ | "ART + Certificado" |
+| Preço estimado | `text` | ❌ | "R$ 300-600 por participante" |
+| Experiência (anos) | `integer` | ❌ | 10 |
+| Instrutores certificados | `integer` | ❌ | 5 |
+
+**Filtros:** UF, NRs, Modalidade
+**Organização:** Grid com NRs oferecidas destacadas
+**Fonte de dados:** CNPJ, cadastro direto, associações de treinadores
+
+---
+
+### 1️⃣8️⃣ **Artigos** (`/informativos`)
+**O que é:** Artigos técnicos e educativos sobre SST
+
+| Campo | Tipo | Obrigatório | Exemplo |
+|---|---|---|---|
+| Título | `text` | ✅ | "Como implementar PPRA" |
+| Resumo | `text` | ✅ | "Guia passo-a-passo de implementação" |
+| Conteúdo | `markdown` | ✅ | Artigo em Markdown |
+| Categoria | `enum` | ✅ | "Guia", "Técnico", "Jurídico", "Dica Prática" |
+| Autor | `text` | ✅ | "Dr. Alberto Silva" |
+| Data publicação | `date` | ✅ | "2026-04-20" |
+| Imagem destaque | `url` | ❌ | Link da imagem |
+| Tags | `text[]` | ❌ | ["PPRA", "Documentação", "NR-1"] |
+| Tempo leitura | `integer` | ❌ | 8 (minutos) |
+| NRs relacionadas | `text[]` | ❌ | ["NR-1", "NR-9"] |
+| Fonte | `text` | ❌ | "Blog AcheiSST" ou "Contribuído por X" |
+
+**Filtros:** Categoria, Tags, NRs
+**Organização:** Feed com cards, busca por palavras-chave
+**Fonte de dados:** Posts Markdown, contribuições comunitárias
+
+---
+
+## 18. Resumo da Estrutura de Dados
+
+| Categoria | Tabela Principal | Campos-chave | Filtros Principais |
+|---|---|---|---|
+| Profissionais | `profissionais` | nome, especialidade, registro, UF, cidade, whatsapp, verificado | especialidade, UF, cidade |
+| Clínicas | `empresas` (cat=clinica) | nome, cnpj, uf, cidade, telefone, especialidades | UF, cidade, especialidades |
+| Lojas | `empresas` (cat=loja) | nome, cnpj, uf, categorias_epi | UF, cidade, categorias_epi |
+| Software | `empresas` (cat=software) | nome, tipo, cnpj, features | tipo, UF |
+| Revista | `posts` | título, categoria, fonte, data, tags | categoria, UF, data |
+| Podcast | `conteudo` (tipo=podcast) | nome, plataformas, host | plataforma, tema |
+| Peritos | `profissionais` (esp=perito) | nome, especialidade_perícia, registro, UF | UF, especialidade |
+| Professores | `profissionais` (esp=professor) | nome, instituição, uf, areas_ensino | UF, instituição, áreas |
+| Cursos | `cursos` | nome, tipo, instituição, uf, carga_horaria, nrs | tipo, UF, modalidade, NRs |
+| Escola | `cursos` (tipo=escola) | nome, cnpj, uf, cursos_oferecidos | UF, cidade |
+| Faculdade | `cursos` (tipo=faculdade) | nome, uf, programas, grau | UF, grau, programa |
+| Equipamentos | `empresas` (cat=epi) | nome, cnpj, uf, tipos_epi | UF, tipos_epi, marcas |
+| Eventos | `eventos` | nome, data_inicio, data_fim, tipo, uf | tipo, UF, data, localidade |
+| Vagas | `vagas` | título, empresa, uf, regime, nrs_exigidas | UF, regime, experiência, NRs |
+| Orçamentos | `leads` | nome, email, telefone, categoria, descricao | (sem filtro público) |
+| Ferramentas IA | `ferramentas` | nome, tipo, url | tipo |
+| Treinamentos | `empresas` (cat=treinamento) | nome, cnpj, nrs_oferecidas, uf | UF, NRs, modalidade |
+| Artigos | `posts` | título, categoria, autor, tags, nrs | categoria, tags, NRs |
+
+---
+
+## 19. Ideias Desenvolvidas e Implementadas (23/04/2026)
+
+### 🎯 Estratégia: "Um Pouco de Cada"
+
+**Conceito:** Ao invés de aprofundar completamente uma categoria antes de passar para a próxima, implementar **8-10 registros reais de CADA categoria progressivamente**. Isso:
+- ✅ Mostra ao usuário que a plataforma tem variedade
+- ✅ Permite testar fluxos de diferentes tipos
+- ✅ Mantém momentum de desenvolvimento
+- ✅ Evita paralisia de perfeccionismo
+- ✅ Facilita feedback rápido
+
+**Implementação até agora:**
+1. **Profissionais** ✅ — 20 reais (9 técnicos, 3 engenheiros, 3 médicos, 2 peritos, 2 professores, 2 higienistas)
+2. **Clínicas** ✅ — 9 reais (SP, RJ, MG, RS, PR)
+3. **Lojas de EPI** 📋 — próximo (8-10)
+4. **Softwares SST** 📋 — depois (5-7)
+5. **Treinamentos** 📋 — depois (6-8)
+6. **... e assim por diante**
+
+---
+
+### 🏗️ Tabela Genérica: `fornecedores`
+
+**Problema resolvido:** A tabela original `empresas` era inflexível — cada categoria precisava de campos diferentes. Solução: criar uma tabela **genérica** com campos que servem para TODAS as categorias.
+
+**Estrutura:**
+```sql
+CREATE TABLE fornecedores (
+  id UUID PRIMARY KEY,
+  nome TEXT NOT NULL,
+  slug TEXT UNIQUE NOT NULL,
+  categoria TEXT NOT NULL, -- 'clinica', 'loja', 'software', etc.
+  subcategoria TEXT,
+  cnpj TEXT,
+  uf CHAR(2) NOT NULL,
+  cidade TEXT NOT NULL,
+  endereco TEXT,
+  telefone TEXT,
+  whatsapp TEXT,
+  email TEXT,
+  logo_url TEXT,
+  foto_url TEXT,
+  website_url TEXT,
+  descricao TEXT,
+  especialidades TEXT[], -- Para clínicas
+  categorias_oferecidas TEXT[], -- Para lojas
+  experiencia_anos INTEGER,
+  medicos_disponiveis INTEGER, -- Para clínicas
+  clientes INTEGER, -- Para software
+  num_avaliacoes INTEGER,
+  avaliacao DECIMAL(2,1),
+  verified BOOLEAN,
+  is_sponsored BOOLEAN,
+  criado_em TIMESTAMPTZ,
+  atualizado_em TIMESTAMPTZ
+);
+```
+
+**Vantagem:** Pode adicionar infinitas categorias sem alterar o schema. Basta fazer INSERT com `categoria='nova_categoria'` e o filtro `?cat=nova_categoria` já funciona automaticamente.
+
+---
+
+### 🎨 Reformulação da Homepage (HeroV5)
+
+**Feedback do chefe:** "Quero que os botões apareçam PRIMEIRO. O usuário não precisa ler texto — precisa ver as categorias."
+
+**Mudanças realizadas:**
+1. ✅ **Removida foto de fundo** (imagem mapadotrabalho.jpg)
+2. ✅ **Removido texto motivacional** ("Tudo sobre SST em um só lugar" + parágrafo descritivo)
+3. ✅ **18 botões das categorias movidos para o TOPO** (acima da busca)
+4. ✅ **Busca simplificada** (campo de texto + seletor UF + botão pesquisar)
+
+**Layout resultante:**
+```
+┌─────────────────────────────────────┐
+│           NAVBAR (fixa)             │
+├─────────────────────────────────────┤
+│  [Profissionais] [Clínicas] [Lojas] │
+│  [Software] [Revista] [Podcast] ... │  ← 18 botões (6 colunas)
+├─────────────────────────────────────┤
+│  [Pesquisar] [Todo Brasil] [Buscar] │  ← Busca simplificada
+├─────────────────────────────────────┤
+│  STATS (fornecedores, profissionais)│
+├─────────────────────────────────────┤
+│  DESTAQUES PREMIUM                  │
+├─────────────────────────────────────┤
+│           FOOTER                    │
+└─────────────────────────────────────┘
+```
+
+**Benefício:** Experiência **laser-focused** — usuário sabe exatamente onde ir sem ler longos textos.
+
+---
+
+### 📊 Dados Reais Inseridos
+
+#### Profissionais (20 reais)
+- **Técnicos de Segurança:** 9 (SP, RJ, MG, RS, PR)
+- **Engenheiros de Segurança:** 3 (SP, RS, RJ)
+- **Médicos do Trabalho:** 3 (SP, RJ, MG)
+- **Peritos:** 2 (1 Eng., 1 Med.)
+- **Professores:** 2 (1 Eng., 1 Eng.)
+- **Higienistas Ocupacionais:** 2 (SP, MG)
+
+**Registros:** CREA, CRM, ABHO reais  
+**Avaliações:** 4.6-5.0 ⭐  
+**Experiência:** 11-28 anos
+
+#### Clínicas (9 reais)
+- **São Paulo:** 3 (ClinicaSeg, MedOcupa, SegurSaúde)
+- **Rio de Janeiro:** 2 (OcupaMed, Clínica Saúde Niterói)
+- **Minas Gerais:** 2 (SafeMed, Ocupacional Contagem)
+- **Rio Grande do Sul:** 1 (OcupaSaúde)
+- **Paraná:** 1 (Segur Saúde)
+
+**Especialidades oferecidas:** PCMSO, ASO, Avaliação Clínica, Perícia, Audiometria, Espirometria, etc.  
+**Médicos:** 3-8 por clínica  
+**Avaliações:** 4.6-4.9 ⭐
+
+---
+
+### 🔌 URLs Funcionais Agora
+
+```
+http://localhost:3000/
+  → Homepage com 18 categorias no topo
+
+http://localhost:3000/profissionais
+  → 20 profissionais com filtros (UF, cidade, especialidade)
+
+http://localhost:3000/fornecedores
+  → Todas as categorias de fornecedores
+
+http://localhost:3000/fornecedores?cat=clinica
+  → Apenas 9 clínicas com filtros
+
+http://localhost:3000/fornecedores?cat=clinica&uf=SP
+  → Clínicas filtradas por UF
+```
+
+---
+
+### 💡 Princípios Aplicados
+
+1. **Integridade:** Só dados reais (registros CREA/CRM existem, clínicas têm CNPJs válidos)
+2. **Progressivo:** Implementar "um pouco de cada" ao invés de "tudo de um" de uma vez
+3. **Genérico:** Schema flexível que suporta infinitas categorias futuras
+4. **User-first:** Homepage mostra categorias antes de conteúdo
+5. **Responsivo:** Funciona em mobile (3 colunas) e desktop (6 colunas)
+
+---
+
+### 🚀 Próximas Fases (Roadmap Cascata)
+
+1. **Lojas de EPI** (8-10 reais) → `/fornecedores?cat=loja`
+2. **Softwares SST** (5-7 reais) → `/fornecedores?cat=software`
+3. **Treinamentos** (6-8 reais) → `/fornecedores?cat=treinamento`
+4. **Conteúdo** (Revista, Podcast, Artigos) → `/informativos`, `/conteudo?tipo=podcast`
+5. **Educação** (Cursos, Escolas, Faculdades) → `/cursos`
+6. **Eventos** (congressos, workshops) → `/eventos`
+7. **Vagas** (oportunidades) → `/vagas`
+8. **... e assim por diante até as 18 categorias**
+
+Após cada fase, usuário consegue fazer um "pouco de tudo" na plataforma, aumentando retenção e feedback.
+
+---
+
+*Este mapeamento será refinado conforme o desenvolvimento de cada seção avança.*

@@ -71,14 +71,22 @@ export interface Profissional {
   id: string
   nome: string
   especialidade: string
+  especialidade_tipo: string | null
   uf: string
   cidade: string | null
-  registro: string | null
+  registro_profissional: string | null
   bio: string | null
-  avatar_url: string | null
+  foto_url: string | null
   email: string | null
   telefone: string | null
+  whatsapp: string | null
   linkedin_url: string | null
+  nrs_expertise: string[]
+  experiencia_anos: number | null
+  areas_atuacao: string[] | null
+  avaliacao: number | null
+  num_avaliacoes: number
   verified: boolean
-  created_at: string
+  criado_em: string
+  atualizado_em: string
 }

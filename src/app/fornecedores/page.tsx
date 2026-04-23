@@ -5,47 +5,69 @@ import type { Fornecedor, FornecedorCategoria } from '@/types'
 
 export const metadata = {
   title: 'Fornecedores SST — AcheiSST',
-  description: 'Encontre fornecedores especializados em Saúde e Segurança do Trabalho: EPI, clínicas, consultorias, treinamentos, softwares e muito mais.',
+  description: 'Encontre fornecedores especializados em Saúde e Segurança do Trabalho: clínicas, lojas de EPI, softwares, treinamentos e muito mais.',
 }
 
 export const revalidate = 3600
 
-// Mapeamento do campo 'segmento' existente para FornecedorCategoria
-function mapSegmento(segmento: string): FornecedorCategoria {
-  const s = (segmento ?? '').toLowerCase()
-  if (s.includes('epi') || s.includes('epc') || s.includes('equipamento')) return 'EPI & Equipamentos'
-  if (s.includes('clínica') || s.includes('clinica') || s.includes('medicina')) return 'Clínicas Médicas'
-  if (s.includes('consultoria') || s.includes('sst')) return 'Consultorias SST'
-  if (s.includes('treinamento') || s.includes('curso') || s.includes('nr')) return 'Treinamentos'
-  if (s.includes('software') || s.includes('sistema') || s.includes('tecnologia')) return 'Softwares SST'
-  if (s.includes('laboratório') || s.includes('laboratorio') || s.includes('higiene')) return 'Laboratórios'
-  if (s.includes('engenharia') || s.includes('segurança')) return 'Engenharia de Segurança'
+// Mapeamento de categoria no BD para FornecedorCategoria de exibição
+function mapCategoriaBD(categoria: string): FornecedorCategoria {
+  const c = (categoria ?? '').toLowerCase()
+  if (c === 'clinica' || c === 'clínica') return 'Clínicas Médicas'
+  if (c === 'loja' || c === 'epi') return 'EPI & Equipamentos'
+  if (c === 'software') return 'Softwares SST'
+  if (c === 'equipamento') return 'EPI & Equipamentos'
+  if (c === 'treinamento') return 'Treinamentos'
+  if (c === 'consultoria') return 'Consultorias SST'
+  if (c === 'laboratorio' || c === 'laboratório') return 'Laboratórios'
+  if (c === 'engenharia') return 'Engenharia de Segurança'
   return 'Outros'
 }
 
-export default async function FornecedoresPage() {
-  const { data } = await supabase
-    .from('empresas')
-    .select('*')
-    .order('verified', { ascending: false })
-    .order('nome')
+// Mapeamento inverso: string da URL para categoria do BD
+function mapUrlCategory(urlCat: string | null): string | null {
+  if (!urlCat) return null
+  const c = urlCat.toLowerCase()
+  if (c === 'clinica' || c === 'clínica') return 'clinica'
+  if (c === 'loja' || c === 'epi') return 'loja'
+  if (c === 'software') return 'software'
+  if (c === 'equipamento') return 'equipamento'
+  if (c === 'treinamento') return 'treinamento'
+  return null
+}
+
+interface FornecedoresPageProps {
+  searchParams: Promise<{ cat?: string }>
+}
+
+export default async function FornecedoresPage({ searchParams }: FornecedoresPageProps) {
+  const params = await searchParams
+  const categoryFilter = mapUrlCategory(params.cat ?? null)
+
+  let query = supabase.from('fornecedores').select('*')
+
+  if (categoryFilter) {
+    query = query.eq('categoria', categoryFilter)
+  }
+
+  const { data } = await query.order('verified', { ascending: false }).order('avaliacao', { ascending: false })
 
   const fornecedores: Fornecedor[] = (data ?? []).map((e) => ({
     id: String(e.id),
     slug: e.slug ?? String(e.id),
     nome: e.nome,
-    categoria: e.categoria ? (e.categoria as FornecedorCategoria) : mapSegmento(e.segmento ?? ''),
+    categoria: mapCategoriaBD(e.categoria ?? ''),
     subcategoria: e.subcategoria ?? null,
     cidade: e.cidade ?? '',
     uf: e.uf ?? '',
     logo_url: e.logo_url ?? null,
-    site_url: e.site_url ?? null,
+    site_url: e.website_url ?? null,
     whatsapp: e.whatsapp ?? null,
-    descricao: e.descricao ?? e.segmento ?? null,
-    plano: (e.plano as Fornecedor['plano']) ?? 'free',
+    descricao: e.descricao ?? null,
+    plano: 'free',
     verificado: e.verified ?? false,
     is_sponsored: e.is_sponsored ?? false,
-    created_at: e.created_at,
+    created_at: e.criado_em ?? new Date().toISOString(),
   }))
 
   const stats = {

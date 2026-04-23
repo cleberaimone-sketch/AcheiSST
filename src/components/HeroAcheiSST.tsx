@@ -79,34 +79,19 @@ export function HeroAcheiSST() {
   return (
     <div className="bg-slate-50 min-h-screen">
 
-      {/* ── HERO ─────────────────────────────────────── */}
-      <section
-        className="relative min-h-[500px] border-b border-slate-100 bg-cover flex items-center justify-center"
-        style={{
-          backgroundImage: 'url(/ideias_frontpage/logotipo_oficial/mapadotrabalho.jpg)',
-          backgroundPosition: 'center top',
-        }}
-      >
-        {/* Overlay for contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/80 to-white/85" />
+      {/* ── HERO + SEARCH + CATEGORIES ────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div className="max-w-5xl mx-auto">
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center py-12">
-
-          <div className="inline-flex items-center gap-2 bg-navy-50 text-navy-600 text-xs font-bold px-4 py-1.5 rounded-full mb-5 border border-navy-100">
-            <span className="w-1.5 h-1.5 bg-sst-400 rounded-full animate-pulse" />
-            Ecossistema SST Brasil
+          {/* Brand */}
+          <div className="text-center mb-6">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">
+              Achei<span className="text-sst-400">SST</span>
+            </h1>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-800 leading-tight tracking-tight mb-3">
-            Tudo sobre <span className="text-sst-400">SST</span>{' '}
-            <span className="text-navy-600">em um só lugar</span>
-          </h1>
-          <p className="text-slate-600 text-base mb-8 max-w-xl mx-auto">
-            A primeira plataforma que reúne fornecedores, profissionais, conteúdo e ferramentas de Saúde e Segurança do Trabalho do Brasil.
-          </p>
-
           {/* Search bar */}
-          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto">
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               <input
@@ -132,12 +117,8 @@ export function HeroAcheiSST() {
               Pesquisar <ArrowRight className="w-4 h-4" />
             </button>
           </form>
-        </div>
-      </section>
 
-      {/* ── CATEGORY GRID ─────────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto">
+          {/* CATEGORY GRID */}
           <div className="bg-white border border-slate-200 rounded-3xl p-4 sm:p-6 shadow-sm">
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
               {CATEGORIES.map(({ icon: Icon, label, href, accent }) => (
