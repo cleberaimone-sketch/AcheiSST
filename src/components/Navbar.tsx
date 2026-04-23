@@ -59,15 +59,9 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a
               href="/painel/login"
-              className="text-sm font-semibold text-slate-600 hover:text-navy-600 transition-colors"
-            >
-              Entrar
-            </a>
-            <a
-              href="/cadastrar"
               className="bg-navy-600 hover:bg-navy-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-sm"
             >
-              Cadastrar empresa
+              Entrar
             </a>
           </div>
 
@@ -89,18 +83,12 @@ export function Navbar() {
                 {label}
               </a>
             ))}
-            <div className="pt-2 flex flex-col gap-2">
+            <div className="pt-2">
               <a
                 href="/painel/login"
-                className="text-center py-2.5 font-semibold text-slate-600 border border-slate-200 rounded-xl hover:border-navy-300 transition-colors"
+                className="block text-center bg-navy-600 text-white font-bold py-3 rounded-xl hover:bg-navy-700 transition-colors"
               >
                 Entrar
-              </a>
-              <a
-                href="/cadastrar"
-                className="text-center bg-navy-600 text-white font-bold py-3 rounded-xl hover:bg-navy-700 transition-colors"
-              >
-                Cadastrar empresa
               </a>
             </div>
           </div>

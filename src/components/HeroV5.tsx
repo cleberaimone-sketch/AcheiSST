@@ -137,14 +137,11 @@ export function HeroV5() {
 
             {/* Desktop CTAs */}
             <div className="hidden md:flex items-center gap-3">
-              <a href="#entrar" className="text-sm text-slate-400 hover:text-white transition-colors font-medium">
-                Entrar
-              </a>
               <a
-                href="/cadastrar"
+                href="/painel/login"
                 className="text-sm font-bold px-4 py-2 bg-green-500 text-slate-950 rounded-lg hover:bg-green-400 transition-all shadow-md shadow-green-500/25"
               >
-                Cadastrar empresa
+                Entrar
               </a>
             </div>
 
@@ -166,10 +163,10 @@ export function HeroV5() {
               <a href="/informativos" className="py-2 text-slate-300 hover:text-green-400 transition-colors">Notícias</a>
               <a href="/busca" className="py-2 text-slate-300 hover:text-green-400 transition-colors">Buscar</a>
               <a
-                href="/cadastrar"
+                href="/painel/login"
                 className="bg-green-500 text-slate-950 font-bold py-2.5 rounded-lg text-center hover:bg-green-400 transition-all"
               >
-                Cadastrar empresa
+                Entrar
               </a>
             </div>
           )}
