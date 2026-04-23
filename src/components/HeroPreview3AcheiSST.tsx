@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Heart, MessageCircle, Phone, Zap, MapPin, Star, ChevronDown, Menu, X } from 'lucide-react'
+import { Heart, MessageCircle, Phone, Zap, MapPin, Star, ChevronDown, Menu, X, Search, Stethoscope, Users, Building2, Award, ClipboardList, Briefcase } from 'lucide-react'
 
 const UF_LIST = [
   'SP', 'RJ', 'MG', 'RS', 'PR', 'BA', 'SC', 'PE', 'GO', 'DF', 'ES', 'PA',
@@ -17,6 +17,15 @@ const TIPOS_SERVICO = [
   'Medicina do Trabalho',
   'Perícia',
   'Higiene Ocupacional',
+]
+
+const CATEGORIAS = [
+  { icon: Users, label: 'Técnicos', color: 'bg-blue-100 text-blue-700' },
+  { icon: Stethoscope, label: 'Clínicas', color: 'bg-green-100 text-green-700' },
+  { icon: Award, label: 'Engenheiros', color: 'bg-purple-100 text-purple-700' },
+  { icon: ClipboardList, label: 'Treinamento', color: 'bg-orange-100 text-orange-700' },
+  { icon: Briefcase, label: 'Consultoria', color: 'bg-pink-100 text-pink-700' },
+  { icon: Building2, label: 'Empresas', color: 'bg-indigo-100 text-indigo-700' },
 ]
 
 const PRESTADORES_EXEMPLO = [
@@ -176,8 +185,51 @@ export function HeroPreview3AcheiSST() {
         </div>
       </header>
 
-      {/* ── FILTROS ───────────────────────────────────── */}
-      <section className="px-4 sm:px-6 lg:px-8 py-6 border-b border-slate-200 sticky top-16 bg-white/95 backdrop-blur z-40">
+      {/* ── BARRA DE PESQUISA + CATEGORIAS ───────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 py-8 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto">
+          {/* Barra de Pesquisa */}
+          <div className="mb-8">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                <input
+                  type="search"
+                  placeholder="Buscar prestadores, serviços..."
+                  className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400 text-sm"
+                />
+              </div>
+              <button className="bg-sst-400 hover:bg-sst-500 text-white font-bold px-6 py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm whitespace-nowrap">
+                <Search className="w-4 h-4" />
+                Buscar
+              </button>
+            </div>
+          </div>
+
+          {/* Grid de Categorias */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-6">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
+              {CATEGORIAS.map(({ icon: Icon, label, color }) => (
+                <a
+                  key={label}
+                  href="#"
+                  className="group flex flex-col items-center gap-2 p-2 sm:p-3 rounded-xl border border-slate-100 hover:border-sst-400 hover:bg-sst-50 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
+                >
+                  <div className={`w-10 h-10 rounded-lg ${color} flex items-center justify-center`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] sm:text-xs font-semibold text-slate-600 group-hover:text-sst-600 text-center leading-tight transition-colors">
+                    {label}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FILTROS STICKY ────────────────────────────── */}
+      <section className="px-4 sm:px-6 lg:px-8 py-4 border-b border-slate-200 sticky top-16 bg-white/95 backdrop-blur z-40">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {/* UF Dropdown */}
