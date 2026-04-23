@@ -29,7 +29,7 @@ export function Navbar() {
         : 'bg-white/80 backdrop-blur-md'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center h-20 gap-16">
+        <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
           <a href="/" className="flex items-center flex-shrink-0">
@@ -40,8 +40,8 @@ export function Navbar() {
             />
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-12 text-sm font-medium text-slate-600">
+          {/* Desktop Nav — Centered */}
+          <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-12 text-sm font-medium text-slate-600">
             {NAV_LINKS.map(({ label, href }) => (
               <a
                 key={href}
