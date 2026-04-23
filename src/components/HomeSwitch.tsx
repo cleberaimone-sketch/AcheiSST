@@ -5,6 +5,7 @@ import { Hero } from '@/components/Hero'
 import { HeroAcheiSST } from '@/components/HeroAcheiSST'
 import { HeroV5 } from '@/components/HeroV5'
 import { HeroPreview6 } from '@/components/HeroPreview6'
+import { HeroPreview3AcheiSST } from '@/components/HeroPreview3AcheiSST'
 import { NewsFeed } from '@/components/NewsFeed'
 import { ShieldCheck, Mail } from 'lucide-react'
 import type { PostMeta } from '@/lib/posts'
@@ -63,6 +64,10 @@ export function HomeSwitch({ posts }: Props) {
 
   if (theme === 'acheisst') {
     return <HeroAcheiSST />
+  }
+
+  if (theme === 'preview_3') {
+    return <HeroPreview3AcheiSST />
   }
 
   if (theme === 'preview_5') {
