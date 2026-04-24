@@ -1,264 +1,346 @@
-import { redirect } from 'next/navigation'
-import { createSupabaseServer } from '@/lib/supabase-server'
-import {
-  Eye, MessageCircle, FileText, CheckCircle2,
-  Clock, XCircle, ExternalLink, Building2,
-} from 'lucide-react'
+'use client'
 
-function statusBadge(status: string) {
-  if (status === 'novo') return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
-      <Clock className="w-3 h-3" /> Novo
-    </span>
-  )
-  if (status === 'em_contato') return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-100">
-      <MessageCircle className="w-3 h-3" /> Em contato
-    </span>
-  )
-  if (status === 'fechado') return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-navy-700 border border-green-100">
-      <CheckCircle2 className="w-3 h-3" /> Fechado
-    </span>
-  )
-  return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">
-      <XCircle className="w-3 h-3" /> {status}
-    </span>
-  )
-}
+import { useState } from 'react'
+import Link from 'next/link'
+import { Camera, MapPin, Briefcase, Check, Plus, X, LogOut } from 'lucide-react'
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('pt-BR', {
-    day: '2-digit', month: 'short', year: 'numeric',
+const SERVICOS_SST_DISPONIVEIS = [
+  'Atendimento Médico Ocupacional',
+  'PCMSO',
+  'PGR',
+  'Auditoria de Segurança',
+  'Treinamentos NR',
+  'Consultoria SST',
+  'Perícia Médica',
+  'Exames Ocupacionais',
+  'Medicina do Trabalho',
+  'Segurança em Altura',
+  'Espaços Confinados',
+  'Ergonomia',
+]
+
+export default function Painel() {
+  const [usuario, setUsuario] = useState({
+    nome: 'João Silva Santos',
+    email: 'joao@example.com',
+    profissao: 'Técnico em Segurança do Trabalho',
+    foto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    telefone: '11999999999',
+    endereco: 'Rua das Flores, 123',
+    complemento: 'Apto 456',
+    cidade: 'São Paulo',
+    uf: 'SP',
+    cep: '01310100',
+    bio: 'Profissional experiente em segurança do trabalho com 10 anos de atuação.',
+    servicos: ['Atendimento Médico Ocupacional', 'PCMSO', 'Auditoria de Segurança'],
+    atende_remoto: true,
   })
-}
 
-export default async function PainelPage() {
-  const supabase = await createSupabaseServer()
+  const [editando, setEditando] = useState(false)
+  const [formData, setFormData] = useState(usuario)
+  const [servico, setServico] = useState('')
 
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect('/painel/login')
+  const handleAddServico = () => {
+    if (servico && !formData.servicos.includes(servico)) {
+      setFormData({
+        ...formData,
+        servicos: [...formData.servicos, servico],
+      })
+      setServico('')
+    }
+  }
 
-  // Busca empresa pelo email do usuário logado
-  const { data: empresa } = await supabase
-    .from('empresas')
-    .select('id, nome, segmento, categoria, cidade, uf, slug, verified, plano')
-    .eq('email', user.email!)
-    .single()
+  const handleRemoveServico = (servicoRemover: string) => {
+    setFormData({
+      ...formData,
+      servicos: formData.servicos.filter(s => s !== servicoRemover),
+    })
+  }
 
-  // Leads recebidos
-  const { data: leads } = empresa
-    ? await supabase
-        .from('leads')
-        .select('id, nome, email, telefone, descricao, cidade, uf, prazo, status, created_at')
-        .eq('fornecedor_id', empresa.id)
-        .order('created_at', { ascending: false })
-        .limit(50)
-    : { data: [] }
+  const handleSalvar = () => {
+    setUsuario(formData)
+    setEditando(false)
+  }
 
-  // Métricas agregadas
-  const { data: metricas } = empresa
-    ? await supabase
-        .from('metricas')
-        .select('profile_views, whatsapp_clicks, leads_received')
-        .eq('fornecedor_id', empresa.id)
-    : { data: [] }
-
-  const totalViews = metricas?.reduce((s, m) => s + (m.profile_views ?? 0), 0) ?? 0
-  const totalWhatsapp = metricas?.reduce((s, m) => s + (m.whatsapp_clicks ?? 0), 0) ?? 0
-  const totalLeads = leads?.length ?? 0
-  const leadsNovos = leads?.filter((l) => l.status === 'novo').length ?? 0
+  const handleCancel = () => {
+    setFormData(usuario)
+    setEditando(false)
+  }
 
   return (
-    <div className="space-y-8">
-      {/* Cabeçalho */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-            {empresa ? `Olá, ${empresa.nome.split(' ')[0]}` : 'Painel do Fornecedor'}
-          </h1>
-          <p className="text-slate-500 text-sm mt-0.5">{user.email}</p>
-        </div>
-        {empresa && (
-          <a
-            href={`/fornecedores/${empresa.slug ?? empresa.id}`}
-            target="_blank"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-navy-700 border border-navy-200 rounded-xl px-4 py-2 hover:bg-navy-50 transition-colors"
-          >
-            <ExternalLink className="w-4 h-4" /> Ver meu perfil
-          </a>
-        )}
-      </div>
-
-      {/* Sem empresa cadastrada */}
-      {!empresa && (
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center">
-          <Building2 className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-          <h2 className="text-base font-bold text-slate-900 mb-1">Empresa não encontrada</h2>
-          <p className="text-slate-500 text-sm mb-4">
-            Nenhuma empresa cadastrada com o e-mail <strong>{user.email}</strong>.
-          </p>
-          <a
-            href="/cadastrar"
-            className="inline-block bg-navy-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-navy-700 transition-colors"
-          >
-            Cadastrar minha empresa
-          </a>
-        </div>
-      )}
-
-      {empresa && (
-        <>
-          {/* Cards de métricas */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white rounded-2xl border border-slate-200 p-5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Visualizações</span>
-                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                  <Eye className="w-4 h-4 text-blue-600" />
-                </div>
+    <div className="bg-slate-50 min-h-screen">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="w-10 h-10 bg-sst-400 rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold">A</span>
               </div>
-              <p className="text-3xl font-extrabold text-slate-900">{totalViews.toLocaleString('pt-BR')}</p>
-              <p className="text-xs text-slate-400 mt-1">do seu perfil</p>
-            </div>
+              <span className="font-playfair font-bold text-slate-900 text-xl tracking-tight hidden sm:inline">
+                Achei<span className="text-sst-400">SST</span>
+              </span>
+            </Link>
 
-            <div className="bg-white rounded-2xl border border-slate-200 p-5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">WhatsApp</span>
-                <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
-                  <MessageCircle className="w-4 h-4 text-navy-600" />
-                </div>
-              </div>
-              <p className="text-3xl font-extrabold text-slate-900">{totalWhatsapp.toLocaleString('pt-BR')}</p>
-              <p className="text-xs text-slate-400 mt-1">cliques no botão</p>
-            </div>
-
-            <div className="bg-white rounded-2xl border border-slate-200 p-5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Leads totais</span>
-                <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
-                  <FileText className="w-4 h-4 text-purple-600" />
-                </div>
-              </div>
-              <p className="text-3xl font-extrabold text-slate-900">{totalLeads}</p>
-              <p className="text-xs text-slate-400 mt-1">orçamentos recebidos</p>
-            </div>
-
-            <div className="bg-white rounded-2xl border border-slate-200 p-5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Novos</span>
-                <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
-                  <Clock className="w-4 h-4 text-amber-600" />
-                </div>
-              </div>
-              <p className="text-3xl font-extrabold text-slate-900">{leadsNovos}</p>
-              <p className="text-xs text-slate-400 mt-1">aguardando retorno</p>
+            <div className="flex items-center gap-4">
+              <Link href="/" className="text-sm font-semibold text-slate-600 hover:text-slate-900">
+                Voltar
+              </Link>
+              <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors text-sm font-semibold text-slate-700">
+                <LogOut className="w-4 h-4" />
+                Sair
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Tabela de leads */}
-          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-              <h2 className="font-bold text-slate-900">Solicitações de orçamento</h2>
-              {leadsNovos > 0 && (
-                <span className="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">
-                  {leadsNovos} novo{leadsNovos > 1 ? 's' : ''}
-                </span>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <div className="bg-white rounded-2xl p-8 mb-8 border border-slate-200">
+          <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+            <div className="relative flex-shrink-0">
+              <img
+                src={usuario.foto}
+                alt={usuario.nome}
+                className="w-32 h-32 rounded-2xl object-cover border-4 border-sst-400"
+              />
+              {editando && (
+                <label className="absolute bottom-0 right-0 bg-sst-400 text-white p-3 rounded-full cursor-pointer hover:bg-sst-500 transition-colors shadow-lg">
+                  <Camera className="w-5 h-5" />
+                  <input type="file" className="hidden" accept="image/*" />
+                </label>
               )}
             </div>
 
-            {!leads || leads.length === 0 ? (
-              <div className="text-center py-14 px-6">
-                <FileText className="w-10 h-10 text-slate-300 mx-auto mb-3" />
-                <p className="text-slate-500 text-sm font-medium">Nenhum lead recebido ainda</p>
-                <p className="text-slate-400 text-xs mt-1">
-                  Quando alguém solicitar orçamento pelo seu perfil, aparecerá aqui.
-                </p>
-              </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-slate-50 border-b border-slate-100">
-                      <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Solicitante</th>
-                      <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide hidden md:table-cell">Contato</th>
-                      <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide hidden lg:table-cell">Localização</th>
-                      <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide hidden xl:table-cell">Prazo</th>
-                      <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Status</th>
-                      <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide hidden sm:table-cell">Data</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100">
-                    {leads.map((lead) => (
-                      <tr key={lead.id} className="hover:bg-slate-50 transition-colors">
-                        <td className="px-6 py-4">
-                          <p className="font-semibold text-slate-900">{lead.nome}</p>
-                          {lead.descricao && (
-                            <p className="text-slate-400 text-xs mt-0.5 line-clamp-1 max-w-[200px]">
-                              {lead.descricao}
-                            </p>
-                          )}
-                        </td>
-                        <td className="px-6 py-4 hidden md:table-cell">
-                          <div className="flex flex-col gap-0.5">
-                            {lead.email && (
-                              <a href={`mailto:${lead.email}`} className="text-navy-600 hover:underline text-xs">
-                                {lead.email}
-                              </a>
-                            )}
-                            {lead.telefone && (
-                              <a
-                                href={`https://wa.me/55${lead.telefone.replace(/\D/g, '')}`}
-                                target="_blank"
-                                className="text-navy-600 hover:underline text-xs"
-                              >
-                                {lead.telefone}
-                              </a>
-                            )}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 hidden lg:table-cell">
-                          <span className="text-slate-500 text-xs">
-                            {[lead.cidade, lead.uf].filter(Boolean).join(', ') || '—'}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 hidden xl:table-cell">
-                          <span className="text-slate-500 text-xs">{lead.prazo || '—'}</span>
-                        </td>
-                        <td className="px-6 py-4">{statusBadge(lead.status)}</td>
-                        <td className="px-6 py-4 hidden sm:table-cell">
-                          <span className="text-slate-400 text-xs">{formatDate(lead.created_at)}</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-slate-900 mb-2">{usuario.nome}</h1>
+              <p className="text-lg font-semibold text-sst-400 mb-2">{usuario.profissao}</p>
+              <p className="text-slate-600 mb-4">{usuario.bio}</p>
 
-          {/* Info de plano */}
-          <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-6 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold text-green-100 mb-1">
-                Plano atual: <span className="text-white capitalize">{empresa.plano ?? 'Free'}</span>
-              </p>
-              <p className="text-green-100 text-sm">
-                {empresa.verified
-                  ? 'Seu perfil está verificado e aparece acima dos gratuitos.'
-                  : 'Faça upgrade para aparecer no topo das buscas e receber mais leads.'}
-              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-2 text-sm text-slate-600">
+                  <span className="text-lg">📧</span>
+                  {usuario.email}
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-600">
+                  <span className="text-lg">📱</span>
+                  {usuario.telefone}
+                </div>
+                {usuario.atende_remoto && (
+                  <div className="bg-green-50 text-green-600 text-sm font-semibold px-3 py-1 rounded-full">
+                    ✓ Atende remotamente
+                  </div>
+                )}
+              </div>
             </div>
-            <a
-              href="/planos"
-              className="flex-shrink-0 bg-white text-navy-700 text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-navy-50 transition-colors"
+
+            <button
+              onClick={() => setEditando(!editando)}
+              className={`px-6 py-2.5 rounded-lg font-semibold transition-colors whitespace-nowrap ${
+                editando
+                  ? 'bg-slate-200 text-slate-700 hover:bg-slate-300'
+                  : 'bg-sst-400 text-white hover:bg-sst-500'
+              }`}
             >
-              Ver planos
-            </a>
+              {editando ? 'Cancelar Edição' : 'Editar Perfil'}
+            </button>
           </div>
-        </>
-      )}
+        </div>
+
+        {editando ? (
+          <div className="bg-white rounded-2xl p-8 border border-slate-200 mb-8">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Editar Perfil</h2>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Dados Pessoais</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Nome</label>
+                    <input
+                      type="text"
+                      value={formData.nome}
+                      onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Telefone</label>
+                    <input
+                      type="text"
+                      value={formData.telefone}
+                      onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Profissão</label>
+                    <input
+                      type="text"
+                      value={formData.profissao}
+                      onChange={(e) => setFormData({ ...formData, profissao: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-red-500" />
+                  Localização
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="sm:col-span-2">
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Endereço</label>
+                    <input
+                      type="text"
+                      value={formData.endereco}
+                      onChange={(e) => setFormData({ ...formData, endereco: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">Cidade</label>
+                    <input
+                      type="text"
+                      value={formData.cidade}
+                      onChange={(e) => setFormData({ ...formData, cidade: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">UF</label>
+                    <input
+                      type="text"
+                      value={formData.uf}
+                      onChange={(e) => setFormData({ ...formData, uf: e.target.value })}
+                      maxLength={2}
+                      className="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400 uppercase"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.atende_remoto}
+                      onChange={(e) => setFormData({ ...formData, atende_remoto: e.target.checked })}
+                      className="w-5 h-5 rounded border-slate-300 text-sst-400 focus:ring-sst-400"
+                    />
+                    <span className="text-sm font-semibold text-slate-700">Atendo remotamente</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <Briefcase className="w-5 h-5 text-sst-400" />
+                  Serviços de SST
+                </h3>
+
+                <div className="mb-4">
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Adicionar Serviço</label>
+                  <div className="flex gap-2">
+                    <select
+                      value={servico}
+                      onChange={(e) => setServico(e.target.value)}
+                      className="flex-1 px-4 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sst-400/20 focus:border-sst-400"
+                    >
+                      <option value="">Selecione um serviço</option>
+                      {SERVICOS_SST_DISPONIVEIS.filter(s => !formData.servicos.includes(s)).map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                    <button
+                      onClick={handleAddServico}
+                      className="px-4 py-2.5 rounded-lg bg-sst-400 hover:bg-sst-500 text-white font-semibold transition-colors flex items-center gap-2"
+                    >
+                      <Plus className="w-4 h-4" />
+                      Adicionar
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {formData.servicos.map((s) => (
+                    <div key={s} className="flex items-center justify-between gap-3 p-3 bg-sst-50 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <Check className="w-4 h-4 text-green-500" />
+                        <span className="font-semibold text-slate-700">{s}</span>
+                      </div>
+                      <button
+                        onClick={() => handleRemoveServico(s)}
+                        className="text-red-500 hover:text-red-600 transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4 mt-8 pt-8 border-t border-slate-200">
+              <button
+                onClick={handleSalvar}
+                className="flex-1 px-6 py-3 rounded-lg bg-sst-400 hover:bg-sst-500 text-white font-bold transition-colors"
+              >
+                Salvar Alterações
+              </button>
+              <button
+                onClick={handleCancel}
+                className="flex-1 px-6 py-3 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold transition-colors"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="bg-white rounded-2xl p-8 mb-8 border border-slate-200">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <MapPin className="w-6 h-6 text-red-500" />
+                Localização
+              </h2>
+              <div className="space-y-3 text-slate-700">
+                <p><strong>Endereço:</strong> {usuario.endereco}</p>
+                <p><strong>Complemento:</strong> {usuario.complemento}</p>
+                <p><strong>Cidade:</strong> {usuario.cidade}, {usuario.uf}</p>
+                <p><strong>CEP:</strong> {usuario.cep}</p>
+                {usuario.atende_remoto && (
+                  <p className="text-green-600 font-semibold">✓ Atendo remotamente</p>
+                )}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 border border-slate-200">
+              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <Briefcase className="w-6 h-6 text-sst-400" />
+                Serviços de SST
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {usuario.servicos.map((servico) => (
+                  <div key={servico} className="flex items-center gap-3 p-4 bg-sst-50 rounded-lg">
+                    <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <span className="font-semibold text-slate-900">{servico}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   )
 }
