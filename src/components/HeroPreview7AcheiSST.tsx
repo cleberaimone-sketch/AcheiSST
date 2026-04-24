@@ -232,7 +232,7 @@ export function HeroPreview7AcheiSST() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {fornecedoresFiltrados.filter(f => f.premium).map((fornecedor) => (
-              <div key={fornecedor.id} className="rounded-2xl overflow-hidden border border-slate-200 hover:border-sst-300 hover:shadow-lg transition-all duration-300">
+              <a key={fornecedor.id} href={`/fornecedores/${fornecedor.id}`} className="rounded-2xl overflow-hidden border border-slate-200 hover:border-sst-300 hover:shadow-lg transition-all duration-300 block group">
                 {/* Imagem */}
                 <div className="relative h-48 bg-slate-200 overflow-hidden">
                   <img
@@ -278,7 +278,7 @@ export function HeroPreview7AcheiSST() {
                     </div>
                   )}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -291,7 +291,7 @@ export function HeroPreview7AcheiSST() {
 
           <div className="space-y-6">
             {fornecedoresFiltrados.filter(f => !f.premium).map((fornecedor) => (
-              <div key={fornecedor.id} className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sst-300 hover:shadow-lg transition-all duration-300">
+              <a key={fornecedor.id} href={`/fornecedores/${fornecedor.id}`} className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-sst-300 hover:shadow-lg transition-all duration-300 block group">
                 {/* Imagem */}
                 <div className="relative h-56 bg-slate-200 overflow-hidden">
                   <img
@@ -383,7 +383,7 @@ export function HeroPreview7AcheiSST() {
                     </div>
                   )}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
