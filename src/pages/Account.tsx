@@ -54,7 +54,7 @@ const Account = () => {
   });
 
   useEffect(() => {
-    if (!authLoading && !user) navigate("/auth", { replace: true });
+    if (!authLoading && !user) navigate.replace("/auth");
   }, [user, authLoading, navigate]);
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const Account = () => {
 
   const handleLogout = async () => {
     await signOut();
-    navigate("/", { replace: true });
+    navigate.replace("/");
   };
 
   if (authLoading || loading) {

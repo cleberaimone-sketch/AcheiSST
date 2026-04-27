@@ -21,14 +21,14 @@ const EventRecapSection = () => (
     {/* Asymmetric gallery — large left, smaller right column */}
     <div className="px-6 md:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-        <img src={conferenceStage} alt="Speaker on stage" className="w-full aspect-[4/3] object-cover" loading="lazy" />
-        <img src={conferenceAudience} alt="Conference audience" className="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src={conferenceStage.src} alt="Speaker on stage" className="w-full aspect-[4/3] object-cover" loading="lazy" />
+        <img src={conferenceAudience.src} alt="Conference audience" className="w-full aspect-[4/3] object-cover" loading="lazy" />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-0 mt-0">
-        <img src={conferenceNetworking} alt="Networking lobby" className="w-full aspect-square object-cover" loading="lazy" />
-        <img src={conferenceExhibition} alt="Exhibition hall" className="w-full aspect-square object-cover" loading="lazy" />
-        <img src={conferencePanel} alt="Panel discussion" className="w-full aspect-square object-cover" loading="lazy" />
-        <img src={conferenceVenue} alt="Conference venue" className="w-full aspect-square object-cover" loading="lazy" />
+        <img src={conferenceNetworking.src} alt="Networking lobby" className="w-full aspect-square object-cover" loading="lazy" />
+        <img src={conferenceExhibition.src} alt="Exhibition hall" className="w-full aspect-square object-cover" loading="lazy" />
+        <img src={conferencePanel.src} alt="Panel discussion" className="w-full aspect-square object-cover" loading="lazy" />
+        <img src={conferenceVenue.src} alt="Conference venue" className="w-full aspect-square object-cover" loading="lazy" />
       </div>
     </div>
   </section>

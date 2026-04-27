@@ -7,7 +7,7 @@ import { getSpeaker, getSessionsForSpeaker } from "@/data/sessions";
 import { ArrowLeft, Twitter, Github, Clock } from "lucide-react";
 
 const SpeakerDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const params = useParams<{ id: string }>(); const id = params?.id;
   const speaker = id ? getSpeaker(id) : undefined;
 
   if (!speaker) {

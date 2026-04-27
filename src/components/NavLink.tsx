@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
-interface NavLinkCompatProps extends React.ComponentPropsWithoutRef<typeof Link> {
+interface NavLinkCompatProps extends Omit<React.ComponentPropsWithoutRef<typeof Link>, "className"> {
   className?: string | ((props: { isActive: boolean; isPending: boolean }) => string);
   activeClassName?: string;
   pendingClassName?: string;

@@ -7,7 +7,7 @@ import { getSession, getSpeakersForSession } from "@/data/sessions";
 import { ArrowLeft, Clock, Tag } from "lucide-react";
 
 const SessionDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const params = useParams<{ id: string }>(); const id = params?.id;
   const session = id ? getSession(id) : undefined;
 
   if (!session) {
