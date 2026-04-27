@@ -1249,3 +1249,13 @@ Após cada fase, usuário consegue fazer um "pouco de tudo" na plataforma, aumen
 ---
 
 *Este mapeamento será refinado conforme o desenvolvimento de cada seção avança.*
+
+---
+
+## 18. Diretrizes de Backend & Segurança (Aviso à IA)
+
+Ao longo de abril de 2026, implementamos uma integração crítica com o frontend importado do Lovable:
+1. **Padrão Client Components:** A aplicação roda 100% otimizada sob App Router. Componentes antigos e com interatividade de usuário usam exaustivamente `"use client"` na base (`src/pages/*` e grande parte de `src/components/*`).
+2. **Sistema de Rotas Next.js:** Remoção profunda do `react-router-dom`. Navegações e hooks importados devem SEMPRE buscar instâncias nativas (`import Link from "next/link"` ou `import { useRouter } from "next/navigation"`).
+3. **Segurança (Formulários & Zod):** Operações como *Sign Up* via Supabase sofrem mitigação contra tráfego malicioso. É mandatório o uso de travas cliente-side via esquema Zod (`.refine(senha === confirmacao)`) para fechar as brechas que oneram requisições SQL ou subida de dados. Além de apagamento de variável de memória (states de reatividade limpos a cada submit).
+4. **Login e Sessão (Supabase API):** Para estabilidade, o `Auth` consome diretamente o pacote robusto nativo `@supabase/supabase-js`, puxando variáveis de ambiência diretamente do `import { supabase } from "@/integrations/supabase/client"`. Evite forçar importações externas ou pacotes de autenticação de UI prontos que conflitem com essa estrutura.

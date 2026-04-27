@@ -1,22 +1,32 @@
-import { getAllPosts } from '@/lib/posts'
-import { Navbar } from '@/components/Navbar'
-import { HomeSwitch } from '@/components/HomeSwitch'
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import CategoriesSection from "@/components/CategoriesSection";
+import PlansSection from "@/components/PlansSection";
+import NewsSection from "@/components/NewsSection";
+import { FadeInSection } from "@/components/FadeInSection";
+import { getAllPosts } from "@/lib/posts"; // Keeping your existing post fetcher
 
 export default function Home() {
-  const posts = getAllPosts()
+  const posts = getAllPosts();
 
   return (
-    <>
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-blue-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
-      >
-        Pular para o conteúdo
-      </a>
-      <Navbar />
-      <main id="main-content">
-        <HomeSwitch posts={posts} />
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <HeroSection />
+        <FadeInSection>
+          <CategoriesSection />
+        </FadeInSection>
+        <FadeInSection>
+          <PlansSection />
+        </FadeInSection>
+        {/* Blog items via MD */}
+        <FadeInSection>
+          <NewsSection posts={posts.slice(0, 3)} />
+        </FadeInSection>
       </main>
-    </>
-  )
+      <Footer />
+    </div>
+  );
 }

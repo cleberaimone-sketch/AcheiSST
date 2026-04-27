@@ -35,3 +35,4 @@ claude/
 # zip files
 **/*.zip
 node_modules
+lovable-template/

@@ -5,6 +5,52 @@
 @layer base {
   :root {
     --font-inter: 'Inter', sans-serif;
+    
+    /* AcheiSST palette */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 67% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 129 53% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 214 33% 97%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 129 53% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 218 24% 92%;
+    --input: 218 24% 92%;
+    --ring: 222 67% 25%;
+
+    --radius: 0.75rem;
+
+    /* Brand gradients & shadows */
+    --gradient-brand: linear-gradient(135deg, hsl(222 67% 25%) 0%, hsl(222 67% 18%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(214 33% 97%) 0%, hsl(0 0% 100%) 100%);
+    --shadow-card: 0 1px 3px hsl(222 47% 11% / 0.06), 0 4px 16px hsl(222 47% 11% / 0.04);
+    --shadow-card-hover: 0 4px 12px hsl(222 67% 25% / 0.12), 0 12px 32px hsl(222 67% 25% / 0.08);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 222 67% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 33% 97%;
+    --sidebar-accent-foreground: 222 67% 25%;
+    --sidebar-border: 218 24% 92%;
+    --sidebar-ring: 222 67% 25%;
   }
 
   html {
@@ -19,6 +65,17 @@
   /* Foco visível apenas para teclado */
   :focus:not(:focus-visible) {
     outline: none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
   }
 }
 

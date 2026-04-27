@@ -57,10 +57,18 @@ export interface Fornecedor {
   subcategoria: string | null
   cidade: string
   uf: string
+  endereco?: string | null
+  telefone?: string | null
   logo_url: string | null
+  foto_url?: string | null
   site_url: string | null
   whatsapp: string | null
+  email?: string | null
   descricao: string | null
+  especialidades?: string[] | null
+  experiencia_anos?: number | null
+  avaliacao?: number | null
+  num_avaliacoes?: number
   plano: FornecedorPlano
   verificado: boolean
   is_sponsored: boolean

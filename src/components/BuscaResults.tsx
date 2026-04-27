@@ -224,8 +224,8 @@ export function BuscaResults({ query: initialQuery, uf: initialUf, fornecedores,
                   <article key={p.id} className="bg-white rounded-2xl border border-slate-200 hover:shadow-md transition-all duration-200 p-5 flex flex-col gap-3">
                     <div className="flex items-start gap-3">
                       <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                        {p.avatar_url
-                          ? <img src={p.avatar_url} alt="" className="w-11 h-11 rounded-xl object-cover" />
+                        {p.foto_url
+                          ? <img src={p.foto_url} alt="" className="w-11 h-11 rounded-xl object-cover" />
                           : getInitials(p.nome)
                         }
                       </div>

@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
-  Search, MapPin, Globe, CheckCircle2, Star, MessageCircle,
+  Search, MapPin, Globe, CheckCircle2, MessageCircle,
   Building2, Shield, FlaskConical, Laptop, GraduationCap,
-  ShoppingBag, Wrench, ChevronRight,
+  ShoppingBag, Wrench, ChevronRight, Heart, Star, Phone,
 } from 'lucide-react'
 import type { Fornecedor, FornecedorCategoria } from '@/types'
 import { useTheme } from '@/components/ThemeProvider'
@@ -58,64 +58,116 @@ function whatsappUrl(numero: string, nome: string) {
   return `https://wa.me/55${numero.replace(/\D/g, '')}?text=${texto}`
 }
 
+function StarRating({ value, count }: { value: number; count: number }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="flex">
+        {[1, 2, 3, 4, 5].map((s) => (
+          <Star
+            key={s}
+            className={`w-3.5 h-3.5 ${s <= Math.round(value) ? 'fill-amber-400 text-amber-400' : 'text-slate-200'}`}
+          />
+        ))}
+      </div>
+      <span className="text-xs font-bold text-slate-800">{value.toFixed(1)}</span>
+      <span className="text-xs text-slate-400">({count})</span>
+    </div>
+  )
+}
+
+function LikeButton({ id }: { id: string }) {
+  const [liked, setLiked] = useState(false)
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('acheisst_likes') ?? '[]') as string[]
+    setLiked(saved.includes(id))
+  }, [id])
+  const toggle = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const saved = JSON.parse(localStorage.getItem('acheisst_likes') ?? '[]') as string[]
+    const next = liked ? saved.filter((x) => x !== id) : [...saved, id]
+    localStorage.setItem('acheisst_likes', JSON.stringify(next))
+    setLiked(!liked)
+  }
+  return (
+    <button
+      onClick={toggle}
+      aria-label={liked ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+      className="absolute top-3 right-3 z-10 bg-white/90 backdrop-blur rounded-full p-2 shadow-md hover:scale-110 transition-transform"
+    >
+      <Heart className={`w-4 h-4 transition-colors ${liked ? 'fill-red-500 text-red-500' : 'text-slate-400'}`} />
+    </button>
+  )
+}
+
 function FornecedorCard({ f }: { f: Fornecedor }) {
   const Icon = CATEGORIA_ICON[f.categoria] ?? Building2
   const colorClass = CATEGORIA_COLOR[f.categoria] ?? 'bg-slate-100 text-slate-600'
 
   return (
-    <article className={`relative bg-white rounded-2xl border flex flex-col gap-0 hover:shadow-lg transition-all duration-200 overflow-hidden ${
+    <article className={`relative bg-white rounded-2xl border flex flex-col hover:shadow-xl transition-all duration-200 overflow-hidden group ${
       f.is_sponsored
         ? 'border-amber-300 ring-1 ring-amber-200'
         : f.verificado
         ? 'border-green-200 ring-1 ring-green-100'
         : 'border-slate-200'
     }`}>
-      {f.is_sponsored && (
-        <span className="absolute top-3 right-3 text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full uppercase tracking-wider z-10">
-          Patrocinado
-        </span>
-      )}
 
-      <div className="p-5 flex flex-col gap-3 flex-1">
-        {/* Cabeçalho */}
-        <div className="flex items-start gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow-sm">
-            {f.logo_url
-              ? <img src={f.logo_url} alt="" className="w-12 h-12 rounded-xl object-cover" />
-              : getInitials(f.nome)
-            }
+      {/* Foto de capa */}
+      <a href={`/fornecedores/${f.slug}`} className="block relative h-44 bg-slate-100 overflow-hidden flex-shrink-0">
+        {f.foto_url ? (
+          <img
+            src={f.foto_url}
+            alt={f.nome}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+            <Icon className="w-12 h-12 text-white/60" />
           </div>
-          <div className="min-w-0 flex-1 pr-16">
-            <div className="flex items-center gap-1.5">
-              <h3 className="text-sm font-semibold text-slate-900 leading-tight truncate">{f.nome}</h3>
-              {f.verificado && (
-                <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" aria-label="Verificado" />
-              )}
-            </div>
+        )}
+        {/* Gradiente sutil */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+        {/* Badge patrocinado */}
+        {f.is_sponsored && (
+          <span className="absolute top-3 left-3 text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full uppercase tracking-wider">
+            Patrocinado
+          </span>
+        )}
+      </a>
+
+      {/* Like button */}
+      <LikeButton id={f.id} />
+
+      <div className="p-4 flex flex-col gap-2.5 flex-1">
+        {/* Nome + verificado */}
+        <div className="flex items-start gap-2">
+          <div className="min-w-0 flex-1">
+            <a href={`/fornecedores/${f.slug}`} className="hover:text-green-700 transition-colors">
+              <h3 className="text-sm font-bold text-slate-900 leading-snug line-clamp-1">{f.nome}</h3>
+            </a>
             <div className="flex items-center gap-1 mt-0.5 text-xs text-slate-500">
-              <MapPin className="w-3 h-3 flex-shrink-0" />
+              <MapPin className="w-3 h-3 flex-shrink-0 text-red-400" />
               <span>{f.cidade}, {f.uf}</span>
             </div>
           </div>
+          {f.verificado && (
+            <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" aria-label="Verificado" />
+          )}
         </div>
 
-        {/* Categoria + plano */}
+        {/* Categoria */}
         <div className="flex items-center gap-2 flex-wrap">
           <span className={`inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full ${colorClass}`}>
             <Icon className="w-3 h-3" />
             {f.categoria}
           </span>
-          {f.plano === 'premium' && (
-            <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
-              Premium
-            </span>
-          )}
-          {f.plano === 'pro' && (
-            <span className="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
-              Pro
-            </span>
-          )}
         </div>
+
+        {/* Rating */}
+        {f.avaliacao != null && f.num_avaliacoes != null && f.num_avaliacoes > 0 && (
+          <StarRating value={f.avaliacao} count={f.num_avaliacoes} />
+        )}
 
         {/* Descrição */}
         {f.descricao && (
@@ -124,31 +176,32 @@ function FornecedorCard({ f }: { f: Fornecedor }) {
       </div>
 
       {/* Ações */}
-      <div className="px-5 pb-4 flex items-center gap-2">
-        {f.whatsapp ? (
+      <div className="px-4 pb-4 flex items-center gap-2">
+        {f.whatsapp && (
           <a
             href={whatsappUrl(f.whatsapp, f.nome)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2 rounded-xl transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2.5 rounded-xl transition-colors"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             WhatsApp
           </a>
-        ) : f.site_url ? (
+        )}
+        {!f.whatsapp && f.site_url && (
           <a
             href={f.site_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2 rounded-xl transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2.5 rounded-xl transition-colors"
           >
             <Globe className="w-3.5 h-3.5" />
             Site
           </a>
-        ) : null}
+        )}
         <a
           href={`/fornecedores/${f.slug}`}
-          className="inline-flex items-center justify-center gap-1 border border-slate-200 hover:border-green-300 hover:text-green-700 text-slate-600 text-xs font-medium py-2 px-3 rounded-xl transition-colors"
+          className="inline-flex items-center justify-center gap-1 border border-slate-200 hover:border-green-300 hover:text-green-700 text-slate-600 text-xs font-medium py-2.5 px-3 rounded-xl transition-colors"
         >
           Ver perfil
           <ChevronRight className="w-3.5 h-3.5" />

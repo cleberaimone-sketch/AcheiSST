@@ -1,165 +1,266 @@
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Navbar } from '@/components/Navbar'
-import type { Fornecedor, FornecedorCategoria } from '@/types'
+import type { FornecedorCategoria } from '@/types'
 import {
   MapPin, Globe, CheckCircle2, MessageCircle, Phone,
-  Building2, ArrowLeft, Star, Shield,
+  ArrowLeft, Star, Shield, Mail, Clock, Users, Award,
 } from 'lucide-react'
+import { LikeButtonDetail } from '@/components/LikeButtonDetail'
 
-function mapSegmento(segmento: string): FornecedorCategoria {
-  const s = (segmento ?? '').toLowerCase()
-  if (s.includes('epi') || s.includes('epc') || s.includes('equipamento')) return 'EPI & Equipamentos'
-  if (s.includes('clínica') || s.includes('clinica') || s.includes('medicina')) return 'Clínicas Médicas'
-  if (s.includes('consultoria') || s.includes('sst')) return 'Consultorias SST'
-  if (s.includes('treinamento') || s.includes('curso') || s.includes('nr')) return 'Treinamentos'
-  if (s.includes('software') || s.includes('sistema') || s.includes('tecnologia')) return 'Softwares SST'
-  if (s.includes('laboratório') || s.includes('laboratorio') || s.includes('higiene')) return 'Laboratórios'
-  if (s.includes('engenharia') || s.includes('segurança')) return 'Engenharia de Segurança'
+function mapCategoriaBD(cat: string): FornecedorCategoria {
+  const c = (cat ?? '').toLowerCase()
+  if (c === 'clinica' || c === 'clínica') return 'Clínicas Médicas'
+  if (c === 'loja' || c === 'epi') return 'EPI & Equipamentos'
+  if (c === 'software') return 'Softwares SST'
+  if (c === 'treinamento') return 'Treinamentos'
+  if (c === 'consultoria') return 'Consultorias SST'
+  if (c === 'laboratorio' || c === 'laboratório') return 'Laboratórios'
+  if (c === 'engenharia') return 'Engenharia de Segurança'
   return 'Outros'
 }
 
-function getInitials(name: string) {
-  return name.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()
+function whatsappUrl(numero: string, nome: string) {
+  const texto = encodeURIComponent(`Olá! Vi o perfil da ${nome} no AcheiSST e gostaria de mais informações sobre os serviços.`)
+  return `https://wa.me/55${numero.replace(/\D/g, '')}?text=${texto}`
 }
 
-function whatsappUrl(numero: string, nome: string) {
-  const texto = encodeURIComponent(`Olá! Vi seu perfil no AcheiSST e gostaria de mais informações sobre os serviços de ${nome}.`)
-  return `https://wa.me/55${numero.replace(/\D/g, '')}?text=${texto}`
+function StarRating({ value, count }: { value: number; count: number }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex">
+        {[1, 2, 3, 4, 5].map((s) => (
+          <Star
+            key={s}
+            className={`w-5 h-5 ${s <= Math.round(value) ? 'fill-amber-400 text-amber-400' : 'text-slate-200'}`}
+          />
+        ))}
+      </div>
+      <span className="text-lg font-bold text-slate-900">{value.toFixed(1)}</span>
+      <span className="text-sm text-slate-500">({count} avaliações)</span>
+    </div>
+  )
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { data } = await supabase.from('empresas').select('nome, segmento, cidade, uf').eq('slug', slug).single()
+  const { data } = await supabase
+    .from('fornecedores')
+    .select('nome, categoria, cidade, uf, descricao')
+    .eq('slug', slug)
+    .single()
   if (!data) return {}
   return {
     title: `${data.nome} — AcheiSST`,
-    description: `${data.nome} é um fornecedor de ${data.segmento ?? 'SST'} em ${data.cidade ?? ''}, ${data.uf}. Veja o perfil completo no AcheiSST.`,
+    description: data.descricao
+      ? data.descricao.slice(0, 160)
+      : `${data.nome} é uma clínica de ${data.categoria ?? 'SST'} em ${data.cidade ?? ''}, ${data.uf}. Perfil completo no AcheiSST.`,
   }
 }
 
 export default async function FornecedorPerfilPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { data: e } = await supabase.from('empresas').select('*').eq('slug', slug).single()
+  const { data: e } = await supabase.from('fornecedores').select('*').eq('slug', slug).single()
 
   if (!e) notFound()
 
-  const f: Fornecedor = {
-    id: String(e.id),
-    slug: String(e.id),
-    nome: e.nome,
-    categoria: e.categoria ? (e.categoria as FornecedorCategoria) : mapSegmento(e.segmento ?? ''),
-    subcategoria: e.subcategoria ?? null,
-    cidade: e.cidade ?? '',
-    uf: e.uf ?? '',
-    logo_url: e.logo_url ?? null,
-    site_url: e.site_url ?? null,
-    whatsapp: e.whatsapp ?? null,
-    descricao: e.descricao ?? e.segmento ?? null,
-    plano: (e.plano as Fornecedor['plano']) ?? 'free',
-    verificado: e.verified ?? false,
-    is_sponsored: e.is_sponsored ?? false,
-    created_at: e.created_at,
-  }
+  const categoria = mapCategoriaBD(e.categoria ?? '')
 
   return (
     <>
       <Navbar />
       <main className="pt-20 bg-slate-50 min-h-screen">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-slate-400 mb-6">
-            <a href="/" className="hover:text-green-600 transition-colors">Início</a>
-            <span>/</span>
-            <a href="/fornecedores" className="hover:text-green-600 transition-colors">Fornecedores</a>
-            <span>/</span>
-            <span className="text-slate-700 font-medium truncate">{f.nome}</span>
+        {/* HERO FOTO */}
+        <div className="relative w-full h-72 sm:h-96 bg-slate-200 overflow-hidden">
+          {e.foto_url ? (
+            <img
+              src={e.foto_url}
+              alt={e.nome}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
+              <Shield className="w-24 h-24 text-white/30" />
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+          {/* Like button */}
+          <div className="absolute top-4 right-4">
+            <LikeButtonDetail id={String(e.id)} />
           </div>
 
+          {/* Breadcrumb */}
+          <div className="absolute top-4 left-4">
+            <a
+              href="/fornecedores"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90 bg-black/30 backdrop-blur px-3 py-1.5 rounded-full hover:bg-black/50 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              Fornecedores
+            </a>
+          </div>
+
+          {/* Nome sobreposto na foto */}
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <div className="max-w-4xl mx-auto">
+              {e.is_sponsored && (
+                <span className="inline-block text-[10px] font-bold text-amber-300 bg-amber-900/60 px-2 py-0.5 rounded-full uppercase tracking-wider mb-2">
+                  Patrocinado
+                </span>
+              )}
+              <div className="flex items-center gap-2 flex-wrap mb-1">
+                <span className="text-xs font-semibold text-red-300 uppercase tracking-widest">
+                  {categoria}
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight mb-1">
+                {e.nome}
+              </h1>
+              <div className="flex items-center gap-2 text-sm text-white/80">
+                <MapPin className="w-4 h-4 text-red-400" />
+                <span>{e.endereco ? `${e.endereco}, ` : ''}{e.cidade}, {e.uf}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-            {/* Coluna principal */}
+            {/* ── COLUNA PRINCIPAL ── */}
             <div className="lg:col-span-2 flex flex-col gap-5">
 
-              {/* Card principal */}
+              {/* Card de Identificação */}
               <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                {f.is_sponsored && (
-                  <span className="inline-block text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full uppercase tracking-wider mb-3">
-                    Patrocinado
-                  </span>
-                )}
-
-                <div className="flex items-start gap-4 mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white font-bold text-xl flex-shrink-0 shadow-sm">
-                    {f.logo_url
-                      ? <img src={f.logo_url} alt={f.nome} className="w-16 h-16 rounded-2xl object-cover" />
-                      : getInitials(f.nome)
-                    }
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h1 className="text-xl font-bold text-slate-900">{f.nome}</h1>
-                      {f.verificado && (
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-green-700 bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          Verificado
-                        </span>
-                      )}
-                      {f.plano === 'premium' && (
-                        <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
-                          Premium
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1.5 mt-1 text-sm text-slate-500">
-                      <MapPin className="w-3.5 h-3.5 text-green-500" />
-                      <span>{f.cidade}, {f.uf}</span>
-                    </div>
-                    <span className="inline-block mt-2 text-xs font-medium text-green-700 bg-green-50 px-2.5 py-0.5 rounded-full">
-                      {f.categoria}
-                    </span>
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex items-center gap-3">
+                    {e.verified && (
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded-full">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        Verificado
+                      </span>
+                    )}
+                    {e.is_sponsored && (
+                      <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        Premium
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                {f.descricao && (
-                  <p className="text-slate-600 text-sm leading-relaxed">{f.descricao}</p>
+                {/* Rating */}
+                {e.avaliacao != null && Number(e.avaliacao) > 0 && (
+                  <div className="mb-5">
+                    <StarRating value={Number(e.avaliacao)} count={e.num_avaliacoes ?? 0} />
+                  </div>
+                )}
+
+                {/* Descrição */}
+                {e.descricao && (
+                  <p className="text-slate-600 text-sm leading-relaxed">{e.descricao}</p>
+                )}
+
+                {/* Stats rápidos */}
+                {(e.experiencia_anos || e.clientes || e.medicos_disponiveis) && (
+                  <div className="grid grid-cols-3 gap-4 mt-5 pt-5 border-t border-slate-100">
+                    {e.experiencia_anos && (
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-1 text-green-600 mb-1">
+                          <Clock className="w-4 h-4" />
+                        </div>
+                        <p className="text-xl font-bold text-slate-900">{e.experiencia_anos}+</p>
+                        <p className="text-xs text-slate-500">Anos de experiência</p>
+                      </div>
+                    )}
+                    {e.clientes && (
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-1 text-green-600 mb-1">
+                          <Users className="w-4 h-4" />
+                        </div>
+                        <p className="text-xl font-bold text-slate-900">{e.clientes}+</p>
+                        <p className="text-xs text-slate-500">Clientes atendidos</p>
+                      </div>
+                    )}
+                    {e.medicos_disponiveis && (
+                      <div className="text-center">
+                        <div className="flex items-center justify-center gap-1 text-green-600 mb-1">
+                          <Award className="w-4 h-4" />
+                        </div>
+                        <p className="text-xl font-bold text-slate-900">{e.medicos_disponiveis}</p>
+                        <p className="text-xs text-slate-500">Médicos disponíveis</p>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
 
-              {/* Sobre (placeholder para campos futuros) */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                <h2 className="text-base font-semibold text-slate-900 mb-3">Sobre a empresa</h2>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  {f.descricao
-                    ? f.descricao
-                    : `${f.nome} é um fornecedor de ${f.categoria} com sede em ${f.cidade}, ${f.uf}. Entre em contato para mais informações.`
-                  }
-                </p>
-              </div>
+              {/* Serviços Oferecidos */}
+              {e.especialidades && Array.isArray(e.especialidades) && e.especialidades.length > 0 && (
+                <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                  <h2 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    Serviços Oferecidos
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {(e.especialidades as string[]).map((serv: string) => (
+                      <div key={serv} className="flex items-center gap-2.5 p-3 bg-green-50 rounded-xl">
+                        <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <span className="text-sm font-medium text-slate-800">{serv}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
+              {/* Localização */}
+              {(e.endereco || e.cidade) && (
+                <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                  <h2 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-red-500" />
+                    Localização
+                  </h2>
+                  <div className="space-y-2 text-sm text-slate-600">
+                    {e.endereco && <p>{e.endereco}</p>}
+                    <p className="font-medium">{e.cidade}, {e.uf}</p>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Sidebar de contato */}
+            {/* ── SIDEBAR CONTATO ── */}
             <div className="flex flex-col gap-4">
               <div className="bg-white rounded-2xl border border-slate-200 p-5 flex flex-col gap-3 sticky top-24">
-                <h2 className="text-sm font-semibold text-slate-900">Entrar em contato</h2>
+                <h2 className="text-sm font-bold text-slate-900">Entrar em contato</h2>
 
-                {f.whatsapp && (
+                {e.whatsapp && (
                   <a
-                    href={whatsappUrl(f.whatsapp, f.nome)}
+                    href={whatsappUrl(e.whatsapp, e.nome)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold text-sm py-3 rounded-xl transition-colors shadow-sm"
+                    className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3.5 rounded-xl transition-colors shadow-sm"
                   >
                     <MessageCircle className="w-4 h-4" />
                     Chamar no WhatsApp
                   </a>
                 )}
 
-                {f.site_url && (
+                {e.telefone && (
                   <a
-                    href={f.site_url}
+                    href={`tel:+55${e.telefone.replace(/\D/g, '')}`}
+                    className="flex items-center justify-center gap-2 border border-slate-200 hover:border-green-300 text-slate-700 hover:text-green-700 font-medium text-sm py-3 rounded-xl transition-colors"
+                  >
+                    <Phone className="w-4 h-4" />
+                    {e.telefone}
+                  </a>
+                )}
+
+                {e.website_url && (
+                  <a
+                    href={e.website_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 border border-slate-200 hover:border-green-300 text-slate-700 hover:text-green-700 font-medium text-sm py-3 rounded-xl transition-colors"
@@ -169,17 +270,27 @@ export default async function FornecedorPerfilPage({ params }: { params: Promise
                   </a>
                 )}
 
+                {e.email && (
+                  <a
+                    href={`mailto:${e.email}`}
+                    className="flex items-center justify-center gap-2 border border-slate-200 hover:border-green-300 text-slate-700 hover:text-green-700 font-medium text-sm py-3 rounded-xl transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    {e.email}
+                  </a>
+                )}
+
                 <a
-                  href={`/solicitar-orcamento?fornecedor=${f.id}`}
-                  className="flex items-center justify-center gap-2 border border-green-200 bg-green-50 hover:bg-green-100 text-green-700 font-semibold text-sm py-3 rounded-xl transition-colors"
+                  href={`/solicitar-orcamento?fornecedor=${e.id}`}
+                  className="flex items-center justify-center gap-2 border border-green-200 bg-green-50 hover:bg-green-100 text-green-700 font-bold text-sm py-3 rounded-xl transition-colors"
                 >
                   Solicitar Orçamento
                 </a>
 
-                <div className="border-t border-slate-100 pt-3 mt-1">
+                <div className="border-t border-slate-100 pt-3">
                   <div className="flex items-center gap-2 text-xs text-slate-400">
                     <Shield className="w-3.5 h-3.5 text-green-500" />
-                    {f.verificado
+                    {e.verified
                       ? 'Perfil verificado pelo AcheiSST'
                       : 'Perfil ainda não verificado'
                     }
@@ -187,7 +298,6 @@ export default async function FornecedorPerfilPage({ params }: { params: Promise
                 </div>
               </div>
 
-              {/* Voltar */}
               <a
                 href="/fornecedores"
                 className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-green-600 transition-colors"
