@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import {
   Search, MapPin, Globe, CheckCircle2, MessageCircle,
   Building2, Shield, FlaskConical, Laptop, GraduationCap,
-  ShoppingBag, Wrench, ChevronRight, Heart, Star, Phone,
+  ShoppingBag, Wrench, ChevronRight, Heart, Star, Phone, ChevronLeft,
 } from 'lucide-react'
 import type { Fornecedor, FornecedorCategoria } from '@/types'
 import { useTheme } from '@/components/ThemeProvider'
@@ -177,7 +177,7 @@ function FornecedorCard({ f }: { f: Fornecedor }) {
 
       {/* Ações */}
       <div className="px-4 pb-4 flex items-center gap-2">
-        {f.whatsapp && (
+        {f.whatsapp ? (
           <a
             href={whatsappUrl(f.whatsapp, f.nome)}
             target="_blank"
@@ -187,8 +187,15 @@ function FornecedorCard({ f }: { f: Fornecedor }) {
             <MessageCircle className="w-3.5 h-3.5" />
             WhatsApp
           </a>
-        )}
-        {!f.whatsapp && f.site_url && (
+        ) : f.telefone ? (
+          <a
+            href={`tel:${f.telefone.replace(/\D/g, '')}`}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2.5 rounded-xl transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            Ligar
+          </a>
+        ) : f.site_url ? (
           <a
             href={f.site_url}
             target="_blank"
@@ -198,7 +205,7 @@ function FornecedorCard({ f }: { f: Fornecedor }) {
             <Globe className="w-3.5 h-3.5" />
             Site
           </a>
-        )}
+        ) : null}
         <a
           href={`/fornecedores/${f.slug}`}
           className="inline-flex items-center justify-center gap-1 border border-slate-200 hover:border-green-300 hover:text-green-700 text-slate-600 text-xs font-medium py-2.5 px-3 rounded-xl transition-colors"
@@ -215,12 +222,15 @@ interface FornecedoresGridProps {
   fornecedores: Fornecedor[]
 }
 
+const PAGE_SIZE = 16
+
 export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
   const { theme } = useTheme()
   const isV5 = theme === 'preview_5'
   const [categoria, setCategoria] = useState<FornecedorCategoria | 'Todos'>('Todos')
   const [uf, setUf] = useState('')
   const [search, setSearch] = useState('')
+  const [page, setPage] = useState(1)
 
   const filtered = fornecedores.filter((f) => {
     const matchCat = categoria === 'Todos' || f.categoria === categoria
@@ -233,6 +243,8 @@ export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
     return matchCat && matchUf && matchSearch
   })
 
+  useEffect(() => { setPage(1) }, [categoria, uf, search])
+
   // Patrocinados primeiro, depois verificados, depois plano, depois nome
   const sorted = [...filtered].sort((a, b) => {
     if (a.is_sponsored !== b.is_sponsored) return a.is_sponsored ? -1 : 1
@@ -241,6 +253,9 @@ export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
     if (a.plano !== b.plano) return planOrder[a.plano] - planOrder[b.plano]
     return a.nome.localeCompare(b.nome)
   })
+
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE)
+  const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
   return (
     <section className={`${isV5 ? 'bg-slate-950' : 'bg-slate-50'} min-h-screen transition-colors`}>
@@ -307,9 +322,59 @@ export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
         </div>
 
         {sorted.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {sorted.map((f) => <FornecedorCard key={f.id} f={f} />)}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {paginated.map((f) => <FornecedorCard key={f.id} f={f} />)}
+            </div>
+
+            {/* Paginação */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 mt-10">
+                <button
+                  onClick={() => { setPage(p => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                  disabled={page === 1}
+                  className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-green-300 hover:text-green-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Anterior
+                </button>
+                <div className="flex gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1)
+                    .filter(p => p === 1 || p === totalPages || Math.abs(p - page) <= 1)
+                    .reduce<(number | 'ellipsis')[]>((acc, p, i, arr) => {
+                      if (i > 0 && p - (arr[i - 1] as number) > 1) acc.push('ellipsis')
+                      acc.push(p)
+                      return acc
+                    }, [])
+                    .map((p, i) =>
+                      p === 'ellipsis' ? (
+                        <span key={`ellipsis-${i}`} className="px-2 py-2 text-sm text-slate-400">…</span>
+                      ) : (
+                        <button
+                          key={p}
+                          onClick={() => { setPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                          className={`w-9 h-9 text-sm font-medium rounded-xl transition-colors ${
+                            page === p
+                              ? 'bg-green-600 text-white'
+                              : 'border border-slate-200 bg-white text-slate-600 hover:border-green-300 hover:text-green-700'
+                          }`}
+                        >
+                          {p}
+                        </button>
+                      )
+                    )}
+                </div>
+                <button
+                  onClick={() => { setPage(p => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                  disabled={page === totalPages}
+                  className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-green-300 hover:text-green-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                >
+                  Próxima
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-20">
             <Building2 className="w-12 h-12 text-slate-300 mx-auto mb-3" />
