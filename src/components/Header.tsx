@@ -6,11 +6,10 @@ import { useAuth } from "@/hooks/useAuth";
 import logoText from "@/assets/acheisst-logo-text.png";
 
 const navItems = [
-  { label: "Profissionais", to: "/#categorias" },
-  { label: "Clínicas", to: "/#categorias" },
-  { label: "Empresas SST", to: "/#categorias" },
-  { label: "Planos", to: "/#planos" },
-  { label: "Novidades", to: "/#novidades" },
+  { label: "Profissionais", to: "/profissionais" },
+  { label: "Clínicas",      to: "/fornecedores?cat=clinica" },
+  { label: "Fornecedores",  to: "/fornecedores" },
+  { label: "Notícias",      to: "/informativos" },
 ];
 
 const Header = () => {

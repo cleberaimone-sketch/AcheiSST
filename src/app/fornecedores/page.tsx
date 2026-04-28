@@ -33,6 +33,7 @@ function mapUrlCategory(urlCat: string | null): string | null {
   if (c === 'software') return 'software'
   if (c === 'equipamento') return 'equipamento'
   if (c === 'treinamento') return 'treinamento'
+  if (c === 'consultoria') return 'consultoria'
   return null
 }
 

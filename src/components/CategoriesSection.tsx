@@ -13,14 +13,14 @@ import {
 } from "lucide-react";
 
 const categories = [
-  { label: "Profissionais", icon: UserRoundCog, description: "Técnicos e engenheiros de segurança" },
-  { label: "Clínicas", icon: HeartPulse, description: "Medicina e exames ocupacionais" },
-  { label: "Empresas SST", icon: ShieldHalf, description: "Consultorias e laudos especializados" },
-  { label: "Empresas EPI", icon: HardHat, description: "Equipamentos de proteção individual" },
-  { label: "Cursos", icon: GraduationCap, description: "Capacitação e treinamentos NR" },
-  { label: "Vagas", icon: Briefcase, description: "Oportunidades para profissionais SST" },
-  { label: "Eventos", icon: Calendar, description: "Congressos, feiras e webinars" },
-  { label: "Artigos", icon: FileText, description: "Conteúdo técnico e novidades" },
+  { label: "Profissionais", icon: UserRoundCog, description: "Técnicos e engenheiros de segurança",  href: "/profissionais" },
+  { label: "Clínicas",      icon: HeartPulse,   description: "Medicina e exames ocupacionais",       href: "/fornecedores?cat=clinica" },
+  { label: "Empresas SST",  icon: ShieldHalf,   description: "Consultorias e laudos especializados", href: "/fornecedores?cat=consultoria" },
+  { label: "Empresas EPI",  icon: HardHat,      description: "Equipamentos de proteção individual",  href: "/fornecedores?cat=epi" },
+  { label: "Treinamentos",  icon: GraduationCap, description: "Capacitação e treinamentos NR",       href: "/fornecedores?cat=treinamento" },
+  { label: "Vagas",         icon: Briefcase,    description: "Oportunidades para profissionais SST", href: "/cadastrar" },
+  { label: "Eventos",       icon: Calendar,     description: "Congressos, feiras e webinars",        href: "/cadastrar" },
+  { label: "Artigos",       icon: FileText,     description: "Conteúdo técnico e novidades",         href: "/informativos" },
 ];
 
 const CategoriesSection = () => (
@@ -36,26 +36,26 @@ const CategoriesSection = () => (
           </h2>
         </div>
         <Link
-          href="/#planos"
+          href="/fornecedores"
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
         >
-          Cadastre seu negócio <ArrowRight className="w-4 h-4" />
+          Ver todos os fornecedores <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
-        {categories.map(({ label, icon: Icon, description }) => (
-          <button
+        {categories.map(({ label, icon: Icon, description, href }) => (
+          <Link
             key={label}
+            href={href}
             className="group text-left bg-background border border-border rounded-xl p-5 md:p-6 shadow-card hover:shadow-card-hover hover:border-primary/40 hover:-translate-y-0.5 transition-all"
-            onClick={() => document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })}
           >
             <div className="w-11 h-11 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
               <Icon className="w-5 h-5" />
             </div>
             <h3 className="font-semibold text-foreground text-base mb-1">{label}</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">{description}</p>
-          </button>
+          </Link>
         ))}
       </div>
     </div>
