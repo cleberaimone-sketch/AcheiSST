@@ -556,6 +556,14 @@ Implementado sistema de 4 temas alternáveis via botão fixo no canto inferior d
 - [x] Sistema de temas alternáveis (4 previews)
 - [x] Domain e DNS configurados
 - [x] Deploy em produção (Vercel)
+- [x] **Sistema de Auth completo** (27/04/2026)
+  - Tabela `profiles` + `user_roles` no Supabase com RLS
+  - Trigger automático `on_auth_user_created` cria perfil no banco a cada novo cadastro
+  - `src/pages/Auth.tsx`: indicador de força de senha, rate limiting, eye toggle, erros genéricos seguros
+  - Página `/cadastro-concluido` com fluxo profissional pós-registro
+  - Google OAuth preparado mas desabilitado (ativar quando configurar no Supabase Dashboard)
+- [x] **Rodapé redesenhado** (27/04/2026) — fundo escuro, redes sociais (LinkedIn, Instagram, YouTube, WhatsApp), CTA fornecedor
+- [x] **Vercel CLI configurado** — projeto linkado: cleberaimone-sketchs-projects/ecosystem-sst-brasil
 
 ### Fase 2 — Conteúdo & Comunidade 🔄 (Em desenvolvimento)
 - [ ] **Módulo de Eventos SST** (`/eventos`)
@@ -1249,6 +1257,111 @@ Após cada fase, usuário consegue fazer um "pouco de tudo" na plataforma, aumen
 ---
 
 *Este mapeamento será refinado conforme o desenvolvimento de cada seção avança.*
+
+---
+
+## 20. Ideia: Módulo "Contratar Serviços" (estilo Workana) — 27/04/2026
+
+### Conceito
+Além de ser um diretório de fornecedores/profissionais, o AcheiSST pode funcionar como um **marketplace de demandas SST** — onde empresas publicam o que precisam e profissionais/fornecedores respondem.
+
+### Analogia
+> "Workana do SST" — empresa posta a demanda, profissionais fazem proposta.
+
+### Fluxo proposto
+1. Empresa acessa `/contratar` e posta uma demanda:
+   - Ex.: "Preciso de laudo LTCAT para empresa de 80 funcionários em SP"
+   - Ex.: "Busco técnico de segurança para acompanhamento semanal em obra"
+   - Campos: tipo de serviço (PGR, LTCAT, PPP, PCMSO, NR-35, etc.), UF, cidade, prazo, orçamento estimado, descrição
+2. Profissionais/fornecedores cadastrados recebem notificação (e-mail / painel)
+3. Profissional envia proposta com valor e prazo
+4. Empresa escolhe e contrata diretamente (WhatsApp ou formulário)
+
+### Tipos de demanda suportadas
+- Laudos: LTCAT, PCMSO, PGR, PPP, ASO
+- Treinamentos NR (NR-10, NR-35, NR-33, etc.)
+- Perícias e avaliações
+- Consultoria de conformidade
+- Fornecimento de EPI (cotação)
+- Implantação de SESMT
+
+### Modelo de monetização
+- **Free:** empresa posta, recebe até 3 propostas
+- **Pro/Premium:** propostas ilimitadas + destaque da demanda
+- **Taxa de matching** (futuro): comissão sobre demandas fechadas
+
+### Prioridade no roadmap
+- Fase 7 (após captação de leads e painel do fornecedor estarem prontos)
+- MVP: formulário de demanda simples + notificação por e-mail para fornecedores cadastrados
+
+---
+
+## 21. Sessão 27 Abr 2026 — Scraping & UI Profissionais
+
+### 21.1 Sistema de Scraping (Doctoralia → Supabase)
+
+**Script:** `scripts/scrape-profissionais.mjs`
+**Tecnologia:** Playwright (browser real headless) — obrigatório porque Doctoralia bloqueia `fetch` simples após 2 requests (retorna 404 para bots).
+**Fonte:** `doctoralia.com.br/medico-do-trabalho/{cidade}-{uf}` — dados públicos, SSR, JSON-LD estruturado.
+
+**URL padrão Doctoralia por especialidade:**
+- Médicos do Trabalho: `/medico-do-trabalho/{cidade}-{uf}`
+- Engenheiros: a implementar (CREA não tem catálogo público simples)
+
+**Dados extraídos por profissional:**
+- Lista (JSON-LD): nome, foto, especialidades, avaliação, endereço, link perfil
+- Perfil individual: telefone (href="tel:"), CRM (regex `/CRM\/[A-Z]{2}\s+\d+/`), bio ("Sobre mim")
+
+**Campos mapeados na tabela `profissionais`:**
+- nome, especialidade, especialidade_tipo, registro_profissional, registro, uf, cidade
+- telefone, bio, foto_url, avaliacao, num_avaliacoes, verified (true se tem CRM)
+- areas_atuacao (especialidades do Doctoralia), linkedin_url (link do perfil Doctoralia)
+
+**Constraint adicionada:** `UNIQUE (nome, uf)` — para upsert sem duplicatas.
+
+**Checkpoint:** `scripts/checkpoint.json` — lista de UFs processadas. Deletar para reiniciar do zero.
+
+**Como rodar:**
+```bash
+node scripts/scrape-profissionais.mjs
+```
+Leva ~30-45 min para todos os 27 estados (20 por estado + visita cada perfil individual).
+
+**Estados → slugs Doctoralia:**
+SP→sao-paulo-sp, RJ→rio-de-janeiro-rj, MG→belo-horizonte-mg, RS→porto-alegre-rs, PR→curitiba-pr, BA→salvador-ba, CE→fortaleza-ce, PE→recife-pe, GO→goiania-go, DF→brasilia-df, SC→florianopolis-sc, AM→manaus-am, PA→belem-pa, MA→sao-luis-ma, ES→vitoria-es, MT→cuiaba-mt, MS→campo-grande-ms, RN→natal-rn, PB→joao-pessoa-pb, AL→maceio-al, PI→teresina-pi, SE→aracaju-se, TO→palmas-to, RO→porto-velho-ro, AP→macapa-ap, AC→rio-branco-ac, RR→boa-vista-rr
+
+**Próximos scrapers a criar:**
+- Engenheiros de Segurança do Trabalho (CREA — cada estado tem site próprio, mais complexo)
+- Técnicos de Segurança (CFT — avaliar disponibilidade)
+- Clínicas de Medicina do Trabalho (Doctoralia: `/clinica-de-medicina-do-trabalho/{cidade}-{uf}`)
+
+### 21.2 Nova UI da Página /profissionais
+
+**Arquivo:** `src/components/ProfissionaisClient.tsx` — completamente reescrito.
+
+**Melhorias implementadas:**
+- Cards com avatar verde (iniciais) ou foto real do Doctoralia
+- Faixa verde no topo dos cards verificados (têm CRM)
+- Badge de especialidade verde com ícone (Stethoscope, HardHat, Shield, etc.)
+- CRM/CREA exibido com ícone de escudo
+- Estrelas âmbar com contagem de avaliações
+- Bio com 2 linhas (line-clamp-2)
+- Tags de NRs em cinza sutil
+- Botão WhatsApp verde em destaque (`https://wa.me/55{numero}`)
+- Botão "Ver perfil" quando há linkedin_url (link do Doctoralia)
+- Filtros: dropdown de estado + lista clicável de especialidade (botões visuais)
+- Paginação: 12 por página com prev/next e números
+- Estado vazio com botão "Limpar filtros"
+- Filtros mobile com toggle button
+- Badges dos filtros ativos no header de resultados
+- Grid: 1 col mobile / 2 col sm / 3 col xl
+
+### 21.3 Estado do Banco (27 Abr 2026)
+
+Tabelas: empresas, fornecedores, leads, metricas, profissionais, profiles, user_roles
+Constraint nova: `profissionais_nome_uf_unique UNIQUE (nome, uf)`
+Médicos do trabalho inseridos via scraping: ~100+ (script ainda rodando)
+Profissionais anteriores (manuais): 20 reais (técnicos, engenheiros, médicos — sessões anteriores)
 
 ---
 
