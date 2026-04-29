@@ -20,7 +20,7 @@ const categories = [
   { label: "Treinamentos",  icon: GraduationCap, description: "Capacitação e treinamentos NR",       href: "/fornecedores?cat=treinamento" },
   { label: "Vagas",         icon: Briefcase,    description: "Oportunidades para profissionais SST", href: "/cadastrar" },
   { label: "Eventos",       icon: Calendar,     description: "Congressos, feiras e webinars",        href: "/cadastrar" },
-  { label: "Artigos",       icon: FileText,     description: "Conteúdo técnico e novidades",         href: "/informativos" },
+  { label: "Vídeos & SST",  icon: FileText,     description: "Vídeos e podcasts sobre SST",           href: "/videos"       },
 ];
 
 const CategoriesSection = () => (

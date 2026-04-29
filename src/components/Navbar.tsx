@@ -5,10 +5,10 @@ import { Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
-  { label: 'Fornecedores', href: '/fornecedores' },
+  { label: 'Fornecedores',  href: '/fornecedores'  },
   { label: 'Profissionais', href: '/profissionais' },
-  { label: 'Notícias',     href: '/informativos' },
-  { label: 'Empresas',     href: '/empresas' },
+  { label: 'Vídeos & SST',  href: '/videos'        },
+  { label: 'Notícias',      href: '/informativos'  },
 ]
 
 export function Navbar() {
