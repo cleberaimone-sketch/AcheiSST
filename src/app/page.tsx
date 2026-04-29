@@ -2,12 +2,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import CategoriesSection from "@/components/CategoriesSection";
+import FeaturedSection from "@/components/FeaturedSection";
+import EPICalloutSection from "@/components/EPICalloutSection";
 import PlansSection from "@/components/PlansSection";
 import NewsSection from "@/components/NewsSection";
 import { FadeInSection } from "@/components/FadeInSection";
-import { getAllPosts } from "@/lib/posts"; // Keeping your existing post fetcher
+import { getAllPosts } from "@/lib/posts";
 
-export default function Home() {
+export default async function Home() {
   const posts = getAllPosts();
 
   return (
@@ -19,9 +21,14 @@ export default function Home() {
           <CategoriesSection />
         </FadeInSection>
         <FadeInSection>
+          <FeaturedSection />
+        </FadeInSection>
+        <FadeInSection>
+          <EPICalloutSection />
+        </FadeInSection>
+        <FadeInSection>
           <PlansSection />
         </FadeInSection>
-        {/* Blog items via MD */}
         <FadeInSection>
           <NewsSection posts={posts.slice(0, 3)} />
         </FadeInSection>
