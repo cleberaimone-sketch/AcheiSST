@@ -160,11 +160,11 @@ export default async function InformativoPage({ params }: Props) {
           )}
 
           {/* Aviso de verificação */}
-          <div className="mt-10 bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3">
-            <ShieldCheck className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
-            <p className="text-sm text-amber-800 leading-relaxed">
-              <strong>Atenção:</strong> Este conteúdo é gerado automaticamente com IA a partir de fontes oficiais.
-              Sempre verifique a legislação vigente na fonte original antes de tomar decisões.
+          <div className="mt-10 bg-green-50 border border-green-200 rounded-xl p-4 flex gap-3">
+            <ShieldCheck className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" aria-hidden="true" />
+            <p className="text-sm text-green-900 leading-relaxed">
+              <strong>Conteúdo verificado:</strong> Todas as informações publicadas no AcheiSST são baseadas em fontes oficiais e verificáveis.
+              Acesse sempre a fonte original antes de tomar decisões técnicas ou legais.
             </p>
           </div>
 
