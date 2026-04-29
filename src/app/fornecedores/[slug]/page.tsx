@@ -8,6 +8,17 @@ import {
 } from 'lucide-react'
 import { LikeButtonDetail } from '@/components/LikeButtonDetail'
 
+const FALLBACK_IMG: Record<string, string> = {
+  clinica:      'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
+  consultoria:  'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80',
+  loja:         'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+  epi:          'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+  software:     'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80',
+  treinamento:  'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80',
+  engenharia:   'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+  laboratorio:  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80',
+}
+
 function mapCategoriaBD(cat: string): FornecedorCategoria {
   const c = (cat ?? '').toLowerCase()
   if (c === 'clinica' || c === 'clínica') return 'Clínicas Médicas'
@@ -73,9 +84,9 @@ export default async function FornecedorPerfilPage({ params }: { params: Promise
 
         {/* HERO FOTO */}
         <div className="relative w-full h-72 sm:h-96 bg-slate-200 overflow-hidden">
-          {e.foto_url ? (
+          {e.foto_url || FALLBACK_IMG[e.categoria ?? ''] ? (
             <img
-              src={e.foto_url}
+              src={e.foto_url ?? FALLBACK_IMG[e.categoria ?? '']}
               alt={e.nome}
               className="w-full h-full object-cover"
             />
