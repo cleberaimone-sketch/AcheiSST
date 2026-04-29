@@ -8,51 +8,97 @@ source_name: "Portal Contábeis / MTE"
 source_url: "https://www.contabeis.com.br/noticias/76376/nr-1-fiscalizacao-de-riscos-psicossociais-comeca-em-maio-de-2026/"
 image_url: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&q=80"
 tags: ["NR-1", "riscos psicossociais", "PGR", "saúde mental", "burnout", "fiscalização", "2026"]
+read_time: 4
+stats:
+  - value: "26/mai"
+    label: "Início das autuações"
+    color: "red"
+  - value: "2x"
+    label: "Adiada em 2025"
+    color: "orange"
+  - value: "CLT"
+    label: "Todas as empresas obrigadas"
+    color: "blue"
+  - value: "PGR"
+    label: "Documento que precisa ser atualizado"
+    color: "violet"
 ---
 
-**BRASÍLIA** — Depois de dois adiamentos em 2025, a nova versão da **Norma Regulamentadora nº 1 (NR-1)** entra em plena vigência fiscalizatória no dia **26 de maio de 2026**. O ministro do Trabalho foi direto: *"não haverá novo adiamento da medida."*
+**BRASÍLIA** — A partir de **26 de maio de 2026**, empresas que não incluírem saúde mental no programa de gestão de riscos podem ser autuadas pelo Ministério do Trabalho.
 
-A mudança, estabelecida pela Portaria MTE nº 1.419/2024, torna obrigatória a inclusão dos **fatores de risco psicossociais** no Gerenciamento de Riscos Ocupacionais (GRO) e no Programa de Gerenciamento de Riscos (PGR) — os mesmos documentos que já tratam de riscos físicos, químicos, biológicos e ergonômicos.
+Não tem mais como adiar. O ministro do Trabalho foi direto:
 
-## O Que Muda na Prática?
+> *"Não haverá novo adiamento da medida."*
 
-A NR-1 atualizada exige que as empresas com empregados regidos pela CLT:
+A regra já existia no papel desde 2024. Foi adiada duas vezes em 2025. Agora, a fiscalização começa de verdade.
 
-1. **Identifiquem** os fatores de risco psicossocial presentes na sua operação
-2. **Avaliem** o nível de exposição dos trabalhadores
-3. **Incluam** essa avaliação no inventário de riscos ocupacionais do PGR
-4. **Desenvolvam medidas preventivas e corretivas** personalizadas — não basta um documento genérico padronizado
+---
 
-Os fatores que devem ser mapeados incluem:
+## O que mudou na NR-1
 
-- **Burnout** (síndrome de esgotamento profissional)
-- **Sobrecarga de trabalho** e ritmo excessivo
-- **Assédio moral e sexual**
-- **Falta de autonomia** e controle sobre o trabalho
-- **Violência no trabalho** (física ou psicológica)
-- **Qualidade das relações interpessoais** e liderança tóxica
+A **Norma Regulamentadora nº 1** foi atualizada pela Portaria MTE nº 1.419/2024 para incluir os **riscos psicossociais** na mesma lista de riscos que as empresas já precisam gerenciar — ao lado dos riscos físicos, químicos, biológicos e ergonômicos.
 
-## A Punição Chegou: Sem Mais Fase Educativa
+Na prática, burnout, assédio e sobrecarga mental precisam estar no **PGR (Programa de Gerenciamento de Riscos)** da empresa.
 
-Entre maio de 2025 e maio de 2026, o MTE operou em **caráter educativo**: auditores orientavam as empresas sem lavrar autos de infração. Esse período acabou.
+---
 
-A partir de **26 de maio de 2026**, a Inspeção do Trabalho pode autuar empresas que não tenham implementado a gestão de riscos psicossociais no PGR. As multas seguem a tabela do Capítulo V da CLT, podendo chegar a dezenas de milhares de reais a depender do porte da empresa e da gravidade da infração.
+## O que precisa estar no PGR
 
-## Quem Precisa se Adequar?
+Esses são os fatores que devem ser identificados e documentados:
 
-**Todas as empresas** com pelo menos um empregado com carteira assinada (CLT). Não há exceção por porte — MEIs sem empregados estão fora do escopo, mas qualquer empresa com funcionário formal está obrigada.
+- 🔴 **Burnout** — esgotamento profissional
+- 🔴 **Sobrecarga de trabalho** e ritmo excessivo
+- 🟠 **Assédio moral e sexual**
+- 🟠 **Falta de autonomia** nas decisões do trabalho
+- 🟡 **Violência no trabalho** (física ou verbal)
+- 🟡 **Relações interpessoais** e qualidade da liderança
 
-## Como se Preparar
+Não basta listar os riscos. A empresa precisa **avaliar o nível de exposição** de cada trabalhador e descrever **medidas preventivas concretas**.
 
-Especialistas ouvidos pelo Portal Contábeis recomendam:
+> *"Documentos genéricos 'copia-cola' não satisfazem a norma e podem ser glosados pela fiscalização."*
+>
+> — Especialistas ouvidos pelo Portal Contábeis
 
-1. **Contratar uma avaliação de riscos psicossociais** conduzida por psicólogo do trabalho ou equipe do SESMT
-2. **Atualizar o PGR** para incluir o mapeamento e as medidas de controle
-3. **Documentar tudo corretamente** — documentos genéricos "copia-cola" não satisfazem a norma e podem ser glosados pela fiscalização
-4. **Treinar gestores e lideranças** sobre como identificar e reportar situações de risco psicossocial
+---
 
-O MTE disponibiliza guias e materiais de orientação no portal do Ministério. Profissionais de SST habilitados podem consultar a **Portaria MTE nº 1.419/2024** diretamente no Diário Oficial para os detalhes técnicos da norma.
+## Quem está obrigado
 
-## Impacto no eSocial
+**Toda empresa com pelo menos um funcionário CLT.**
 
-Os riscos psicossociais identificados no PGR não precisam, por enquanto, ser reportados em eventos específicos do eSocial SST. Contudo, qualquer afastamento por doença relacionada a fator psicossocial (burnout, transtorno de ansiedade ocupacional, etc.) deve ser normalmente registrado nos eventos S-2230 e S-2240, assim como já ocorre com outras doenças ocupacionais.
+Pequenas, médias, grandes. Não importa o tamanho.
+
+MEIs sem empregados estão fora do escopo. Mas qualquer empresa com carteira assinada precisa se adequar.
+
+---
+
+## Um ano de aviso. Acabou.
+
+Entre maio de 2025 e maio de 2026, auditores fiscais orientavam as empresas sem autuar. Era uma **fase educativa**.
+
+Essa fase terminou.
+
+A partir de **26 de maio**, a Inspeção do Trabalho pode lavrar auto de infração. As multas seguem o **Capítulo V da CLT** e podem chegar a dezenas de milhares de reais, dependendo do porte da empresa e da gravidade.
+
+---
+
+## Como se preparar agora
+
+**Passo 1 — Faça uma avaliação de riscos psicossociais**
+Contrate um psicólogo do trabalho ou acione o SESMT da empresa. Sem diagnóstico, não dá para documentar.
+
+**Passo 2 — Atualize o PGR**
+Inclua os riscos identificados no inventário, com as medidas de controle previstas.
+
+**Passo 3 — Documente com cuidado**
+A fiscalização vai pedir documentação específica para a sua operação — não um modelo genérico.
+
+**Passo 4 — Treine lideranças**
+Gestores precisam saber identificar e reportar situações de risco psicossocial.
+
+---
+
+## E o eSocial?
+
+Por enquanto, os riscos psicossociais **não precisam** ser reportados em eventos específicos do eSocial SST.
+
+Mas se um trabalhador for afastado por burnout ou transtorno de ansiedade ocupacional, o afastamento deve ser registrado normalmente nos eventos **S-2230** e **S-2240** — como qualquer outra doença ocupacional.

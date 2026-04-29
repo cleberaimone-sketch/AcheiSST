@@ -8,7 +8,7 @@ source_name: "Ministério do Trabalho e Emprego (MTE)"
 source_url: "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/abril/acidentes-de-trabalho-crescem-no-brasil-e-atingem-recorde-em-2025-aponta-estudo-do-mte"
 image_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
 tags: ["acidente de trabalho", "estatística", "MTE", "2025", "recorde", "CAT"]
-read_time: 5
+read_time: 4
 stats:
   - value: "806.011"
     label: "Acidentes em 2025"
@@ -24,45 +24,66 @@ stats:
     color: "violet"
 ---
 
-**BRASÍLIA** — No Dia Mundial de Segurança e Saúde no Trabalho, 28 de abril de 2026, o Ministério do Trabalho e Emprego (MTE) divulgou um estudo técnico que confirma: 2025 foi o ano mais letal para trabalhadores formais brasileiros desde que se tem registro histórico confiável.
+**BRASÍLIA** — O Brasil nunca teve tantos acidentes de trabalho em um único ano. Em 2025, foram **806.011 registros** e **3.644 mortes** — o pior resultado da série histórica do Ministério do Trabalho.
 
-## Os Números Chocantes
+Os dados foram divulgados nesta segunda-feira (28), Dia Mundial de Segurança e Saúde no Trabalho, pelo Ministério do Trabalho e Emprego (MTE).
 
-O levantamento, que consolida dados do INSS e do eSocial referentes ao período de 2016 a 2025, aponta:
+---
 
-- **806.011 acidentes de trabalho** registrados em 2025 — recorde histórico absoluto
-- **3.644 mortes** — também o maior número já registrado na série
-- **6,4 milhões de acidentes** acumulados na última década
-- **27.486 óbitos** entre 2016 e 2025
-- Mais de **106 milhões de dias de trabalho perdidos** na série
-- Aproximadamente **249 milhões de dias debitados** ao sistema previdenciário
+## "Uma morte a cada 2 horas e meia"
 
-O crescimento entre 2020 e 2025 é alarmante: os acidentes aumentaram **65,8%** e as mortes cresceram **60,8%** no período.
+Só em 2025, um trabalhador morreu a cada **2 horas e 24 minutos** no Brasil — em média.
 
-## Quem Mais Sofre?
+Na última década, de 2016 a 2025, o país acumulou **27.486 óbitos** e mais de **6,4 milhões de acidentes**. São também **106 milhões de dias de trabalho perdidos** — dias que famílias passaram sem renda, empresas sem funcionários, e a previdência sem contribuições.
 
-### Setor de Saúde: o custo invisível de cuidar
+> *"Hospitais e serviços de urgência revelam um alto custo humano de cuidar da vida alheia em ambientes frequentemente sobrecarregados e precarizados."*
+>
+> — Diretor de Segurança e Saúde no Trabalho do MTE
 
-O setor de saúde — especialmente hospitais e serviços de urgência — concentra o maior número absoluto de acidentes: quase **633 mil registros** na última década. Os **técnicos de enfermagem** lideram entre todas as ocupações no número de acidentes.
+---
 
-"Hospitais e serviços de urgência revelam um alto custo humano de cuidar da vida alheia em ambientes frequentemente sobrecarregados e precarizados", afirmou o diretor de Segurança e Saúde no Trabalho do MTE na cerimônia de divulgação.
+## Quem são as vítimas?
 
-### Transporte Rodoviário: uma morte por dia
+### 🏥 Quem mais se machuca: técnicos de enfermagem
 
-O **transporte rodoviário de carga** lidera em mortes, com **2.601 óbitos** entre 2016 e 2025. Os motoristas de caminhão acumularam **4.249 mortes** na mesma série, o que equivale a mais de **uma morte por dia** durante toda a última década.
+O setor de saúde lidera em número de acidentes. Quase **633 mil registros** em dez anos — e os **técnicos de enfermagem** aparecem no topo de todas as ocupações.
 
-### Participação Feminina Crescente
+São os profissionais que cuidam de você no hospital. E os que mais se machucam no trabalho.
 
-A presença de mulheres nos registros de acidentes também aumentou significativamente. Elas representam **34,2%** do total acumulado na série histórica, com crescimento de **48%** ao longo dos 10 anos analisados. O avanço da inserção feminina no mercado de trabalho formal, especialmente no setor de saúde e serviços, explica parte desse dado.
+### 🚛 Quem mais morre: motoristas de caminhão
 
-## Contexto: Por Que os Números Subiram?
+No transporte rodoviário de carga, foram **2.601 mortes** entre 2016 e 2025.
 
-O crescimento ocorre após uma retração observada em 2020, causada pela pandemia de Covid-19 e a redução temporária das atividades produtivas. A partir de 2021, com a retomada econômica e a ampliação do emprego formal — inclusive via eSocial, que passou a capturar mais registros —, os números voltaram a crescer de forma consistente.
+Só entre os caminhoneiros, **4.249 óbitos** em dez anos. Mais de **uma morte por dia** — todos os dias, ano após ano.
 
-O MTE ressaltou que a ampliação da cobertura do eSocial contribui para uma fotografia mais fiel da realidade, ao obrigar empresas a registrar acidentes que antes ficavam fora das estatísticas.
+### 👩 Mulheres: crescimento de 48%
 
-## O Que Fazer?
+A participação feminina nos registros de acidentes cresceu **48%** na última década. Hoje, as mulheres representam **34,2%** de todos os acidentes registrados no Brasil.
 
-O estudo acompanhou a abertura de uma exposição fotográfica inédita no MTE, *"Linha de Risco – A Realidade dos Acidentes de Trabalho no Brasil"*, e reforçou o compromisso do ministério com a prevenção ativa através do CANPAT (Campanha Nacional de Prevenção de Acidentes de Trabalho).
+Parte desse avanço reflete a maior inserção feminina no mercado formal — especialmente na saúde e nos serviços.
 
-Profissionais de SST e empresas podem consultar os dados completos no **Observatório de Segurança e Saúde no Trabalho** do Smartlab (smartlabbr.org/sst), que disponibiliza a série histórica por setor, ocupação e estado.
+---
+
+## Por que os números estão subindo?
+
+Em 2020, os acidentes caíram. A pandemia fechou empresas, reduziu a produção e afastou trabalhadores.
+
+Com a retomada econômica a partir de 2021, os números voltaram a crescer — e forte. Entre 2020 e 2025, os acidentes aumentaram **65,8%** e as mortes cresceram **60,8%**.
+
+Há outro fator: o **eSocial**. Com a obrigatoriedade de notificação eletrônica, empresas que antes "esqueciam" de registrar acidentes agora são obrigadas a reportar. Os dados ficaram mais fiéis à realidade.
+
+---
+
+## O que o MTE está fazendo?
+
+Para marcar o Dia Mundial da SST, o Ministério abriu a exposição fotográfica **"Linha de Risco — A Realidade dos Acidentes de Trabalho no Brasil"**, com imagens que mostram o impacto real dos acidentes em trabalhadores de diferentes setores.
+
+O governo reforçou o compromisso com o **CANPAT** — Campanha Nacional de Prevenção de Acidentes de Trabalho.
+
+---
+
+## Onde consultar os dados completos
+
+O **Observatório de Segurança e Saúde no Trabalho** do Smartlab ([smartlabbr.org/sst](https://smartlabbr.org/sst)) disponibiliza a série histórica completa, com filtros por setor, ocupação e estado.
+
+Os dados do MTE são baseados em registros oficiais do INSS e do eSocial.
