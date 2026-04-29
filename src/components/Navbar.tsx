@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Menu, X, UserCircle2, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import { useAuth } from '@/hooks/useAuth'
 
 const NAV_LINKS = [
   { label: 'Fornecedores',  href: '/fornecedores'  },
@@ -14,12 +15,25 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+  const { user, signOut } = useAuth()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
   return (
@@ -55,7 +69,58 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA — Temporarily removed */}
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            {user ? (
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-semibold transition-colors"
+                >
+                  <UserCircle2 className="w-4 h-4" />
+                  Minha conta
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-lg py-1 z-50">
+                    <p className="px-4 py-2 text-xs text-slate-400 truncate border-b border-slate-100">
+                      {user.email}
+                    </p>
+                    <a
+                      href="/painel"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <LayoutDashboard className="w-4 h-4 text-slate-400" />
+                      Painel
+                    </a>
+                    <button
+                      onClick={() => { signOut(); setDropdownOpen(false) }}
+                      className="flex items-center gap-2.5 w-full px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Sair
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <a
+                  href="/painel/login"
+                  className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                >
+                  Entrar
+                </a>
+                <a
+                  href="/painel/cadastrar"
+                  className="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors"
+                >
+                  Cadastrar
+                </a>
+              </>
+            )}
+          </div>
 
           {/* Mobile button */}
           <button
@@ -75,7 +140,21 @@ export function Navbar() {
                 {label}
               </a>
             ))}
-            {/* Mobile CTA — Temporarily removed */}
+            {user ? (
+              <>
+                <a href="/painel" className="py-1.5 text-green-600 font-semibold hover:text-green-700 transition-colors">
+                  Minha conta
+                </a>
+                <button onClick={signOut} className="py-1.5 text-red-500 hover:text-red-600 transition-colors text-left">
+                  Sair
+                </button>
+              </>
+            ) : (
+              <>
+                <a href="/painel/login" className="py-1.5 hover:text-navy-600 transition-colors">Entrar</a>
+                <a href="/painel/cadastrar" className="py-1.5 text-green-600 font-semibold hover:text-green-700 transition-colors">Cadastrar</a>
+              </>
+            )}
           </div>
         )}
       </div>
