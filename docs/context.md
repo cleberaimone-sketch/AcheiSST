@@ -1,6 +1,6 @@
 # Contexto do Projeto: PlugaSST / AcheiSST
-> Atualizado em: 23/04/2026 às 20:00 | Owner: Cleber Aimoni — Grupo SafeWork
-> **Última mudança:** Reformulação da homepage (botões das categorias no topo), implementação de clínicas (9 reais no Supabase)
+> Atualizado em: 29/04/2026 | Owner: Cleber Aimoni — Grupo SafeWork
+> **Última mudança:** Scrapers de clínicas + empresas SST + vídeos YouTube; página /videos estilo YouTube; navegação corrigida; botão preview removido
 
 ---
 
@@ -1362,6 +1362,126 @@ Tabelas: empresas, fornecedores, leads, metricas, profissionais, profiles, user_
 Constraint nova: `profissionais_nome_uf_unique UNIQUE (nome, uf)`
 Médicos do trabalho inseridos via scraping: ~100+ (script ainda rodando)
 Profissionais anteriores (manuais): 20 reais (técnicos, engenheiros, médicos — sessões anteriores)
+
+---
+
+---
+
+## 22. Sessão 28-29 Abr 2026 — Scrapers, Vídeos YouTube e Navegação
+
+### 22.1 Scrapers Criados
+
+#### `scripts/scrape-clinicas.mjs` — Clínicas via Doctoralia
+- **Fonte:** `doctoralia.com.br/clinicas/medicina-do-trabalho/{cidade}` (sem sufixo de UF)
+- **Tecnologia:** Playwright (navegador real headless) — necessário pois Doctoralia bloqueia fetch simples
+- **Dados:** extrai JSON-LD `@type:ItemList`, itens `Physician` com nome, endereço, especialidades, avaliação, logo
+- **Destino:** tabela `fornecedores` com `categoria='clinica'`, `subcategoria='medicina_do_trabalho'`
+- **Diferença do scraper de profissionais:** NÃO visita perfil individual — usa apenas a listagem (mais rápido)
+- **UF:** extraída com regex `/\b([A-Z]{2})$/` do campo `addressRegion`
+- **Max:** 15 clínicas por cidade, 27 capitais
+- **Checkpoint:** `scripts/checkpoint-clinicas.json`
+- **Rodar:** `node scripts/scrape-clinicas.mjs`
+
+#### `scripts/scrape-empresas-sst.mjs` — Empresas SST via oHub
+- **Fonte:** `ohub.com.br/empresas/consultoria-em-seguranca-do-trabalho` — 60 páginas × 30 empresas (~1.800 total)
+- **Tecnologia:** `fetch` nativo do Node.js (sem Playwright) — páginas carregam sem JS
+- **Paginação:** `/2`, `/3`, ..., `/60`
+- **Dados:** extrai JSON-LD `@type:LocalBusiness` da página de detalhe de cada empresa (name, description, address, logo, aggregateRating)
+- **Rating:** oHub usa escala 1-10, convertido para 1-5 dividindo por 2
+- **Destino:** tabela `fornecedores` com `categoria='consultoria'`, `subcategoria='sst'`
+- **Checkpoint:** `scripts/checkpoint-ohub.json` — guarda slugs já inseridos
+- **Rodar:** `node scripts/scrape-empresas-sst.mjs`
+
+#### `scripts/scrape-videos.mjs` — Vídeos SST via YouTube RSS + oEmbed
+- **Estratégia híbrida:**
+  - RSS feed: `youtube.com/feeds/videos.xml?channel_id={ID}` — 15 vídeos mais recentes do canal
+  - oEmbed: `youtube.com/oembed?url=...&format=json` — para IDs curados sem API key
+- **Canais RSS funcionando (verificados):** Nestor W Neto SST, Segura Trabalho
+- **Canais que retornam 404 no Node.js:** FUNDACENTRO, Fernanda Lima, Patrício Rocha (YouTube bloqueia por User-Agent em alguns canais)
+- **IDs curados (oEmbed):** FUNDACENTRO (mPXtPr2KIuA, 0RUOY0pT1nI), Nestor W Neto (euTRHG84PMo, iHbzrGk6Cd0), SST Online (-EtliBHIOGk, OceLoLj0Kz4)
+- **Detecção automática de categoria:** podcast (palavras: "podcast", "episódio", "ep."), short, curso ("aula", "módulo"), video (padrão)
+- **Destino:** tabela `videos` (criada nesta sessão)
+- **Rodar:** `node scripts/scrape-videos.mjs`
+- **Para mais vídeos:** adicionar IDs no array `CURATED_VIDEOS` ou usar YouTube Data API v3 (ver 22.3)
+
+### 22.2 Tabela `videos` (Supabase)
+
+```sql
+CREATE TABLE videos (
+  id              UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  youtube_id      TEXT UNIQUE NOT NULL,
+  title           TEXT NOT NULL,
+  description     TEXT,
+  thumbnail_url   TEXT,
+  channel_name    TEXT NOT NULL,
+  channel_id      TEXT,
+  published_at    TIMESTAMPTZ,
+  categoria       TEXT DEFAULT 'video' CHECK (categoria IN ('video', 'podcast', 'short', 'curso')),
+  tags            TEXT[] DEFAULT '{}',
+  view_count      INTEGER,       -- null por ora, preencher com YouTube Data API v3
+  duration_seconds INTEGER,      -- null por ora, preencher com YouTube Data API v3
+  verified        BOOLEAN DEFAULT false,
+  criado_em       TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+RLS: SELECT público + INSERT público (para os scrapers).
+
+### 22.3 Página `/videos` — Estilo YouTube
+
+**Arquivo:** `src/app/videos/page.tsx` (Server Component) + `src/components/VideosGrid.tsx` (Client Component)
+
+**Design:**
+- Grid 4 colunas (lg), 3 (md), 2 (sm), 1 (mobile)
+- Cards com thumbnail 16:9, play overlay no hover, badge de categoria no canto superior
+- Avatar verde com inicial do canal
+- Click no card → modal com `<iframe>` YouTube incorporado (usuário assiste SEM sair do site)
+- Botão "Abrir no YouTube" dentro do modal para quem quiser
+- Filtros: Todos | Vídeos | Podcasts | Cursos | Shorts + busca por título/canal/tag
+- CTA: "Tem um canal de SST? Indicar canal" → `/cadastrar`
+
+**Adicionado ao menu (Navbar):** "Vídeos & SST" → `/videos`
+**Adicionado ao CategoriesSection (home):** card "Vídeos & SST" → `/videos`
+
+### 22.4 Correções de Navegação
+
+**Header.tsx** (header da home):
+- "Profissionais" → `/profissionais`
+- "Clínicas" → `/fornecedores?cat=clinica`
+- "Fornecedores" → `/fornecedores`
+- "Notícias" → `/informativos`
+- (Removido: "Empresas SST", "Planos")
+
+**CategoriesSection.tsx** (cards da home):
+- Cada card agora é `<Link>` com `href` para a página real
+- Mapeamento: EPI→`/fornecedores?cat=epi`, Clínicas→`/fornecedores?cat=clinica`, SST→`/fornecedores?cat=consultoria`, Treinamentos→`/fornecedores?cat=treinamento`, Vagas→`/cadastrar`, Eventos→`/cadastrar`, Artigos→`/informativos`, Vídeos→`/videos`
+
+**Botão de preview de temas removido:** o floating button de troca de layout A/B foi ocultado em produção (ThemeProvider.tsx). O contexto dos temas ainda existe internamente mas não é mais exposto ao usuário final.
+
+**Fornecedores page.tsx:** filtro URL `consultoria` adicionado ao `mapUrlCategory` para que `/fornecedores?cat=consultoria` funcione após o scraper do oHub popular o banco.
+
+### 22.5 Estado do Banco (29 Abr 2026)
+
+| categoria | subcategoria | registros |
+|---|---|---|
+| `loja` | `epi` | 267 |
+| `clinica` | `medicina_do_trabalho` | ~400 (scraper rodando) |
+| `clinica` | null | 16 (inseridos manualmente) |
+| `consultoria` | `sst` | ~1.800 (scraper rodando) |
+
+Tabela `videos`: 6 vídeos verificados (seed inicial).
+
+### 22.6 Ideia: YouTube Data API v3 para vídeos (backlog)
+
+Para popular o banco com view_count, duration_seconds e buscar novos vídeos automaticamente:
+1. Criar chave gratuita no Google Cloud Console (5 min)
+2. Ativar "YouTube Data API v3"
+3. Adicionar `YOUTUBE_API_KEY` no `.env.local`
+4. Atualizar `scrape-videos.mjs` para usar endpoint `videos?part=snippet,contentDetails,statistics&id={ids}`
+5. Cota: 10.000 unidades/dia grátis — suficiente para atualização semanal de ~200 vídeos
+
+**Termos de busca sugeridos para expansão:**
+- "segurança do trabalho", "medicina do trabalho", "NR SST", "EPI treinamento", "PGR PPRA", "SESMT", "acidente trabalho prevenção"
 
 ---
 
