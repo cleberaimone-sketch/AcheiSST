@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
+  const type = searchParams.get('type') // 'signup' | 'recovery' | 'invite' | null
 
   if (code) {
     const cookieStore = await cookies()
@@ -24,7 +25,19 @@ export async function GET(request: Request) {
     )
 
     const { error } = await supabase.auth.exchangeCodeForSession(code)
+
     if (!error) {
+      // Confirmação de email de novo cadastro → página de boas-vindas
+      if (type === 'signup') {
+        return NextResponse.redirect(`${origin}/bem-vindo`)
+      }
+
+      // Recuperação de senha → página de redefinição
+      if (type === 'recovery') {
+        return NextResponse.redirect(`${origin}/painel/redefinir-senha`)
+      }
+
+      // Login OAuth (Google) ou magic link → redireciona por tipo de conta
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
         const { data: profile } = await supabase
@@ -35,6 +48,7 @@ export async function GET(request: Request) {
         const isEmpresa = ['clinica', 'empresa_sst', 'empresa_epi'].includes(profile?.account_type ?? '')
         return NextResponse.redirect(`${origin}${isEmpresa ? '/painel/fornecedor' : '/painel'}`)
       }
+
       return NextResponse.redirect(`${origin}/painel`)
     }
   }
