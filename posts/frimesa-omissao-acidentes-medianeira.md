@@ -8,6 +8,20 @@ source_name: "Ministério Público do Trabalho (MPT-PR)"
 source_url: "https://www.prt9.mpt.mp.br/"
 image_url: "https://images.unsplash.com/photo-1542013936693-884638332954?w=800&q=80"
 tags: ["Frimesa", "CAT", "Acidente de Trabalho", "MPT", "Fiscalização"]
+read_time: 4
+stats:
+  - value: "7.094"
+    label: "CATs omitidas"
+    color: "red"
+  - value: "5.000"
+    label: "Trabalhadores na unidade"
+    color: "orange"
+  - value: "6.100"
+    label: "Suínos abatidos/dia"
+    color: "blue"
+  - value: "1 TAC"
+    label: "Termo assinado com MPT"
+    color: "green"
 ---
 
 **MEDIANEIRA, PR** — O que deveria ser o acompanhamento de trâmites rotineiros de Medicina do Trabalho converteu-se em um dos maiores registros de infração em saúde ocupacional no estado do Paraná nesta década. 

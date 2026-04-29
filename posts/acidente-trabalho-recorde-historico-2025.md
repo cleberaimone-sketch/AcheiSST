@@ -8,6 +8,20 @@ source_name: "Ministério do Trabalho e Emprego (MTE)"
 source_url: "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/abril/acidentes-de-trabalho-crescem-no-brasil-e-atingem-recorde-em-2025-aponta-estudo-do-mte"
 image_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
 tags: ["acidente de trabalho", "estatística", "MTE", "2025", "recorde", "CAT"]
+read_time: 5
+stats:
+  - value: "806.011"
+    label: "Acidentes em 2025"
+    color: "red"
+  - value: "3.644"
+    label: "Mortes registradas"
+    color: "red"
+  - value: "+65,8%"
+    label: "Crescimento desde 2020"
+    color: "orange"
+  - value: "6,4 mi"
+    label: "Acidentes na última década"
+    color: "violet"
 ---
 
 **BRASÍLIA** — No Dia Mundial de Segurança e Saúde no Trabalho, 28 de abril de 2026, o Ministério do Trabalho e Emprego (MTE) divulgou um estudo técnico que confirma: 2025 foi o ano mais letal para trabalhadores formais brasileiros desde que se tem registro histórico confiável.

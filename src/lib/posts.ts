@@ -7,8 +7,16 @@ import type { Informativo, NewsCategory } from '@/types'
 
 const POSTS_DIR = path.join(process.cwd(), 'posts')
 
+export interface PostStat {
+  value: string
+  label: string
+  color?: 'red' | 'orange' | 'green' | 'blue' | 'violet'
+}
+
 export interface PostMeta extends Omit<Informativo, 'id' | 'content' | 'created_at' | 'status' | 'ai_model' | 'ai_prompt_version'> {
   slug: string
+  stats?: PostStat[]
+  read_time?: number
 }
 
 export interface PostFull extends PostMeta {
@@ -40,6 +48,8 @@ function parsePost(slug: string, fileContents: string): PostMeta {
     tags: data.tags ?? [],
     published_at: data.published_at ?? new Date().toISOString(),
     image_url,
+    stats: data.stats ?? undefined,
+    read_time: data.read_time ?? undefined,
   }
 }
 
