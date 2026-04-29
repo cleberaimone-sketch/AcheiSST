@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.contabeis.com.br)",
+      "WebFetch(domain:www.gov.br)",
+      "Bash(xargs cat *)"
+    ]
+  }
+}

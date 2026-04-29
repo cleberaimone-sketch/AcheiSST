@@ -17,7 +17,7 @@ export default async function SolicitarOrcamentoPage({ searchParams }: Props) {
   let empresa = null
   if (slug) {
     const { data } = await supabase
-      .from('empresas')
+      .from('fornecedores')
       .select('id, nome, categoria, cidade, uf, verified')
       .eq('slug', slug)
       .single()

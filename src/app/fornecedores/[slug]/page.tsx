@@ -281,10 +281,10 @@ export default async function FornecedorPerfilPage({ params }: { params: Promise
                 )}
 
                 <a
-                  href={`/solicitar-orcamento?fornecedor=${e.id}`}
+                  href={`/solicitar-orcamento?fornecedor=${e.slug}`}
                   className="flex items-center justify-center gap-2 border border-green-200 bg-green-50 hover:bg-green-100 text-green-700 font-bold text-sm py-3 rounded-xl transition-colors"
                 >
-                  Solicitar Orçamento
+                  📋 Solicitar Orçamento
                 </a>
 
                 <div className="border-t border-slate-100 pt-3">

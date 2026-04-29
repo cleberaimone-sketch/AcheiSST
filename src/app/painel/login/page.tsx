@@ -59,7 +59,15 @@ export default function PainelLoginPage() {
       return
     }
 
-    router.push('/painel')
+    // Redireciona baseado no tipo de conta
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('account_type')
+      .eq('user_id', (await supabase.auth.getUser()).data.user?.id ?? '')
+      .single()
+
+    const isEmpresa = ['clinica', 'empresa_sst', 'empresa_epi'].includes(profile?.account_type ?? '')
+    router.push(isEmpresa ? '/painel/fornecedor' : '/painel')
   }
 
   return (

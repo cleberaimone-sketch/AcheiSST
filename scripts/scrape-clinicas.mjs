@@ -54,6 +54,12 @@ const CIDADES = [
 // ── Helpers ───────────────────────────────────────────────────────────────────
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+// Extrai o código UF de 2 letras de strings como "São Paulo, SP" ou "SP"
+function extractUF(addressRegion = '') {
+  const match = addressRegion.trim().match(/\b([A-Z]{2})$/);
+  return match?.[1] ?? null;
+}
+
 function normalizeImageUrl(url = '') {
   if (!url) return null;
   if (url.startsWith('//')) return 'https:' + url;
@@ -136,7 +142,7 @@ async function inserirClinica(supabase, item, cidade) {
   ].filter(Boolean).join(', ') || null;
 
   const cidadeNome = item.address?.addressLocality || cidade.nome;
-  const uf = item.address?.addressRegion || cidade.uf;
+  const uf = extractUF(item.address?.addressRegion ?? '') || cidade.uf;
 
   const descricao = especialidades.length > 0
     ? `Clínica de Medicina do Trabalho em ${cidadeNome}/${uf}. Especialidades: ${especialidades.slice(0, 6).join(', ')}.`

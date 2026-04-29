@@ -25,6 +25,16 @@ export async function GET(request: Request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('account_type')
+          .eq('user_id', user.id)
+          .single()
+        const isEmpresa = ['clinica', 'empresa_sst', 'empresa_epi'].includes(profile?.account_type ?? '')
+        return NextResponse.redirect(`${origin}${isEmpresa ? '/painel/fornecedor' : '/painel'}`)
+      }
       return NextResponse.redirect(`${origin}/painel`)
     }
   }
