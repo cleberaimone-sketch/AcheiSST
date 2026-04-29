@@ -1,5 +1,248 @@
-# Roadmap PlugaSST — Plano de Evolução
-> Atualizado: 23/04/2026 | Stack: Next.js 16 + TypeScript + Tailwind + Supabase + Vercel
+# Roadmap AcheiSST — Plano de Evolução
+> Atualizado: 29/04/2026 | Stack: Next.js 16 + TypeScript + Tailwind + Supabase + Vercel
+
+---
+
+## 🚀 SPRINT ATIVO — Marketplace B2B (Painel Fornecedor + Orçamento Real)
+> **Prioridade máxima.** Transforma o site de diretório passivo em marketplace B2B ativo.
+> Estimativa: 2–3 sessões de trabalho.
+
+---
+
+### O que já existe (não precisa construir do zero)
+
+| Item | Estado | Onde |
+|---|---|---|
+| Tabela `leads` | ✅ Pronta | Supabase — campos: fornecedor_id, nome, email, telefone, descricao, uf, cidade, prazo, status |
+| Tabela `metricas` | ✅ Pronta | Supabase — campos: fornecedor_id, data, profile_views, whatsapp_clicks, leads_received |
+| `OrcamentoForm` component | ✅ Funcional | `src/components/OrcamentoForm.tsx` — salva em `leads`, chama RPC `incrementar_lead_recebido` |
+| `/solicitar-orcamento` page | ✅ Existe (mas com bug) | Consulta tabela `empresas` (antiga) — deve consultar `fornecedores` |
+| `/painel/login` + `/painel/cadastrar` | ✅ Funcional | Auth Supabase com email+senha e Google OAuth |
+| `profiles` table | ✅ Pronta | Campos: user_id, account_type (enum: profissional, clinica, empresa_sst, empresa_epi), plan |
+| `/painel` (profissional) | ✅ Existe | Usa dados mock — falta conectar Supabase real |
+
+### O que falta construir
+
+| Item | Prioridade | Complexidade |
+|---|---|---|
+| `user_id` na tabela `fornecedores` | 🔴 Bloqueador | Baixa — migration de 1 coluna |
+| RLS: fornecedor edita só o próprio perfil | 🔴 Bloqueador | Baixa |
+| `/painel/fornecedor` — dashboard principal | 🔴 Alta | Média |
+| `/painel/fornecedor/leads` — gestão de leads | 🟠 Alta | Média |
+| Redirect pós-login inteligente (profissional vs empresa) | 🟠 Alta | Baixa |
+| Fix `/solicitar-orcamento` (empresas → fornecedores) | 🟡 Média | Muito baixa |
+| Botão "Solicitar Orçamento" em `/fornecedores/[slug]` | 🟡 Média | Baixa |
+
+---
+
+### Fase A — Database (migration + RLS)
+
+**A1. Adicionar `user_id` na tabela `fornecedores`:**
+```sql
+ALTER TABLE public.fornecedores
+  ADD COLUMN user_id uuid REFERENCES auth.users(id) ON DELETE SET NULL;
+CREATE INDEX idx_fornecedores_user_id ON public.fornecedores(user_id);
+```
+
+**A2. RLS — Fornecedor edita apenas o próprio perfil:**
+```sql
+ALTER TABLE public.fornecedores ENABLE ROW LEVEL SECURITY;
+
+-- Leitura pública (como já funciona)
+CREATE POLICY "public_read" ON public.fornecedores
+  FOR SELECT USING (true);
+
+-- Escrita apenas pelo dono
+CREATE POLICY "owner_update" ON public.fornecedores
+  FOR UPDATE USING (auth.uid() = user_id);
+```
+
+**A3. RLS — Fornecedor lê apenas os próprios leads:**
+```sql
+ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "public_insert" ON public.leads
+  FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "owner_read_leads" ON public.leads
+  FOR SELECT USING (
+    fornecedor_id IN (
+      SELECT id FROM public.fornecedores WHERE user_id = auth.uid()
+    )
+  );
+
+CREATE POLICY "owner_update_lead_status" ON public.leads
+  FOR UPDATE USING (
+    fornecedor_id IN (
+      SELECT id FROM public.fornecedores WHERE user_id = auth.uid()
+    )
+  );
+```
+
+**A4. RLS — Fornecedor lê próprias métricas:**
+```sql
+ALTER TABLE public.metricas ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "owner_read_metricas" ON public.metricas
+  FOR SELECT USING (
+    fornecedor_id IN (
+      SELECT id FROM public.fornecedores WHERE user_id = auth.uid()
+    )
+  );
+```
+
+**A5. Verificar/criar RPC `incrementar_lead_recebido`:**
+```sql
+CREATE OR REPLACE FUNCTION public.incrementar_lead_recebido(p_fornecedor_id uuid)
+RETURNS void LANGUAGE plpgsql SECURITY DEFINER AS $$
+BEGIN
+  INSERT INTO public.metricas (fornecedor_id, data, leads_received)
+  VALUES (p_fornecedor_id, CURRENT_DATE, 1)
+  ON CONFLICT (fornecedor_id, data)
+  DO UPDATE SET leads_received = metricas.leads_received + 1;
+END;
+$$;
+```
+
+---
+
+### Fase B — Painel do Fornecedor (rotas)
+
+#### B1. `/painel/fornecedor/page.tsx` — Dashboard principal
+**Lógica:**
+1. Server Component — usa `createSupabaseServer()` para pegar `user` autenticado
+2. Se não logado → redirect `/painel/login`
+3. Query `fornecedores WHERE user_id = auth.uid()`
+4. Se nenhum fornecedor vinculado → mostrar tela "Vincule seu estabelecimento"
+5. Se vinculado → mostrar dashboard
+
+**Seções do dashboard:**
+```
+┌─────────────────────────────────────────────────────────┐
+│  [Logo/Avatar]  Nome da Empresa              [Editar]   │
+│  Categoria · Cidade, UF · ✓ Verificado                  │
+├─────────────────────────────────────────────────────────┤
+│  📊 Métricas (últimos 30 dias)                          │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                │
+│  │ 142 views│ │ 23 WA    │ │ 7 leads  │                │
+│  └──────────┘ └──────────┘ └──────────┘                │
+├─────────────────────────────────────────────────────────┤
+│  📋 Últimos leads recebidos (5 mais recentes)           │
+│  [Nome] · [Contato] · [Prazo] · [Status] · [Ação]      │
+├─────────────────────────────────────────────────────────┤
+│  🔗 Links rápidos                                       │
+│  [Ver perfil público] [Ver todos os leads] [Editar]     │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### B2. `/painel/fornecedor/editar/page.tsx` — Editar perfil
+**Campos editáveis:** nome, descricao, telefone, whatsapp, email, website_url, endereco, especialidades[], categorias_oferecidas[]
+**Salva via:** `UPDATE fornecedores SET ... WHERE id = fornecedor.id`
+**Validação:** nome obrigatório, whatsapp formato br
+
+#### B3. `/painel/fornecedor/leads/page.tsx` — Gestão de leads
+**Lista todos os leads** do fornecedor com:
+- Status: `novo` (🔴) → `em_andamento` (🟡) → `concluido` (🟢)
+- Ações: marcar como contatado, concluído, arquivar
+- Filtros: por status, por data
+- Card do lead: nome, contato, descrição, UF/cidade, prazo, data
+
+---
+
+### Fase C — Auth flow inteligente
+
+#### C1. Redirect pós-login por tipo de conta
+No `/painel/login/page.tsx`, após `signInWithPassword` bem-sucedido:
+```typescript
+const { data: profile } = await supabase
+  .from('profiles')
+  .select('account_type')
+  .eq('user_id', user.id)
+  .single()
+
+const isEmpresa = ['clinica', 'empresa_sst', 'empresa_epi'].includes(profile?.account_type)
+router.push(isEmpresa ? '/painel/fornecedor' : '/painel')
+```
+
+#### C2. Middleware de proteção de rota
+Adicionar ao `middleware.ts` (ou criar):
+- `/painel/fornecedor/*` → requer auth + account_type empresa
+- `/painel/*` → requer auth
+
+#### C3. Registro separado para empresas
+Adicionar ao `/painel/cadastrar` campo de seleção:
+```
+Tipo de conta:
+○ Sou profissional SST
+○ Sou empresa / fornecedor SST
+```
+Dependendo da escolha, `account_type` no `profiles` é setado corretamente.
+
+---
+
+### Fase D — Botão de Orçamento nos perfis
+
+#### D1. Fix `/solicitar-orcamento`
+- Trocar query de `empresas` para `fornecedores` (1 linha de código)
+- Suportar também `profissional_id` (leads para profissionais)
+
+#### D2. Botão em `/fornecedores/[slug]`
+Adicionar na página de perfil do fornecedor:
+```
+[💬 WhatsApp]  [📋 Solicitar Orçamento]
+```
+- WhatsApp: `wa.me/55{numero}?text=Olá, vi seu perfil no AcheiSST...` + tracking de clique
+- Orçamento: link para `/solicitar-orcamento?fornecedor={slug}`
+
+#### D3. Tracking de clique no WhatsApp
+```typescript
+// /api/whatsapp/[slug]/route.ts
+// Incrementa whatsapp_clicks na tabela metricas
+// Redireciona para o link real do WhatsApp
+```
+
+#### D4. Botão em `/profissionais` (cards)
+Adicionar botão WhatsApp nos cards de profissionais que têm `whatsapp` preenchido.
+
+---
+
+### Checklist de execução
+
+**Sprint 1 — Database e Auth (fazer primeiro)**
+- [ ] A1: Migration `user_id` na tabela `fornecedores`
+- [ ] A2: RLS para `fornecedores` (public_read + owner_update)
+- [ ] A3: RLS para `leads`
+- [ ] A4: RLS para `metricas`
+- [ ] A5: Criar/verificar RPC `incrementar_lead_recebido`
+- [ ] C1: Redirect inteligente no login (profissional vs empresa)
+
+**Sprint 2 — Dashboard do Fornecedor**
+- [ ] B1: `/painel/fornecedor/page.tsx` — dashboard com métricas e últimos leads
+- [ ] B2: `/painel/fornecedor/editar/page.tsx` — formulário de edição de perfil
+- [ ] B3: `/painel/fornecedor/leads/page.tsx` — gestão completa de leads
+
+**Sprint 3 — Conexão no Front**
+- [ ] D1: Fix `/solicitar-orcamento` (tabela empresas → fornecedores)
+- [ ] D2: Botão "Solicitar Orçamento" em `/fornecedores/[slug]`
+- [ ] D3: API route de tracking de clique WhatsApp
+- [ ] D4: Botão WhatsApp nos cards de profissionais
+
+---
+
+### Resultado esperado ao final do sprint
+
+Um fornecedor (clínica, consultoria, loja EPI) poderá:
+1. Criar conta no AcheiSST como "empresa"
+2. Vincular seu perfil existente (ou criar um novo)
+3. Ver no painel: quantas pessoas viram o perfil, clicaram no WhatsApp, enviaram orçamentos
+4. Gerenciar os leads recebidos (marcar como contatado, concluído)
+5. Editar os próprios dados de contato, descrição, especialidades
+
+Um cliente (empresa que busca SST) poderá:
+1. Entrar no perfil de um fornecedor
+2. Clicar em "Solicitar Orçamento" ou WhatsApp direto
+3. Preencher o formulário (sem precisar criar conta)
+4. O fornecedor recebe a notificação no painel
 
 ---
 

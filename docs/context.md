@@ -1485,7 +1485,69 @@ Para popular o banco com view_count, duration_seconds e buscar novos vídeos aut
 
 ---
 
-## 18. Diretrizes de Backend & Segurança (Aviso à IA)
+## 23. Backlog Estratégico — Próximas Evoluções (29 Abr 2026)
+
+### 23.1 Sprint Ativo — Marketplace B2B (ver plan.md para detalhe técnico completo)
+
+**1. Painel do Fornecedor** — PRIORIDADE MÁXIMA
+Rota `/painel/fornecedor` para clínicas, consultorias e lojas de EPI gerenciarem o próprio perfil.
+- Dashboard com métricas: views, cliques WhatsApp, leads recebidos (tabelas `metricas` e `leads` já existem no Supabase)
+- Gestão de leads: marcar como novo → em andamento → concluído
+- Edição do perfil: descrição, contato, especialidades
+- Falta apenas: coluna `user_id` na tabela `fornecedores` + RLS + rotas `/painel/fornecedor/*`
+
+**2. Botão "Solicitar Orçamento" funcional**
+- `OrcamentoForm` já existe e salva em `leads` — só falta exposição nos perfis
+- Fix: `/solicitar-orcamento` ainda consulta tabela `empresas` (antiga) → deve consultar `fornecedores`
+- Adicionar botão na página `/fornecedores/[slug]`
+- Tracking de clique em WhatsApp via `/api/whatsapp/[slug]`
+
+**3. Google OAuth — Ajuste pendente**
+- Login com Google está configurado no Supabase mas apresenta comportamento incorreto
+- Verificar redirect URL configurado no Google Cloud Console (deve ser `https://acheisst.com.br/auth/callback`)
+- Checar se `NEXT_PUBLIC_SITE_URL` está setado corretamente no Vercel
+- Comparar com o redirect atual em `/painel/login` → `redirectTo: window.location.origin + '/auth/callback'`
+
+---
+
+### 23.2 Médio Prazo — SEO e Autoridade
+
+**3. Calendário de Obrigações SST** (`/calendario`)
+- Ferramenta de uso diário para profissionais SST — diferencial competitivo claro
+- Nenhum concorrente tem algo bem feito nesse formato
+- Dados: PPRA (anual), PCMSO (anual), LTCAT (eventual), e-Social (mensal), CIPA (anual, eleição bienal), SIPAT (anual), ASO (admissional/periódico/demissional)
+- Filtros por porte da empresa, mês, tipo de obrigação
+- JSON estático em `/data/calendario.json` — não precisa de banco
+- Tráfego orgânico: "prazo CIPA 2026", "quando renovar ASO", "obrigações eSocial SST"
+
+**4. Mais posts em estilo G1 (meta: 40–50 artigos)**
+- Hoje: 16 artigos. 13 deles ainda em formato "texto corrido" sem reescrita G1
+- Para SEO funcionar: mínimo 40 posts com bom conteúdo + title/description otimizados
+- Fontes confiáveis 2026: gov.br/trabalho, MPT, INSS, AEAT, portais como Contábeis, BeefPoint, SST Repórter
+- Possíveis pautas: NR-12 em 2026, eSocial S-2240, nova tabela insalubridade, acidentes frigoríficos (série Frimesa), burnout no setor de saúde
+
+---
+
+### 23.3 Futuro — Diferencial de Mercado
+
+**5. Busca inteligente**
+- Campo de busca em `/profissionais` e `/fornecedores` com filtro em tempo real
+- Filtros: NR de expertise, cidade, especialidade, nota mínima
+- Supabase FTS (tsvector) já habilitado na tabela profissionais
+
+**6. Glossário SST** (`/glossario`)
+- Dicionário A-Z de siglas e termos técnicos: CAT, PCMSO, PGR, ASO, SESMT, NR, EPI, EPC, etc.
+- Cada termo = 1 URL indexável pelo Google (ex: `/glossario/cat`)
+- JSON estático + geração de páginas estáticas com `generateStaticParams`
+- Alta intenção de busca: "o que é CAT", "o que é PCMSO", "diferença EPI EPC"
+
+**7. Calculadora de Insalubridade/Periculosidade**
+- Input: salário base + grau de insalubridade (mínimo/médio/máximo)
+- Output: valor do adicional em reais + base de cálculo (NR-15)
+- Também: calculadora de periculosidade (30% do salário)
+- Ferramenta simples mas com busca alta: "calculadora adicional insalubridade 2026"
+
+---
 
 Ao longo de abril de 2026, implementamos uma integração crítica com o frontend importado do Lovable:
 1. **Padrão Client Components:** A aplicação roda 100% otimizada sob App Router. Componentes antigos e com interatividade de usuário usam exaustivamente `"use client"` na base (`src/pages/*` e grande parte de `src/components/*`).
