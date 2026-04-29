@@ -178,18 +178,22 @@ export default async function InformativoPage({ params }: Props) {
               <div
                 className="prose prose-slate prose-base md:prose-lg max-w-none
                   prose-headings:font-extrabold prose-headings:text-slate-900 prose-headings:tracking-tight
-                  prose-h2:text-xl md:prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:pb-2
-                  prose-h2:border-b-2 prose-h2:border-slate-200
-                  prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3 prose-h3:text-slate-800
-                  prose-p:text-slate-700 prose-p:leading-relaxed
-                  prose-a:text-green-700 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-slate-900 prose-strong:font-bold
+                  prose-h2:text-xl md:prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-5 prose-h2:pb-3
+                  prose-h2:border-b-[3px] prose-h2:border-green-200
+                  prose-h3:text-base prose-h3:mt-7 prose-h3:mb-3 prose-h3:text-slate-800
+                  prose-h3:pl-3 prose-h3:border-l-4 prose-h3:border-green-400
+                  prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-4
+                  prose-a:text-green-700 prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-slate-900 prose-strong:font-extrabold
                   prose-ul:text-slate-700 prose-ol:text-slate-700
-                  prose-li:leading-relaxed prose-li:my-1
-                  prose-blockquote:border-l-4 prose-blockquote:border-green-400
+                  prose-li:leading-relaxed prose-li:my-1.5
+                  prose-blockquote:border-l-[5px] prose-blockquote:border-green-500
                   prose-blockquote:bg-green-50 prose-blockquote:rounded-r-2xl
-                  prose-blockquote:px-5 prose-blockquote:py-3 prose-blockquote:not-italic
-                  prose-blockquote:text-slate-700 prose-blockquote:font-medium
+                  prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic
+                  prose-blockquote:text-slate-800 prose-blockquote:font-semibold prose-blockquote:text-lg
+                  prose-blockquote:shadow-sm
+                  prose-hr:border-0 prose-hr:h-px prose-hr:my-10
+                  prose-hr:bg-gradient-to-r prose-hr:from-transparent prose-hr:via-slate-300 prose-hr:to-transparent
                   prose-table:text-sm prose-thead:bg-slate-100
                   prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold
                   prose-td:px-4 prose-td:py-2 prose-td:border-t prose-td:border-slate-200"

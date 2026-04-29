@@ -24,66 +24,91 @@ stats:
     color: "violet"
 ---
 
-**BRASÍLIA** — O Brasil nunca teve tantos acidentes de trabalho em um único ano. Em 2025, foram **806.011 registros** e **3.644 mortes** — o pior resultado da série histórica do Ministério do Trabalho.
+**BRASÍLIA** — Um trabalhador morreu a cada **2 horas e 24 minutos** no Brasil em 2025.
 
-Os dados foram divulgados nesta segunda-feira (28), Dia Mundial de Segurança e Saúde no Trabalho, pelo Ministério do Trabalho e Emprego (MTE).
+Todos os dias. Sem exceção.
+
+Em um ano inteiro, foram **806.011 acidentes registrados** e **3.644 óbitos** — o pior resultado desde que o Ministério do Trabalho começou a medir esses números.
+
+Os dados foram divulgados na segunda-feira (28), Dia Mundial de Segurança e Saúde no Trabalho.
 
 ---
 
-## "Uma morte a cada 2 horas e meia"
+## 365 dias. 24 horas. 3.644 mortes.
 
-Só em 2025, um trabalhador morreu a cada **2 horas e 24 minutos** no Brasil — em média.
+Faça as contas.
 
-Na última década, de 2016 a 2025, o país acumulou **27.486 óbitos** e mais de **6,4 milhões de acidentes**. São também **106 milhões de dias de trabalho perdidos** — dias que famílias passaram sem renda, empresas sem funcionários, e a previdência sem contribuições.
+São **10 mortes por dia**. São trabalhadores que saíram de casa de manhã e não voltaram.
+
+Na última década — de 2016 a 2025 —, o Brasil acumulou:
+
+- **27.486 mortes** no ambiente de trabalho
+- **6,4 milhões de acidentes** registrados
+- **106 milhões de dias de trabalho perdidos**
+
+> 106 milhões de dias. São dias sem salário, sem sustento, sem voltar para casa. Para muitas famílias, sem perspectiva de recuperação.
+
+---
+
+## Quem são essas pessoas?
+
+### 🏥 O profissional que cuida de você
+
+**Técnicos de enfermagem.** Quase **633 mil registros** em dez anos só no setor de saúde.
+
+São os profissionais que passam plantões cuidando de desconhecidos nos corredores dos hospitais. E são eles que mais se machucam no trabalho no Brasil.
 
 > *"Hospitais e serviços de urgência revelam um alto custo humano de cuidar da vida alheia em ambientes frequentemente sobrecarregados e precarizados."*
 >
-> — Diretor de Segurança e Saúde no Trabalho do MTE
+> — Diretor de Segurança e Saúde no Trabalho, MTE
+
+### 🚛 O homem das estradas
+
+**Caminhoneiros. 4.249 mortes em dez anos.**
+
+Uma morte por dia. Todo dia. Por dez anos seguidos.
+
+Só no transporte rodoviário de carga: **2.601 mortes** entre 2016 e 2025. Noites sem dormir, carga além do limite, estradas sem condição.
+
+### 👩 O dado que ninguém esperava
+
+As mulheres representam hoje **34,2%** de todos os acidentes de trabalho no Brasil.
+
+Em dez anos, a participação feminina cresceu **48%**. É reflexo direto da maior presença no mercado formal — especialmente em saúde e serviços. Mas também é um alerta.
 
 ---
 
-## Quem são as vítimas?
+## Por que os números explodiram?
 
-### 🏥 Quem mais se machuca: técnicos de enfermagem
+Em 2020, os acidentes caíram. A pandemia fechou fábricas, escritórios e obras.
 
-O setor de saúde lidera em número de acidentes. Quase **633 mil registros** em dez anos — e os **técnicos de enfermagem** aparecem no topo de todas as ocupações.
+Com a retomada econômica a partir de 2021, os números voltaram. Com força.
 
-São os profissionais que cuidam de você no hospital. E os que mais se machucam no trabalho.
+Entre 2020 e 2025, o crescimento foi brutal:
 
-### 🚛 Quem mais morre: motoristas de caminhão
+- Acidentes: **+65,8%**
+- Mortes: **+60,8%**
 
-No transporte rodoviário de carga, foram **2.601 mortes** entre 2016 e 2025.
+Mas tem outro fator. O **eSocial**.
 
-Só entre os caminhoneiros, **4.249 óbitos** em dez anos. Mais de **uma morte por dia** — todos os dias, ano após ano.
+Com a obrigatoriedade de notificação eletrônica, empresas que antes "esqueciam" de registrar acidentes agora são forçadas a notificar. Os dados ficaram mais próximos da realidade.
 
-### 👩 Mulheres: crescimento de 48%
-
-A participação feminina nos registros de acidentes cresceu **48%** na última década. Hoje, as mulheres representam **34,2%** de todos os acidentes registrados no Brasil.
-
-Parte desse avanço reflete a maior inserção feminina no mercado formal — especialmente na saúde e nos serviços.
+O que antes era subnotificado agora aparece nas estatísticas. E o número assusta.
 
 ---
 
-## Por que os números estão subindo?
+## O que os dados dizem sobre o Brasil
 
-Em 2020, os acidentes caíram. A pandemia fechou empresas, reduziu a produção e afastou trabalhadores.
+Um país que cresce economicamente mas não protege quem trabalha.
 
-Com a retomada econômica a partir de 2021, os números voltaram a crescer — e forte. Entre 2020 e 2025, os acidentes aumentaram **65,8%** e as mortes cresceram **60,8%**.
+Um setor de saúde sobrecarregado que adoece quem cuida. Estradas que matam quem abastece o país. Fábricas que mutilar quem produz.
 
-Há outro fator: o **eSocial**. Com a obrigatoriedade de notificação eletrônica, empresas que antes "esqueciam" de registrar acidentes agora são obrigadas a reportar. Os dados ficaram mais fiéis à realidade.
-
----
-
-## O que o MTE está fazendo?
-
-Para marcar o Dia Mundial da SST, o Ministério abriu a exposição fotográfica **"Linha de Risco — A Realidade dos Acidentes de Trabalho no Brasil"**, com imagens que mostram o impacto real dos acidentes em trabalhadores de diferentes setores.
-
-O governo reforçou o compromisso com o **CANPAT** — Campanha Nacional de Prevenção de Acidentes de Trabalho.
+O MTE reforçou o compromisso com o **CANPAT** — Campanha Nacional de Prevenção de Acidentes de Trabalho — e abriu a exposição fotográfica **"Linha de Risco"**, que mostra o impacto real dos acidentes em trabalhadores de diferentes setores.
 
 ---
 
-## Onde consultar os dados completos
+## Consulte os dados completos
 
-O **Observatório de Segurança e Saúde no Trabalho** do Smartlab ([smartlabbr.org/sst](https://smartlabbr.org/sst)) disponibiliza a série histórica completa, com filtros por setor, ocupação e estado.
+O **Observatório de Segurança e Saúde no Trabalho** ([smartlabbr.org/sst](https://smartlabbr.org/sst)) disponibiliza a série histórica com filtros por setor, ocupação e estado.
 
-Os dados do MTE são baseados em registros oficiais do INSS e do eSocial.
+Os dados são baseados em registros oficiais do INSS e do eSocial.
