@@ -7,6 +7,8 @@ const eventos = [
     data: "27–29 mai 2026",
     local: "Porto Alegre, RS",
     tipo: "Feira",
+    emoji: "🎪",
+    gradiente: "from-green-500 to-emerald-600",
     cor: "bg-green-500",
     descricao: "Uma das maiores feiras de SST do Sul do Brasil. Soluções, produtos e tecnologias para prevenção de acidentes.",
     site: "https://www.feiraprevensul.com.br/",
@@ -16,6 +18,8 @@ const eventos = [
     data: "14 abr 2026",
     local: "Belo Horizonte, MG",
     tipo: "Conferência",
+    emoji: "🎤",
+    gradiente: "from-purple-500 to-violet-600",
     cor: "bg-purple-500",
     descricao: "Estratégias, normas e ferramentas para aprimorar a prevenção. Focado em empresas e profissionais de MG.",
     site: "https://proteminas.com.br/",
@@ -25,6 +29,8 @@ const eventos = [
     data: "22 mai 2026",
     local: "Belo Horizonte, MG",
     tipo: "Congresso",
+    emoji: "🏛️",
+    gradiente: "from-blue-500 to-sky-600",
     cor: "bg-blue-500",
     descricao: "Debate de boas práticas e estratégias de prevenção em segurança, saúde e gestão do trabalho.",
     site: "https://lp.sgg.net.br/3-encontro-sgg",
@@ -34,6 +40,8 @@ const eventos = [
     data: "1 set 2026",
     local: "Sul do Brasil",
     tipo: "Congresso",
+    emoji: "🦺",
+    gradiente: "from-indigo-500 to-blue-700",
     cor: "bg-indigo-500",
     descricao: "Discussão de temas atuais e desafios práticos da SST. Reúne especialistas de todo o Brasil.",
     site: "https://www.even3.com.br/v-congresso-sul-brasileiro-sso/",
@@ -43,6 +51,8 @@ const eventos = [
     data: "22–24 set 2026",
     local: "Olinda, PE",
     tipo: "Feira",
+    emoji: "🛡️",
+    gradiente: "from-orange-500 to-amber-600",
     cor: "bg-orange-500",
     descricao: "Maior evento de SST do Norte e Nordeste. Soluções e tecnologias para prevenção de acidentes.",
     site: "https://feiraprevenor.com.br/",
@@ -52,6 +62,8 @@ const eventos = [
     data: "6–8 out 2026",
     local: "São Paulo, SP",
     tipo: "Feira Internacional",
+    emoji: "🌎",
+    gradiente: "from-rose-500 to-pink-600",
     cor: "bg-rose-500",
     descricao: "O maior evento de segurança do trabalho da América Latina. Expositores de todo o mundo em São Paulo.",
     site: "https://feirafisp.com.br/",
@@ -91,7 +103,15 @@ export default function EventsSection() {
               key={ev.nome}
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col"
             >
-              <div className={`${ev.cor} h-1.5 w-full`} />
+              {/* Banner com emoji */}
+              <div className={`bg-gradient-to-br ${ev.gradiente} h-20 flex items-center justify-center relative overflow-hidden`}>
+                <div className="absolute inset-0 opacity-20">
+                  <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white/30" />
+                  <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/20" />
+                </div>
+                <span className="text-4xl relative z-10 drop-shadow-sm">{ev.emoji}</span>
+              </div>
+
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${tipoCor[ev.tipo] ?? 'bg-slate-100 text-slate-600'}`}>
