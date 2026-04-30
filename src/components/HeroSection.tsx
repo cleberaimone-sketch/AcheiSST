@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Search, MapPin, CheckCircle2, ArrowRight } from "lucide-react";
+import { Search, CheckCircle2, ArrowRight } from "lucide-react";
 
 const categories = [
   { label: "Profissionais", description: "Técnicos e engenheiros de segurança",  href: "/profissionais",                emoji: "👷", bg: "bg-blue-50",   border: "border-blue-100 hover:border-blue-300",     text: "text-blue-700"   },
@@ -27,12 +27,12 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="bg-white pt-24 md:pt-28 pb-8">
+    <section className="bg-white pt-20 md:pt-24 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* ── Busca ── */}
-        <div className="max-w-2xl mx-auto text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-green-200">
+        {/* ── Badge + Busca ── */}
+        <div className="max-w-2xl mx-auto text-center mb-10">
+          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 border border-green-200">
             <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
             Profissionais 100% verificados · SST do Brasil
           </div>
@@ -58,14 +58,14 @@ export default function HeroSection() {
           </form>
         </div>
 
-        {/* ── Categorias ── */}
-        <div>
-          <div className="flex items-end justify-between mb-5 gap-4 flex-wrap">
+        {/* ── Categorias — foco principal da página ── */}
+        <div className="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-100">
+          <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-green-600 mb-1">
                 Explore por categoria
               </p>
-              <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Tudo o que sua empresa precisa em SST
               </h2>
             </div>
@@ -91,11 +91,6 @@ export default function HeroSection() {
                 <p className="text-xs text-slate-500 leading-relaxed">{description}</p>
               </Link>
             ))}
-          </div>
-
-          <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-slate-400 font-medium">
-            <MapPin className="w-3.5 h-3.5" />
-            Cobertura nacional · Profissionais verificados
           </div>
         </div>
 
