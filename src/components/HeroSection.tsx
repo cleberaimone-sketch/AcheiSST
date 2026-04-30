@@ -15,9 +15,9 @@ const HeroSection = () => (
     <div className="relative px-6 md:px-10 pt-6 md:pt-8 pb-4 md:pb-6 max-w-7xl mx-auto">
       <div className="max-w-3xl mx-auto text-center">
 
-        <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-1.5 rounded-full text-xs font-semibold mb-4">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          Plataforma 100% dedicada à SST
+        <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 border border-green-200">
+          <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+          Profissionais 100% verificados · SST do Brasil
         </div>
 
         <form
