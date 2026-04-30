@@ -31,7 +31,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Busca ── */}
-        <div className="max-w-2xl mx-auto text-center mb-10">
+        <div className="max-w-2xl mx-auto text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-green-200">
             <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
             Profissionais 100% verificados · SST do Brasil
@@ -56,11 +56,6 @@ export default function HeroSection() {
               Buscar
             </button>
           </form>
-
-          <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-slate-400 font-medium">
-            <MapPin className="w-3.5 h-3.5" />
-            Cobertura nacional · Profissionais verificados
-          </div>
         </div>
 
         {/* ── Categorias ── */}
@@ -96,6 +91,11 @@ export default function HeroSection() {
                 <p className="text-xs text-slate-500 leading-relaxed">{description}</p>
               </Link>
             ))}
+          </div>
+
+          <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-slate-400 font-medium">
+            <MapPin className="w-3.5 h-3.5" />
+            Cobertura nacional · Profissionais verificados
           </div>
         </div>
 
