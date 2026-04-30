@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Star, ArrowRight, MapPin } from 'lucide-react'
+import { Star, ArrowRight, MapPin, Sparkles } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 function StarRating({ value }: { value: number }) {
@@ -57,9 +57,14 @@ export default async function FeaturedSection() {
         <div>
           <div className="flex items-end justify-between mb-7 gap-4">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-green-600 mb-1">
-                Mais avaliados
-              </p>
+              <div className="flex items-center gap-2 mb-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-green-600">
+                  Mais avaliados
+                </p>
+                <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  <Sparkles className="w-2.5 h-2.5" /> Destaques Premium
+                </span>
+              </div>
               <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Profissionais em Destaque
               </h2>
@@ -125,9 +130,14 @@ export default async function FeaturedSection() {
         <div>
           <div className="flex items-end justify-between mb-7 gap-4">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-green-600 mb-1">
-                Medicina Ocupacional
-              </p>
+              <div className="flex items-center gap-2 mb-1">
+                <p className="text-xs font-bold uppercase tracking-widest text-green-600">
+                  Medicina Ocupacional
+                </p>
+                <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  <Sparkles className="w-2.5 h-2.5" /> Destaques Premium
+                </span>
+              </div>
               <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Clínicas em Destaque
               </h2>
