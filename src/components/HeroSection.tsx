@@ -66,11 +66,16 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ── Busca + Badge ── */}
+        {/* ── Badge + Busca ── */}
         <div className="max-w-2xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-green-200 mb-4">
+            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+            Profissionais 100% verificados · SST do Brasil
+          </div>
+
           <form
             onSubmit={handleSearch}
-            className="flex items-center bg-white border-2 border-slate-200 rounded-full shadow-sm pl-5 pr-2 py-2 focus-within:border-green-500 focus-within:shadow-md transition-all mb-4"
+            className="flex items-center bg-white border-2 border-slate-200 rounded-full shadow-sm pl-5 pr-2 py-2 focus-within:border-green-500 focus-within:shadow-md transition-all"
           >
             <Search className="w-5 h-5 text-slate-400 shrink-0" />
             <input
@@ -87,11 +92,6 @@ export default function HeroSection() {
               Buscar
             </button>
           </form>
-
-          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-green-200">
-            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-            Profissionais 100% verificados · SST do Brasil
-          </div>
         </div>
 
       </div>
