@@ -1,6 +1,6 @@
 ---
-title: "Brasil bate recorde histórico: 806 mil acidentes e 3.644 mortes no trabalho em 2025"
-summary: "Ministério do Trabalho divulga, no Dia Mundial da SST, estudo que aponta 2025 como o ano mais letal para trabalhadores brasileiros desde o início da série histórica. Técnicos de enfermagem lideram em acidentes; motoristas de caminhão, em mortes."
+title: "Brasil registra 3.644 mortes e 806 mil acidentes no trabalho em 2025, pior resultado histórico, aponta MTE"
+summary: "Levantamento do Ministério do Trabalho divulgado no Dia Mundial da SST mostra crescimento de 65,8% nos acidentes e 60,8% nas mortes em relação a 2020. Técnicos de enfermagem lideram em acidentes; motoristas de carga, em óbitos."
 category: "Estatísticas"
 published_at: "2026-04-28"
 uf: null
@@ -8,7 +8,7 @@ source_name: "Ministério do Trabalho e Emprego (MTE)"
 source_url: "https://www.gov.br/trabalho-e-emprego/pt-br/noticias-e-conteudo/2026/abril/acidentes-de-trabalho-crescem-no-brasil-e-atingem-recorde-em-2025-aponta-estudo-do-mte"
 image_url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
 tags: ["acidente de trabalho", "estatística", "MTE", "2025", "recorde", "CAT"]
-read_time: 4
+read_time: 5
 stats:
   - value: "806.011"
     label: "Acidentes em 2025"
@@ -24,91 +24,56 @@ stats:
     color: "violet"
 ---
 
-**BRASÍLIA** — Um trabalhador morreu a cada **2 horas e 24 minutos** no Brasil em 2025.
+**BRASÍLIA** — O Brasil registrou **806.011 acidentes de trabalho** e **3.644 mortes** em 2025 — o pior resultado da série histórica do Ministério do Trabalho e Emprego (MTE). Os dados foram divulgados nesta segunda-feira (28), Dia Mundial de Segurança e Saúde no Trabalho, e incluem uma análise retrospectiva de dez anos.
 
-Todos os dias. Sem exceção.
-
-Em um ano inteiro, foram **806.011 acidentes registrados** e **3.644 óbitos** — o pior resultado desde que o Ministério do Trabalho começou a medir esses números.
-
-Os dados foram divulgados na segunda-feira (28), Dia Mundial de Segurança e Saúde no Trabalho.
+O levantamento é coordenado pelo Observatório de Segurança e Saúde no Trabalho, plataforma mantida pelo MTE em parceria com o Ministério Público do Trabalho (MPT), com base em registros oficiais do INSS e do eSocial.
 
 ---
 
-## 365 dias. 24 horas. 3.644 mortes.
+## Uma década de dados: 27 mil mortes e 6,4 milhões de acidentes
 
-Faça as contas.
+Entre 2016 e 2025, o Brasil acumulou **27.486 mortes** no ambiente de trabalho, **6,4 milhões de acidentes** registrados e **106 milhões de dias de trabalho perdidos**, segundo o relatório do MTE.
 
-São **10 mortes por dia**. São trabalhadores que saíram de casa de manhã e não voltaram.
-
-Na última década — de 2016 a 2025 —, o Brasil acumulou:
-
-- **27.486 mortes** no ambiente de trabalho
-- **6,4 milhões de acidentes** registrados
-- **106 milhões de dias de trabalho perdidos**
-
-> 106 milhões de dias. São dias sem salário, sem sustento, sem voltar para casa. Para muitas famílias, sem perspectiva de recuperação.
+O crescimento mais acentuado ocorreu no período pós-pandemia. Entre 2020 e 2025, os acidentes aumentaram **65,8%** e as mortes, **60,8%**. Em 2020, os números haviam caído em razão do fechamento de fábricas, obras e serviços durante a crise sanitária; a retomada econômica a partir de 2021 reverteu essa tendência com intensidade.
 
 ---
 
-## Quem são essas pessoas?
+## eSocial reduz subnotificação e aproxima dados da realidade
 
-### 🏥 O profissional que cuida de você
+Parte do crescimento registrado, de acordo com o MTE, está relacionada à obrigatoriedade do eSocial — sistema de notificação eletrônica que passou a exigir o registro digital de acidentes por parte das empresas. Com a plataforma, empregadores que antes deixavam de comunicar ocorrências passaram a ser obrigados a notificá-las eletronicamente.
 
-**Técnicos de enfermagem.** Quase **633 mil registros** em dez anos só no setor de saúde.
+O efeito é uma aproximação progressiva entre os dados oficiais e a realidade do trabalho no Brasil, que historicamente apresentou índices elevados de subnotificação de acidentes e doenças ocupacionais.
 
-São os profissionais que passam plantões cuidando de desconhecidos nos corredores dos hospitais. E são eles que mais se machucam no trabalho no Brasil.
+---
+
+## Setor de saúde lidera em acidentes; transportes, em mortes
+
+Técnicos de enfermagem acumularam quase **633 mil registros** de acidente na última década, a maior concentração por ocupação no levantamento. O setor concentra trabalhadores expostos a sobrecarga de jornada, esforço físico repetitivo e risco biológico constante.
 
 > *"Hospitais e serviços de urgência revelam um alto custo humano de cuidar da vida alheia em ambientes frequentemente sobrecarregados e precarizados."*
 >
 > — Diretor de Segurança e Saúde no Trabalho, MTE
 
-### 🚛 O homem das estradas
-
-**Caminhoneiros. 4.249 mortes em dez anos.**
-
-Uma morte por dia. Todo dia. Por dez anos seguidos.
-
-Só no transporte rodoviário de carga: **2.601 mortes** entre 2016 e 2025. Noites sem dormir, carga além do limite, estradas sem condição.
-
-### 👩 O dado que ninguém esperava
-
-As mulheres representam hoje **34,2%** de todos os acidentes de trabalho no Brasil.
-
-Em dez anos, a participação feminina cresceu **48%**. É reflexo direto da maior presença no mercado formal — especialmente em saúde e serviços. Mas também é um alerta.
+No transporte rodoviário de carga, foram **2.601 óbitos** entre 2016 e 2025. Contabilizando todas as categorias do setor de transporte, o total chega a **4.249 mortes** em dez anos — a maior concentração de óbitos por grupo ocupacional no período analisado.
 
 ---
 
-## Por que os números explodiram?
+## Participação feminina nos acidentes cresce 48% em dez anos
 
-Em 2020, os acidentes caíram. A pandemia fechou fábricas, escritórios e obras.
+As mulheres responderam por **34,2%** de todos os acidentes de trabalho registrados em 2025. Em uma década, a participação feminina cresceu **48%**, acompanhando a maior inserção das mulheres no mercado formal de trabalho — especialmente nos setores de saúde, comércio e serviços.
 
-Com a retomada econômica a partir de 2021, os números voltaram. Com força.
-
-Entre 2020 e 2025, o crescimento foi brutal:
-
-- Acidentes: **+65,8%**
-- Mortes: **+60,8%**
-
-Mas tem outro fator. O **eSocial**.
-
-Com a obrigatoriedade de notificação eletrônica, empresas que antes "esqueciam" de registrar acidentes agora são forçadas a notificar. Os dados ficaram mais próximos da realidade.
-
-O que antes era subnotificado agora aparece nas estatísticas. E o número assusta.
+O dado, segundo o MTE, não indica necessariamente que o trabalho feminino se tornou mais perigoso, mas reflete a expansão do vínculo empregatício formal entre mulheres e a consequente ampliação do universo de registro.
 
 ---
 
-## O que os dados dizem sobre o Brasil
+## MTE lança ações de prevenção e abre exposição fotográfica
 
-Um país que cresce economicamente mas não protege quem trabalha.
-
-Um setor de saúde sobrecarregado que adoece quem cuida. Estradas que matam quem abastece o país. Fábricas que mutilar quem produz.
-
-O MTE reforçou o compromisso com o **CANPAT** — Campanha Nacional de Prevenção de Acidentes de Trabalho — e abriu a exposição fotográfica **"Linha de Risco"**, que mostra o impacto real dos acidentes em trabalhadores de diferentes setores.
+Em resposta aos dados, o Ministério do Trabalho reforçou o compromisso com o **CANPAT** — Campanha Nacional de Prevenção de Acidentes de Trabalho — e inaugurou a exposição fotográfica **"Linha de Risco"**, que documenta o impacto real de acidentes em trabalhadores de diferentes setores do país.
 
 ---
 
-## Consulte os dados completos
+## Como consultar a série histórica
 
-O **Observatório de Segurança e Saúde no Trabalho** ([smartlabbr.org/sst](https://smartlabbr.org/sst)) disponibiliza a série histórica com filtros por setor, ocupação e estado.
+A base de dados completa, com filtros por setor, ocupação, estado e período, está disponível no **Observatório de Segurança e Saúde no Trabalho**: [smartlabbr.org/sst](https://smartlabbr.org/sst).
 
-Os dados são baseados em registros oficiais do INSS e do eSocial.
+Os registros têm como base as Comunicações de Acidente de Trabalho (CAT) enviadas ao INSS e os dados do eSocial.

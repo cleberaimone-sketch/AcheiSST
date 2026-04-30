@@ -1,6 +1,6 @@
 ---
-title: "MPT descobre grave subnotificação: Frimesa omitiu 7.094 Comunicados de Acidente de Trabalho no Paraná"
-summary: "Uma força-tarefa do Ministério Público do Trabalho (MPT) encontrou mais de 7 mil casos de acidente sem notificação oficial em frigorífico do Paraná. Empresa assinou acordo com o MPT e terá de regularizar toda a documentação."
+title: "Frimesa deixou de registrar 7.094 acidentes de trabalho no Paraná, aponta auditoria do MPT"
+summary: "Força-tarefa com MPT, MTE, Receita Federal e Vigilância Sanitária identificou subnotificação sistemática de CATs em frigorífico de Medianeira. Empresa assinou TAC e tem prazo para regularizar toda a documentação."
 category: "Mercado & Fiscalização"
 published_at: "2026-03-28"
 uf: "PR"
@@ -24,86 +24,64 @@ stats:
     color: "green"
 ---
 
-**MEDIANEIRA, PR** — Um trabalhador se machucava.
+**MEDIANEIRA, PR** — Uma auditoria conjunta do Ministério Público do Trabalho (MPT), do Ministério do Trabalho e Emprego (MTE), da Receita Federal e da Vigilância Sanitária identificou **7.094 casos de acidentes ou doenças ocupacionais** sem a devida Comunicação de Acidente de Trabalho (CAT) na Frimesa Cooperativa Central, em Medianeira, no Paraná.
 
-Ia ao pronto-atendimento particular. Recebia alta. Voltava para o trabalho.
-
-E ninguém registrava nada.
-
-Isso aconteceu **7.094 vezes** na Frimesa Cooperativa Central, em Medianeira, no Paraná.
+A operação ocorreu entre os dias **23 e 27 de março de 2026** e resultou na assinatura de um Termo de Ajustamento de Conduta (TAC) com a empresa, que tem prazos definidos para regularizar a situação.
 
 ---
 
-## A operação que expôs tudo
+## Como funcionava a prática de subnotificação
 
-Entre os dias **23 e 27 de março de 2026**, uma força-tarefa entrou no frigorífico.
+Segundo o MPT-PR, a empresa encaminhava trabalhadores acidentados a serviços de pronto-atendimento particular sem notificar as ocorrências ao INSS por meio da CAT — documento obrigatório por lei sempre que há acidente ou doença de origem ocupacional.
 
-MPT, Ministério do Trabalho e Emprego, Receita Federal e Vigilância Sanitária. Cinco dias de auditoria. Cruzamento de dados.
+O cruzamento de dados realizado durante a operação revelou ainda que **nenhuma CAT de doença ocupacional** havia sido emitida pela unidade no período auditado — indicando ausência total de registro nessa categoria.
 
-O resultado: **7.094 casos de acidente ou doença ocupacional sem a devida notificação ao INSS**.
-
-E uma descoberta que chamou atenção: **zero CATs de doenças ocupacionais** haviam sido emitidas. Nenhuma sequer.
-
-> A empresa encaminhava os funcionários a atendimento particular sem notificar oficialmente as enfermidades. — MPT-PR
+> *"A empresa encaminhava os funcionários a atendimento particular sem notificar oficialmente as enfermidades."*
+>
+> — Ministério Público do Trabalho, Regional Paraná
 
 ---
 
-## O que é a CAT — e por que omitir é grave
+## O que é a CAT e quais direitos estão em jogo
 
-A **CAT (Comunicação de Acidente de Trabalho)** é o documento que a empresa é obrigada a emitir quando um funcionário se machuca ou adoece por causa do trabalho.
+A CAT (Comunicação de Acidente de Trabalho) é o instrumento pelo qual o empregador notifica ao INSS que um trabalhador se acidentou ou adoeceu em razão do trabalho. A ausência do documento tem consequências diretas para o empregado:
 
-Sem a CAT, o trabalhador perde direitos concretos:
+- Perda da **estabilidade provisória** de 12 meses após o afastamento
+- Dificuldade para acessar **benefícios previdenciários** em caso de licença
+- Exclusão da ocorrência das **estatísticas nacionais** de acidentes de trabalho
 
-- **Estabilidade** de 12 meses após o afastamento? Não tem.
-- **Benefício do INSS** em caso de licença? Complicado de obter.
-- **Aparece nas estatísticas** de acidentes do Brasil? Não aparece.
-
-Para o trabalhador: prejuízo direto.
-
-Para a empresa: é crime.
+A omissão da CAT configura infração à Consolidação das Leis do Trabalho (CLT) e pode gerar autuação administrativa e responsabilização civil.
 
 ---
 
-## O que mais os auditores encontraram
+## Outras irregularidades identificadas
 
-Não foi só a falta das CATs.
+Além da subnotificação, os auditores encontraram outras não conformidades na unidade:
 
-**Máquinas sem proteção.** Trabalhadores operando equipamentos sem os dispositivos exigidos pela NR-12 — a norma de segurança de máquinas.
-
-**69 gestantes expostas a ruído.** Mulheres grávidas em ambientes com som igual ou superior a **80 dB(A)** — nível que exige medidas obrigatórias de proteção à mãe e ao bebê.
-
-**Sem pausas para o frio.** Nenhuma pausa para conforto térmico nas câmaras frigoríficas — obrigatórias por lei em ambientes de trabalho a baixas temperaturas.
+- **Máquinas sem proteção:** equipamentos operando sem os dispositivos de segurança exigidos pela NR-12
+- **Gestantes expostas a ruído:** 69 trabalhadoras grávidas em ambientes com intensidade sonora igual ou superior a 80 dB(A), nível que exige medidas obrigatórias de proteção
+- **Ausência de pausas térmicas:** nenhuma pausa para conforto térmico nas câmaras frigoríficas, contrariando exigência legal para ambientes de trabalho a baixas temperaturas
 
 ---
 
-## O acordo assinado
+## Compromissos assumidos no TAC
 
-Na última sexta-feira da operação — **27 de março** — a Frimesa assinou um Termo de Ajustamento de Conduta (TAC) com o MPT.
+No último dia da operação, a Frimesa assinou Termo de Ajustamento de Conduta com o MPT comprometendo-se a:
 
-Os compromissos incluem:
-
-- Emitir as **7.094 CATs** omitidas
+- Emitir as **7.094 CATs** omitidas dentro do prazo definido
 - Afastar as **69 gestantes** de ambientes com ruído acima de 80 dB(A)
 - Adequar as máquinas às exigências da **NR-12**
-- Implementar redução de ritmo em setores críticos
-- Atualizar o **PGR** — Programa de Gerenciamento de Riscos
+- Implementar redução de ritmo em setores identificados como críticos
+- Atualizar o **PGR (Programa de Gerenciamento de Riscos)** da unidade
 
-A empresa tem prazos definidos para cumprir cada item.
+Em nota, a cooperativa afirmou ter mantido "postura totalmente transparente e colaborativa" durante a operação e informou ter iniciado imediatamente o cronograma de adequações.
 
----
-
-## O que a Frimesa disse
-
-Em nota, a cooperativa afirmou ter mantido "postura totalmente transparente e colaborativa" durante a operação e disse ter iniciado imediatamente o cronograma de adequações.
-
-A unidade de Medianeira processa **6.100 suínos por dia** e emprega cerca de **5.000 trabalhadores**.
+A unidade de Medianeira processa **6.100 suínos por dia** e emprega aproximadamente **5.000 trabalhadores**.
 
 ---
 
-## Por que esse caso importa além do Paraná
+## Subnotificação: um problema sistêmico no setor
 
-A Frimesa não é exceção.
+Especialistas em saúde e segurança do trabalho apontam que a omissão de CATs é prática comum em empresas sem SESMT (Serviço Especializado em Engenharia de Segurança e em Medicina do Trabalho) adequadamente estruturado, especialmente quando o atendimento médico é terceirizado para clínicas particulares sem integração com o eSocial.
 
-Especialistas em SST alertam que a subnotificação de acidentes é prática comum em empresas sem SESMT estruturado — ou que dependem de atendimento médico particular sem integração com o eSocial.
-
-Com a obrigatoriedade digital do eSocial SST, a malha de fiscalização ficou mais apertada. Empresas que não se adaptarem podem ser o próximo alvo de operações como essa.
+Com a obrigatoriedade do módulo SST do eSocial, que exige notificação eletrônica de acidentes, a fiscalização se tornou mais sistemática. O cruzamento automático entre registros de atendimento médico e emissão de CAT passou a facilitar a identificação de subnotificações em auditoria.
