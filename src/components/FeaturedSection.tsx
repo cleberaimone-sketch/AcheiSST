@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { Star, ArrowRight, MapPin, Sparkles } from 'lucide-react'
+import { Star, ArrowRight, MapPin, Sparkles, Crown, TrendingUp } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
+import { LikeCardButton } from './LikeCardButton'
 
 function StarRating({ value }: { value: number }) {
   return (
@@ -21,15 +22,33 @@ function formatCount(n: number) {
 }
 
 function AvatarFallback({ name }: { name: string }) {
-  const initials = name
-    .split(' ')
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('')
-    .toUpperCase()
+  const initials = name.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()
   return (
     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500 to-green-700 text-white font-bold text-lg">
       {initials}
+    </div>
+  )
+}
+
+function PatrocineBanner({ href, texto }: { href: string; texto: string }) {
+  return (
+    <div className="my-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div className="flex items-center gap-3">
+        <div className="w-9 h-9 rounded-xl bg-amber-400 flex items-center justify-center shrink-0">
+          <Crown className="w-4.5 h-4.5 text-white" />
+        </div>
+        <div>
+          <p className="text-sm font-bold text-slate-900">{texto}</p>
+          <p className="text-xs text-slate-500">Apareça em destaque para milhares de empresas SST</p>
+        </div>
+      </div>
+      <Link
+        href={href}
+        className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors shrink-0"
+      >
+        <TrendingUp className="w-3.5 h-3.5" />
+        Patrocine sua marca
+      </Link>
     </div>
   )
 }
@@ -43,19 +62,19 @@ export default async function FeaturedSection() {
       .limit(5),
     supabase
       .from('fornecedores')
-      .select('id, nome, cidade, uf, logo_url, avaliacao, num_avaliacoes')
+      .select('id, nome, slug, cidade, uf, logo_url, avaliacao, num_avaliacoes')
       .eq('categoria', 'clinica')
       .order('num_avaliacoes', { ascending: false })
       .limit(5),
   ])
 
   return (
-    <section className="bg-white py-14 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section className="bg-white py-10 md:py-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
-        {/* Profissionais em Destaque */}
+        {/* ── Profissionais em Destaque ── */}
         <div>
-          <div className="flex items-end justify-between mb-7 gap-4">
+          <div className="flex items-end justify-between mb-6 gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <p className="text-xs font-bold uppercase tracking-widest text-green-600">
@@ -69,22 +88,28 @@ export default async function FeaturedSection() {
                 Profissionais em Destaque
               </h2>
             </div>
-            <Link
-              href="/profissionais"
-              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 hover:text-green-700 shrink-0"
-            >
+            <Link href="/profissionais" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 hover:text-green-700 shrink-0">
               Ver todos <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {(profissionais ?? []).map((p) => (
+            {(profissionais ?? []).map((p, i) => (
               <Link
                 key={p.id}
                 href="/profissionais"
-                className="group bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center text-center hover:border-green-200 hover:shadow-md transition-all"
+                className="group relative bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center text-center hover:border-amber-200 hover:shadow-md transition-all"
               >
-                <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-slate-100 group-hover:ring-green-200 mb-3 shrink-0">
+                {/* Coroa para o 1º */}
+                {i === 0 && (
+                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
+                    <span className="text-lg">👑</span>
+                  </div>
+                )}
+
+                <LikeCardButton id={String(p.id)} type="profissional" />
+
+                <div className={`w-16 h-16 rounded-full overflow-hidden mb-3 shrink-0 ${i === 0 ? 'ring-2 ring-amber-400' : 'ring-2 ring-slate-100 group-hover:ring-green-200'}`}>
                   {p.foto_url ? (
                     <img src={p.foto_url} alt={p.nome} className="w-full h-full object-cover" />
                   ) : (
@@ -117,18 +142,17 @@ export default async function FeaturedSection() {
           </div>
 
           <div className="mt-4 sm:hidden">
-            <Link
-              href="/profissionais"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600"
-            >
+            <Link href="/profissionais" className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600">
               Ver todos os profissionais <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+
+          <PatrocineBanner href="/planos" texto="Você é profissional SST? Apareça aqui." />
         </div>
 
-        {/* Clínicas em Destaque */}
+        {/* ── Clínicas em Destaque ── */}
         <div>
-          <div className="flex items-end justify-between mb-7 gap-4">
+          <div className="flex items-end justify-between mb-6 gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <p className="text-xs font-bold uppercase tracking-widest text-green-600">
@@ -142,22 +166,27 @@ export default async function FeaturedSection() {
                 Clínicas em Destaque
               </h2>
             </div>
-            <Link
-              href="/fornecedores?cat=clinica"
-              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 hover:text-green-700 shrink-0"
-            >
+            <Link href="/fornecedores?cat=clinica" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-green-600 hover:text-green-700 shrink-0">
               Ver todas <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {(clinicas ?? []).map((c) => (
+            {(clinicas ?? []).map((c, i) => (
               <Link
                 key={c.id}
-                href="/fornecedores?cat=clinica"
-                className="group bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center text-center hover:border-green-200 hover:shadow-md transition-all"
+                href={`/fornecedores/${c.slug}`}
+                className="group relative bg-white border border-slate-100 rounded-2xl p-4 flex flex-col items-center text-center hover:border-amber-200 hover:shadow-md transition-all"
               >
-                <div className="w-16 h-16 rounded-xl overflow-hidden ring-2 ring-slate-100 group-hover:ring-green-200 mb-3 shrink-0 bg-slate-50 flex items-center justify-center">
+                {i === 0 && (
+                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
+                    <span className="text-lg">👑</span>
+                  </div>
+                )}
+
+                <LikeCardButton id={String(c.id)} type="clinica" />
+
+                <div className={`w-16 h-16 rounded-xl overflow-hidden mb-3 shrink-0 bg-slate-50 flex items-center justify-center ${i === 0 ? 'ring-2 ring-amber-400' : 'ring-2 ring-slate-100 group-hover:ring-green-200'}`}>
                   {c.logo_url ? (
                     <img src={c.logo_url} alt={c.nome} className="w-full h-full object-cover" />
                   ) : (
@@ -187,13 +216,12 @@ export default async function FeaturedSection() {
           </div>
 
           <div className="mt-4 sm:hidden">
-            <Link
-              href="/fornecedores?cat=clinica"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600"
-            >
+            <Link href="/fornecedores?cat=clinica" className="inline-flex items-center gap-1.5 text-sm font-semibold text-green-600">
               Ver todas as clínicas <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+
+          <PatrocineBanner href="/planos" texto="Sua clínica quer aparecer em destaque?" />
         </div>
 
       </div>
