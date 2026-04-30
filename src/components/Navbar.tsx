@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 
 const NAV_LINKS = [
-  { label: 'Fornecedores',  href: '/fornecedores'  },
-  { label: 'Profissionais', href: '/profissionais' },
-  { label: 'Vídeos & SST',  href: '/videos'        },
-  { label: 'Notícias',      href: '/informativos'  },
+  { label: 'Profissionais', href: '/profissionais'         },
+  { label: 'Clínicas',      href: '/fornecedores?cat=clinica' },
+  { label: 'Fornecedores',  href: '/fornecedores'          },
+  { label: 'Notícias',      href: '/informativos'          },
 ]
 
 export function Navbar() {
@@ -113,7 +113,7 @@ export function Navbar() {
                   Entrar
                 </a>
                 <a
-                  href="/painel/cadastrar"
+                  href="/planos"
                   className="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white text-sm font-bold transition-colors"
                 >
                   Cadastrar
@@ -152,7 +152,7 @@ export function Navbar() {
             ) : (
               <>
                 <a href="/painel/login" className="py-1.5 hover:text-navy-600 transition-colors">Entrar</a>
-                <a href="/painel/cadastrar" className="py-1.5 text-green-600 font-semibold hover:text-green-700 transition-colors">Cadastrar</a>
+                <a href="/planos" className="py-1.5 text-green-600 font-semibold hover:text-green-700 transition-colors">Cadastrar</a>
               </>
             )}
           </div>
