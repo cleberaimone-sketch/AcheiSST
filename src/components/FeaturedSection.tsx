@@ -147,7 +147,6 @@ export default async function FeaturedSection() {
             </Link>
           </div>
 
-          <PatrocineBanner href="/planos" texto="Você é profissional SST? Apareça aqui." />
         </div>
 
         {/* ── Banner Fornecedor ── */}
