@@ -150,6 +150,31 @@ export default async function FeaturedSection() {
           <PatrocineBanner href="/planos" texto="Você é profissional SST? Apareça aqui." />
         </div>
 
+        {/* ── Banner Fornecedor ── */}
+        <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl px-6 py-7 flex items-center justify-between gap-4">
+          {/* Círculo decorativo */}
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-white/10 flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center">
+              <span className="text-3xl">🏆</span>
+            </div>
+          </div>
+
+          <div className="relative z-10 max-w-sm">
+            <h3 className="text-white font-extrabold text-xl leading-tight mb-1">
+              É fornecedor de SST?
+            </h3>
+            <p className="text-blue-200 text-sm mb-4 leading-relaxed">
+              Cadastre-se e alcance milhares de empresas que buscam seus serviços.
+            </p>
+            <Link
+              href="/painel/cadastrar"
+              className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
+            >
+              Cadastrar meu negócio <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+
         {/* ── Clínicas em Destaque ── */}
         <div>
           <div className="flex items-end justify-between mb-6 gap-4">
