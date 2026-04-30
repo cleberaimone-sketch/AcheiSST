@@ -10,41 +10,45 @@ const eventos = [
     emoji: "🎪",
     gradiente: "from-green-500 to-emerald-600",
     cor: "bg-green-500",
+    imagem: "https://eventosprotecao.com.br/wp-content/uploads/2026/02/Prevensul-2026_Home-site-eventos-1024x1024.png",
     descricao: "Uma das maiores feiras de SST do Sul do Brasil. Soluções, produtos e tecnologias para prevenção de acidentes.",
     site: "https://www.feiraprevensul.com.br/",
   },
   {
-    nome: "Proteminas – Conferência de Segurança do Trabalho e Prevenção",
-    data: "14 abr 2026",
+    nome: "Proteminas – III Feira Mineira de Segurança",
+    data: "14–16 abr 2026",
     local: "Belo Horizonte, MG",
-    tipo: "Conferência",
+    tipo: "Feira",
     emoji: "🎤",
     gradiente: "from-purple-500 to-violet-600",
     cor: "bg-purple-500",
+    imagem: "https://static.wixstatic.com/media/db074d_3ae05be7550b4ab7a3244c4dfdf91d21~mv2.jpg/v1/fill/w_845,h_324,al_c,q_80,enc_avif,quality_auto/db074d_3ae05be7550b4ab7a3244c4dfdf91d21~mv2.jpg",
     descricao: "Estratégias, normas e ferramentas para aprimorar a prevenção. Focado em empresas e profissionais de MG.",
-    site: "https://proteminas.com.br/",
+    site: "https://www.proteminas.com.br/",
   },
   {
-    nome: "3º Encontro SSG – Segurança, Saúde e Gestão",
+    nome: "3º Encontro SGG – Segurança, Saúde e Gestão",
     data: "22 mai 2026",
     local: "Belo Horizonte, MG",
     tipo: "Congresso",
     emoji: "🏛️",
     gradiente: "from-blue-500 to-sky-600",
     cor: "bg-blue-500",
+    imagem: "https://d335luupugsy2.cloudfront.net/cms/files/54683/1745347824/$mbnlwv5cuf9",
     descricao: "Debate de boas práticas e estratégias de prevenção em segurança, saúde e gestão do trabalho.",
     site: "https://lp.sgg.net.br/3-encontro-sgg",
   },
   {
-    nome: "V Congresso Sul-Brasileiro de Segurança e Saúde Ocupacional",
-    data: "1 set 2026",
-    local: "Sul do Brasil",
-    tipo: "Congresso",
+    nome: "V Simpósio Sul-Brasileiro de Saúde Ocupacional",
+    data: "13–14 mar 2026",
+    local: "Florianópolis, SC",
+    tipo: "Simpósio",
     emoji: "🦺",
     gradiente: "from-indigo-500 to-blue-700",
     cor: "bg-indigo-500",
-    descricao: "Discussão de temas atuais e desafios práticos da SST. Reúne especialistas de todo o Brasil.",
-    site: "https://www.even3.com.br/v-congresso-sul-brasileiro-sso/",
+    imagem: null,
+    descricao: "Reúne especialistas de SC, PR e RS para debater avanços em saúde ocupacional e segurança do trabalho.",
+    site: "https://www.acamt.org.br/simposio-sul-brasileiro-2026",
   },
   {
     nome: "PreveNor – 12ª Feira Norte-Nordeste de SST e Emergência",
@@ -54,6 +58,7 @@ const eventos = [
     emoji: "🛡️",
     gradiente: "from-orange-500 to-amber-600",
     cor: "bg-orange-500",
+    imagem: "https://eventosprotecao.com.br/wp-content/uploads/2026/02/PreveNorl-2026_Home-site-eventos-1024x1024.png",
     descricao: "Maior evento de SST do Norte e Nordeste. Soluções e tecnologias para prevenção de acidentes.",
     site: "https://feiraprevenor.com.br/",
   },
@@ -65,6 +70,7 @@ const eventos = [
     emoji: "🌎",
     gradiente: "from-rose-500 to-pink-600",
     cor: "bg-rose-500",
+    imagem: "https://feirafisp.com.br/wp-content/uploads/2024/10/banner_fisp_2026.jpg",
     descricao: "O maior evento de segurança do trabalho da América Latina. Expositores de todo o mundo em São Paulo.",
     site: "https://feirafisp.com.br/",
   },
@@ -74,6 +80,7 @@ const tipoCor: Record<string, string> = {
   "Feira": "bg-green-100 text-green-700",
   "Conferência": "bg-purple-100 text-purple-700",
   "Congresso": "bg-blue-100 text-blue-700",
+  "Simpósio": "bg-indigo-100 text-indigo-700",
   "Feira Internacional": "bg-rose-100 text-rose-700",
 };
 
@@ -103,13 +110,24 @@ export default function EventsSection() {
               key={ev.nome}
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col"
             >
-              {/* Banner com emoji */}
-              <div className={`bg-gradient-to-br ${ev.gradiente} h-20 flex items-center justify-center relative overflow-hidden`}>
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white/30" />
-                  <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/20" />
-                </div>
-                <span className="text-4xl relative z-10 drop-shadow-sm">{ev.emoji}</span>
+              {/* Banner */}
+              <div className="h-36 overflow-hidden relative">
+                {ev.imagem ? (
+                  <img
+                    src={ev.imagem}
+                    alt={ev.nome}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className={`w-full h-full bg-gradient-to-br ${ev.gradiente} flex items-center justify-center`}>
+                    <div className="absolute inset-0 opacity-20">
+                      <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white/30" />
+                      <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/20" />
+                    </div>
+                    <span className="text-5xl relative z-10 drop-shadow-sm">{ev.emoji}</span>
+                  </div>
+                )}
               </div>
 
               <div className="p-5 flex flex-col flex-1">
