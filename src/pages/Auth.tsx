@@ -188,7 +188,7 @@ const AuthPage = () => {
         }
 
         attempts.current = 0;
-        router.replace("/conta");
+        router.replace("/painel");
       }
     } finally {
       clearPasswords();
