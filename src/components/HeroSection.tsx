@@ -30,36 +30,8 @@ export default function HeroSection() {
     <section className="bg-white pt-20 md:pt-24 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* ── Badge + Busca ── */}
-        <div className="max-w-2xl mx-auto text-center mb-10">
-          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-4 border border-green-200">
-            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
-            Profissionais 100% verificados · SST do Brasil
-          </div>
-
-          <form
-            onSubmit={handleSearch}
-            className="flex items-center bg-white border-2 border-slate-200 rounded-full shadow-sm pl-5 pr-2 py-2 focus-within:border-green-500 focus-within:shadow-md transition-all"
-          >
-            <Search className="w-5 h-5 text-slate-400 shrink-0" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Busque por PGR, LTCAT, médico do trabalho..."
-              className="flex-1 bg-transparent outline-none px-3 py-1.5 text-sm md:text-base placeholder:text-slate-400"
-            />
-            <button
-              type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white rounded-full px-5 md:px-7 py-2.5 text-sm font-bold transition-colors shrink-0"
-            >
-              Buscar
-            </button>
-          </form>
-        </div>
-
-        {/* ── Categorias — foco principal da página ── */}
-        <div className="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-100">
+        {/* ── Categorias — primeira coisa visível ── */}
+        <div className="mb-8">
           <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-green-600 mb-1">
@@ -91,6 +63,34 @@ export default function HeroSection() {
                 <p className="text-xs text-slate-500 leading-relaxed">{description}</p>
               </Link>
             ))}
+          </div>
+        </div>
+
+        {/* ── Busca + Badge ── */}
+        <div className="max-w-2xl mx-auto text-center">
+          <form
+            onSubmit={handleSearch}
+            className="flex items-center bg-white border-2 border-slate-200 rounded-full shadow-sm pl-5 pr-2 py-2 focus-within:border-green-500 focus-within:shadow-md transition-all mb-4"
+          >
+            <Search className="w-5 h-5 text-slate-400 shrink-0" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Busque por PGR, LTCAT, médico do trabalho..."
+              className="flex-1 bg-transparent outline-none px-3 py-1.5 text-sm md:text-base placeholder:text-slate-400"
+            />
+            <button
+              type="submit"
+              className="bg-green-600 hover:bg-green-700 text-white rounded-full px-5 md:px-7 py-2.5 text-sm font-bold transition-colors shrink-0"
+            >
+              Buscar
+            </button>
+          </form>
+
+          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-green-200">
+            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+            Profissionais 100% verificados · SST do Brasil
           </div>
         </div>
 
