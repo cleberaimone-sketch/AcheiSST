@@ -357,7 +357,7 @@ export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-2 mt-10">
                 <button
-                  onClick={() => { setPage(p => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
                   className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-green-300 hover:text-green-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
@@ -378,7 +378,7 @@ export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
                       ) : (
                         <button
                           key={p}
-                          onClick={() => { setPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                          onClick={() => setPage(p)}
                           className={`w-9 h-9 text-sm font-medium rounded-xl transition-colors ${
                             page === p
                               ? 'bg-green-600 text-white'
@@ -391,7 +391,7 @@ export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
                     )}
                 </div>
                 <button
-                  onClick={() => { setPage(p => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
                   className="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-green-300 hover:text-green-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
