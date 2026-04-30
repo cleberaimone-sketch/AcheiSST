@@ -164,9 +164,11 @@ function ProfissionalCard({ prof }: { prof: Profissional }) {
           {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-bold text-slate-900 text-[15px] leading-snug line-clamp-1 group-hover:text-green-700 transition-colors">
-                {prof.nome}
-              </h3>
+              <a href={`/profissionais/${prof.id}`} className="group-hover:text-green-700 transition-colors">
+                <h3 className="font-bold text-slate-900 text-[15px] leading-snug line-clamp-1">
+                  {prof.nome}
+                </h3>
+              </a>
             </div>
 
             {/* Specialty badge */}
@@ -245,18 +247,13 @@ function ProfissionalCard({ prof }: { prof: Profissional }) {
             </a>
           ) : null}
 
-          {prof.linkedin_url && (
-            <a
-              href={prof.linkedin_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 border border-slate-200 hover:border-green-300 hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors"
-              title="Ver perfil"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              Ver perfil
-            </a>
-          )}
+          <a
+            href={`/profissionais/${prof.id}`}
+            className="inline-flex items-center justify-center gap-1.5 border border-slate-200 hover:border-green-300 hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors"
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+            Ver perfil
+          </a>
         </div>
       </div>
     </article>
