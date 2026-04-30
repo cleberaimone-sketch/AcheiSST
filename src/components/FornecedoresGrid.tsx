@@ -44,16 +44,6 @@ const CATEGORIA_COLOR: Record<string, string> = {
 }
 
 // Imagens de fallback por categoria — aparece quando a empresa não tem foto própria
-const CATEGORIA_FALLBACK_IMG: Record<string, string> = {
-  'Clínicas Médicas':        'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=70',
-  'Consultorias SST':        'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=70',
-  'EPI & Equipamentos':      'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=70',
-  'Softwares SST':           'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=70',
-  'Treinamentos':            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=70',
-  'Engenharia de Segurança': 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=70',
-  'Laboratórios':            'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=70',
-  'Outros':                  'https://images.unsplash.com/photo-1560472355-536de3962603?w=800&q=70',
-}
 
 const UFS = [
   'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS',
@@ -61,9 +51,6 @@ const UFS = [
   'SP','SE','TO',
 ]
 
-function getInitials(name: string) {
-  return name.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()
-}
 
 function whatsappUrl(numero: string, nome: string) {
   const texto = encodeURIComponent(`Olá! Vi seu perfil no AcheiSST e gostaria de mais informações sobre os serviços de ${nome}.`)
@@ -132,23 +119,9 @@ function FornecedorCard({ f }: { f: Fornecedor }) {
             alt={f.nome}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
-        ) : CATEGORIA_FALLBACK_IMG[f.categoria] ? (
-          <div className="relative w-full h-full">
-            <img
-              src={CATEGORIA_FALLBACK_IMG[f.categoria]}
-              alt={f.categoria}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80"
-            />
-            {/* Overlay com iniciais da empresa */}
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-              <span className="text-2xl font-black text-white drop-shadow-lg">
-                {f.nome.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase()}
-              </span>
-            </div>
-          </div>
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
-            <Icon className="w-12 h-12 text-white/60" />
+          <div className="w-full h-full bg-slate-100 flex items-center justify-center">
+            <Icon className="w-14 h-14 text-slate-300" />
           </div>
         )}
         {/* Gradiente sutil */}

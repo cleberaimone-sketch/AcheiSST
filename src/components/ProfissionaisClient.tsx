@@ -5,7 +5,7 @@ import {
   Search, MapPin, Filter, CheckCircle2, Phone,
   Star, ChevronLeft, ChevronRight, SlidersHorizontal,
   Users, X, ExternalLink, MessageCircle, Shield,
-  Briefcase, GraduationCap, Stethoscope, HardHat, UserCheck,
+  Briefcase, GraduationCap, Stethoscope, HardHat, UserCheck, User,
 } from 'lucide-react'
 import type { Profissional } from '@/types'
 
@@ -38,9 +38,6 @@ const ESPECIALIDADE_ICON: Record<string, React.ReactNode> = {
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
-function getInitials(nome: string) {
-  return nome.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('')
-}
 
 function StarRating({ value, count }: { value: number; count: number }) {
   return (
@@ -121,7 +118,6 @@ function BenefitsSection() {
 
 // ── Card ───────────────────────────────────────────────────────────────────────
 function ProfissionalCard({ prof }: { prof: Profissional }) {
-  const initials = getInitials(prof.nome)
   const whatsappNum = prof.whatsapp?.replace(/\D/g, '') || prof.telefone?.replace(/\D/g, '')
   const telefoneDisplay = prof.telefone || prof.whatsapp
 
@@ -138,8 +134,8 @@ function ProfissionalCard({ prof }: { prof: Profissional }) {
           {/* Avatar */}
           <div className="relative flex-shrink-0">
             <div
-              className={`w-[68px] h-[68px] rounded-xl overflow-hidden flex items-center justify-center text-white font-bold text-lg
-                ${prof.foto_url ? '' : 'bg-gradient-to-br from-green-500 to-emerald-700'}`}
+              className={`w-[68px] h-[68px] rounded-xl overflow-hidden flex items-center justify-center
+                ${prof.foto_url ? '' : 'bg-slate-100'}`}
             >
               {prof.foto_url ? (
                 <img
@@ -149,10 +145,12 @@ function ProfissionalCard({ prof }: { prof: Profissional }) {
                   onError={(e) => {
                     const t = e.currentTarget
                     t.style.display = 'none'
-                    t.parentElement!.classList.add('bg-gradient-to-br', 'from-green-500', 'to-emerald-700')
+                    t.parentElement!.classList.add('bg-slate-100')
                   }}
                 />
-              ) : initials}
+              ) : (
+                <User className="w-9 h-9 text-slate-300" />
+              )}
             </div>
             {prof.verified && (
               <span className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-sm">
