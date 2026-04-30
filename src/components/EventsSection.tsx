@@ -39,16 +39,16 @@ const eventos = [
     site: "https://lp.sgg.net.br/3-encontro-sgg",
   },
   {
-    nome: "V Simpósio Sul-Brasileiro de Saúde Ocupacional",
-    data: "13–14 mar 2026",
-    local: "Florianópolis, SC",
-    tipo: "Simpósio",
-    emoji: "🦺",
+    nome: "Exposec – Feira Internacional de Tecnologia em Segurança",
+    data: "1–3 jun 2026",
+    local: "São Paulo, SP",
+    tipo: "Feira Internacional",
+    emoji: "🔐",
     gradiente: "from-indigo-500 to-blue-700",
     cor: "bg-indigo-500",
-    imagem: null,
-    descricao: "Reúne especialistas de SC, PR e RS para debater avanços em saúde ocupacional e segurança do trabalho.",
-    site: "https://www.acamt.org.br/simposio-sul-brasileiro-2026",
+    imagem: "https://exposec.tmp.br/wp-content/uploads/2024/06/banner_exposec_2026.jpg",
+    descricao: "27ª edição da maior feira de tecnologia em segurança da América Latina. Mais de 300 expositores no São Paulo Expo.",
+    site: "https://exposec.tmp.br/",
   },
   {
     nome: "PreveNor – 12ª Feira Norte-Nordeste de SST e Emergência",
@@ -80,7 +80,6 @@ const tipoCor: Record<string, string> = {
   "Feira": "bg-green-100 text-green-700",
   "Conferência": "bg-purple-100 text-purple-700",
   "Congresso": "bg-blue-100 text-blue-700",
-  "Simpósio": "bg-indigo-100 text-indigo-700",
   "Feira Internacional": "bg-rose-100 text-rose-700",
 };
 
