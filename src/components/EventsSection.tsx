@@ -80,6 +80,9 @@ export default function EventsSection() {
             </h2>
             <p className="text-sm text-slate-500 mt-1">Congressos, feiras e conferências confirmados para 2026.</p>
           </div>
+          <Link href="/eventos" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800 shrink-0">
+            Ver todos <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -9,7 +9,7 @@ const categories = [
   { label: "Empresas EPI",  description: "Equipamentos de proteção individual",  href: "/fornecedores?cat=epi",        emoji: "🦺", bg: "bg-orange-50", border: "border-orange-100 hover:border-orange-300", text: "text-orange-700" },
   { label: "Treinamentos",  description: "Capacitação e treinamentos NR",        href: "/fornecedores?cat=treinamento",emoji: "🎓", bg: "bg-purple-50", border: "border-purple-100 hover:border-purple-300", text: "text-purple-700" },
   { label: "Vagas",         description: "Oportunidades para profissionais SST", href: "/cadastrar",                   emoji: "💼", bg: "bg-teal-50",   border: "border-teal-100 hover:border-teal-300",     text: "text-teal-700"   },
-  { label: "Eventos",       description: "Congressos, feiras e webinars SST",    href: "#eventos",                    emoji: "📅", bg: "bg-indigo-50", border: "border-indigo-100 hover:border-indigo-300", text: "text-indigo-700" },
+  { label: "Eventos",       description: "Congressos, feiras e webinars SST",    href: "/eventos",                    emoji: "📅", bg: "bg-indigo-50", border: "border-indigo-100 hover:border-indigo-300", text: "text-indigo-700" },
   { label: "Vídeos & SST",  description: "Vídeos e podcasts sobre SST",          href: "/videos",                     emoji: "🎬", bg: "bg-cyan-50",   border: "border-cyan-100 hover:border-cyan-300",     text: "text-cyan-700"   },
 ];
 
