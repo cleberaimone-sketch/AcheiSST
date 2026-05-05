@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export default function PainelLayout({ children }: { children: React.ReactNode }
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <a href="/" className="flex items-center gap-3">
-            <img src="/logo-compact.png" alt="AcheiSST" className="h-7 w-auto object-contain" />
+            <Logo textClassName="text-xl" />
             <span className="text-slate-300 text-sm hidden sm:inline">/ Painel</span>
           </a>
           <a

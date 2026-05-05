@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -189,7 +190,7 @@ export default function PainelPage() {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
-            <img src="/logo-horizontal.png" alt="AcheiSST" className="h-9 w-auto object-contain" />
+            <Logo textClassName="text-2xl" />
           </a>
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-400 hidden sm:block">{user?.email}</span>

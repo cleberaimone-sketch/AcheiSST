@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, UserCircle2, Sparkles } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import logoText from "@/assets/acheisst-logo-text.png";
+import Logo from "@/components/Logo";
 
 const navItems = [
   { label: "Profissionais", to: "/profissionais"            },
@@ -21,7 +21,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between gap-6">
 
         <Link href="/" className="flex items-center shrink-0" aria-label="AcheiSST">
-          <img src={logoText.src} alt="AcheiSST" className="h-7 md:h-9 w-auto" />
+          <Logo textClassName="text-2xl md:text-3xl" />
         </Link>
 
         {/* Desktop nav */}

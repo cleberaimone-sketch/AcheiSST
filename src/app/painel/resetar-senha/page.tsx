@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 'use client'
 
 import { useState } from 'react'
@@ -67,7 +68,7 @@ export default function ResetarSenhaPage() {
 
         {/* Logo */}
         <div className="mb-8">
-          <img src="/logo-horizontal.png" alt="AcheiSST" className="h-10 w-auto object-contain" />
+          <Logo textClassName="text-3xl" />
         </div>
 
         <h1 className="text-2xl font-extrabold text-slate-900 mb-1">Redefinir senha</h1>

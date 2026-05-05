@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Logo from '@/components/Logo'
 import { Menu, X, UserCircle2, LogOut, LayoutDashboard, ChevronDown, Sparkles } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
@@ -47,11 +48,7 @@ export function Navbar() {
 
           {/* Logo */}
           <a href="/" className="flex items-center flex-shrink-0">
-            <img
-              src="/logo-horizontal.png"
-              alt="AcheiSST"
-              className="h-14 w-48 object-contain"
-            />
+            <Logo textClassName="text-2xl" />
           </a>
 
           {/* Desktop Nav — Centered */}

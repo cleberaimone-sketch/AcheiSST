@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CheckCircle2, Mail, ArrowRight, ShieldCheck } from "lucide-react";
-import logoText from "@/assets/acheisst-logo-text.png";
+import Logo from "@/components/Logo";
 
 export const metadata = {
   title: "Cadastro Concluído — AcheiSST",
@@ -13,7 +13,7 @@ export default function CadastroConcluido() {
       {/* Navbar mínima */}
       <div className="px-6 md:px-10 py-6 max-w-7xl mx-auto w-full">
         <Link href="/">
-          <img src={logoText.src} alt="AcheiSST" className="h-7 w-auto" />
+          <Logo textClassName="text-2xl" />
         </Link>
       </div>
 

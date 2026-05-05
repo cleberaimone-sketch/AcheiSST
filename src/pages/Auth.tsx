@@ -6,7 +6,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { ArrowLeft, Eye, EyeOff, Loader2, ShieldCheck } from "lucide-react";
-import logoText from "@/assets/acheisst-logo-text.png";
+import Logo from "@/components/Logo";
 
 const accountTypes = [
   { value: "profissional", label: "Profissional autônomo" },
@@ -216,7 +216,7 @@ const AuthPage = () => {
           Voltar
         </Link>
         <Link href="/">
-          <img src={logoText.src} alt="AcheiSST" className="h-7 w-auto" />
+          <Logo textClassName="text-2xl" />
         </Link>
       </div>
 

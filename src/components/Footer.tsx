@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import logoText from "@/assets/acheisst-logo-text.png";
+import Logo from "@/components/Logo";
 import { ArrowUpRight } from "lucide-react";
 
 const socials = [
@@ -55,7 +55,7 @@ const Footer = () => (
         {/* Brand col */}
         <div className="md:col-span-4">
           <div className="inline-block bg-white rounded-lg px-3 py-1.5 mb-4">
-            <img src={logoText.src} alt="AcheiSST" className="h-8 w-auto" />
+            <Logo textClassName="text-2xl" />
           </div>
           <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
             A primeira plataforma que reúne profissionais e empresas de Saúde e Segurança do Trabalho do Brasil.
