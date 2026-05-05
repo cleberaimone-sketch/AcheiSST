@@ -2,21 +2,17 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import {
-  Search, CheckCircle2, ArrowRight,
-  User, Building2, Shield, Package, GraduationCap,
-  Briefcase, CalendarDays, Video,
-} from "lucide-react";
+import { Search, CheckCircle2, ArrowRight } from "lucide-react";
 
 const categories = [
-  { label: "Profissionais", description: "Técnicos e engenheiros de segurança",   href: "/profissionais",                Icon: User,          badge: "312 cadastrados"  },
-  { label: "Clínicas",      description: "Medicina e exames ocupacionais",         href: "/fornecedores?cat=clinica",     Icon: Building2,     badge: "87 clínicas"      },
-  { label: "Empresas SST",  description: "Consultorias e laudos especializados",   href: "/fornecedores?cat=consultoria", Icon: Shield,        badge: "145 empresas"     },
-  { label: "Empresas EPI",  description: "Equipamentos de proteção individual",    href: "/fornecedores?cat=epi",         Icon: Package,       badge: "203 fornecedores" },
-  { label: "Treinamentos",  description: "Capacitação e cursos NR",                href: "/fornecedores?cat=treinamento", Icon: GraduationCap, badge: "56 cursos"        },
-  { label: "Vagas SST",     description: "Oportunidades para profissionais SST",   href: "/cadastrar",                    Icon: Briefcase,     badge: "28 vagas abertas" },
-  { label: "Eventos",       description: "Congressos, feiras e webinars SST",      href: "/eventos",                      Icon: CalendarDays,  badge: "12 próximos"      },
-  { label: "Vídeos & SST",  description: "Vídeos e podcasts sobre SST",            href: "/videos",                       Icon: Video,         badge: "40+ vídeos"       },
+  { label: "Profissionais", description: "Técnicos e engenheiros de segurança",   href: "/profissionais",                emoji: "👷", badge: "312 cadastrados"  },
+  { label: "Clínicas",      description: "Medicina e exames ocupacionais",         href: "/fornecedores?cat=clinica",     emoji: "🏥", badge: "87 clínicas"      },
+  { label: "Empresas SST",  description: "Consultorias e laudos especializados",   href: "/fornecedores?cat=consultoria", emoji: "🛡️", badge: "145 empresas"     },
+  { label: "Empresas EPI",  description: "Equipamentos de proteção individual",    href: "/fornecedores?cat=epi",         emoji: "🦺", badge: "203 fornecedores" },
+  { label: "Treinamentos",  description: "Capacitação e cursos NR",                href: "/fornecedores?cat=treinamento", emoji: "🎓", badge: "56 cursos"        },
+  { label: "Vagas SST",     description: "Oportunidades para profissionais SST",   href: "/cadastrar",                    emoji: "💼", badge: "28 vagas abertas" },
+  { label: "Eventos",       description: "Congressos, feiras e webinars SST",      href: "/eventos",                      emoji: "📅", badge: "12 próximos"      },
+  { label: "Vídeos & SST",  description: "Vídeos e podcasts sobre SST",            href: "/videos",                       emoji: "🎬", badge: "40+ vídeos"       },
 ];
 
 export default function HeroSection() {
@@ -54,20 +50,17 @@ export default function HeroSection() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {categories.map(({ label, description, href, Icon, badge }) => (
+            {categories.map(({ label, description, href, emoji, badge }) => (
               <Link
                 key={label}
                 href={href}
                 className="group relative overflow-hidden bg-gradient-to-br from-white to-green-50 border border-green-100 rounded-2xl p-3.5 hover:-translate-y-1 hover:border-green-200 hover:shadow-[0_8px_24px_rgba(22,163,74,0.13)] transition-all duration-200 flex flex-col items-center text-center"
               >
-                {/* radial glow decoration */}
+                {/* radial glow */}
                 <div className="pointer-events-none absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-[radial-gradient(circle,rgba(74,222,128,0.16)_0%,transparent_70%)] group-hover:scale-150 transition-transform duration-300" />
 
-                {/* icon: white+border → green gradient on hover */}
-                <div className="relative w-11 h-11 mb-2.5 flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-[12px] bg-white border border-green-200 group-hover:opacity-0 transition-opacity duration-200" />
-                  <div className="absolute inset-0 rounded-[12px] bg-gradient-to-br from-green-400 to-green-600 opacity-0 group-hover:opacity-100 shadow-[0_4px_12px_rgba(22,163,74,0.32)] transition-all duration-200" />
-                  <Icon className="relative z-10 w-5 h-5 text-green-600 group-hover:text-white transition-colors duration-200" strokeWidth={1.8} />
+                <div className="text-3xl mb-2.5 group-hover:scale-110 transition-transform duration-200 leading-none">
+                  {emoji}
                 </div>
 
                 <h3 className="font-bold text-[13px] text-slate-900 mb-0.5 tracking-tight leading-tight">{label}</h3>
