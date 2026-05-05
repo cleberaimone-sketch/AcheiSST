@@ -1,41 +1,50 @@
 ---
-title: "Alerta NR-01: MTE exige gestão de Riscos Psicossociais no PGR a partir de 2025"
-summary: "Nova atualização da Portaria MTE nº 1.419 de 2024 determina que empresas avaliem e mapeiem riscos de assédio, pressão excessiva e estresse no Gerenciamento de Riscos Ocupacionais (GRO) até o ano que vem."
+title: "NR-1 passa a exigir gestão de riscos psicossociais no PGR; vigência prevista para maio de 2025"
+summary: "Portaria MTE nº 1.419/2024 determina que empresas avaliem e incluam no Programa de Gerenciamento de Riscos fatores como assédio, metas abusivas e sobrecarga mental. Mudança representa a maior revisão da NR-1 em décadas."
 category: "Legislativo"
 published_at: "2024-08-30"
-uf: "Nacional"
-source_name: "Ministério do Trabalho - CTPP"
+uf: null
+source_name: "Ministério do Trabalho — CTPP"
 source_url: "https://www.in.gov.br/"
 image_url: "https://plus.unsplash.com/premium_photo-1661331821814-7243cb87768e?q=80&w=800&auto=format&fit=crop"
 tags: ["NR-01", "PGR", "GRO", "Saúde Ocupacional", "Riscos Psicossociais"]
+read_time: 4
 ---
 
-O cenário da Segurança Ocupacional está prestes a passar por uma das suas transformações mais paradigmáticas da década. Em publicação recente, a Comissão Tripartite Paritária Permanente (CTPP) validou mudanças drásticas para a **Norma Regulamentadora nº 01 (NR-01)**, com vigência estipulada para maio de 2025.
+**BRASÍLIA** — A **Portaria MTE nº 1.419, de 27 de agosto de 2024**, alterou a Norma Regulamentadora nº 1 para incluir os **riscos psicossociais** como objeto obrigatório de gestão no Programa de Gerenciamento de Riscos (PGR) das empresas. A mudança, validada pela Comissão Tripartite Paritária Permanente (CTPP), tem vigência prevista para maio de 2025 e representa a alteração mais significativa na norma mãe do sistema SST brasileiro em décadas.
 
-A **Portaria MTE nº 1.419, de 27 de agosto de 2024**, trouxe a determinação explícita de que os profissionais de SST deverão, obrigatoriamente, incluir no **PGR (Programa de Gerenciamento de Riscos)** avaliações sobre riscos não visíveis a olho nu: os **Riscos Psicossociais**.
+Com a atualização, as empresas passam a ser obrigadas a identificar, avaliar e controlar riscos de saúde mental no ambiente de trabalho com o mesmo rigor aplicado a riscos físicos, químicos e biológicos.
 
-## O Que São Riscos Psicossociais para o MTE?
+---
 
-A nova NR-1 estabelece que as empresas devem olhar não apenas para ameaças físicas, biológicas ou químicas, mas também para ameaças à saúde mental do trabalhador provocadas ou agravadas pela organização do trabalho. Entre elas:
+## O que a norma define como riscos psicossociais
 
-- Metas abusivas e pressão excessiva;
-- Carga de trabalho exaustiva prolongada;
-- Riscos de assédio moral e sexual instaurados na cultura empresarial;
-- Desequilíbrio prolongado de turnos de trabalho (fadiga pandêmica).
+A NR-1 atualizada lista explicitamente os fatores que devem ser incluídos no inventário de riscos do PGR. Segundo o texto da portaria, são considerados riscos psicossociais:
 
-## O Que as Clínicas e Consultorias Parceiras Deverão Mudar
+- Metas excessivas e pressão por produtividade fora de padrões razoáveis
+- Carga de trabalho exaustiva de forma prolongada
+- Situações de assédio moral e sexual consolidadas na cultura organizacional
+- Desequilíbrio de turnos e jornadas noturnas recorrentes
+- Ausência de autonomia e controle sobre as próprias atividades
 
-Até hoje, a inserção da saúde mental nos laudos e avaliações ambientais ocorria de maneira tímida, geralmente como um subitem de "ergonomia psíquica" na NR-17. Agora, o MTE eleva a gravidade desses pontos ao nível diretivo de Gerenciamento de Riscos Ocupacionais (GRO) amplo.
+A diferença em relação à prática anterior é que esses fatores deixam de ser tratados como apêndice da ergonomia (NR-17) e passam a integrar o nível estratégico do Gerenciamento de Riscos Ocupacionais (GRO).
 
-As assessorias SST precisarão criar **Inventários de Risco** validados com metodologias específicas (como formulários dinamarqueses ou matrizes de carga mental) para definir planos de ação concretos.
+---
 
-## Impacto Financeiro e Multas
+## Metodologia e inventário de riscos
 
-A inobservância dessas atualizações no eSocial não perdoa as corporações desavisadas. A partir de maio de 2025, uma empresa que for auditada e não tiver os adendos psico-ocupacionais listados na documentação técnica sofrerá:
-- Multas pesadíssimas proporcionais ao número de empregados.
-- Possíveis nexos causais automáticos em litígios trabalhistas se um ex-funcionário apresentar quadros de Síndrome de Burnout (CID-11).
+Para que a documentação seja considerada válida pelo MTE, a avaliação de riscos psicossociais deve utilizar metodologias técnicas reconhecidas — como instrumentos de avaliação de carga mental validados cientificamente — e resultar em um **Inventário de Risco** que descreva os fatores identificados, os grupos de trabalhadores expostos e as medidas de controle propostas.
 
-### Como se Preparar
-Especialistas e Engenheiros recomendam que as adequações e entrevistas internas nas corporações se iniciem **já no último trimestre deste ano**, para que o novo inventário de risco transite para o banco de dados do eSocial sem intercorrências no meio de 2025.
+Segundo especialistas em SST, documentos genéricos elaborados sem diagnóstico real da empresa não satisfazem a exigência normativa. A fiscalização do MTE poderá questionar a adequação do inventário caso ele não descreva a realidade específica da organização.
 
-Buscando atualizar seu PGR? **Verifique o nosso Diretório de Profissionais** para localizar Consultores de Saúde Ocupacional e Engenheiros preparados para gerenciar Riscos Psicossociais no seu estado.
+---
+
+## Consequências do descumprimento
+
+A partir da vigência plena da norma, empresas que forem auditadas sem os registros psicossociais no PGR estarão sujeitas a multas proporcionais ao número de empregados, previstas no Capítulo V da CLT. Além disso, a ausência de documentação sobre riscos psicossociais pode ser usada como elemento desfavorável em eventuais ações trabalhistas por doenças ocupacionais relacionadas à saúde mental — como o reconhecimento do nexo causal com Burnout (CID-11) ou transtornos de ansiedade.
+
+---
+
+## Prazo e adaptação
+
+O MTE estabeleceu prazo gradual para implementação, com fase educativa antes do início das autuações. Profissionais de SST recomendam que as adequações no PGR sejam iniciadas com antecedência, de forma que o inventário de riscos psicossociais esteja concluído e integrado ao eSocial antes do início da fiscalização ativa.

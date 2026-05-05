@@ -1,6 +1,6 @@
 ---
-title: "NR-1: Fiscalização de riscos psicossociais começa em 26 de maio — ministro garante que não há novo adiamento"
-summary: "Após adiamentos em 2025, a Norma Regulamentadora nº 1 entra definitivamente em fase de autuações em maio de 2026. Empresas de todos os portes precisam incluir burnout, assédio e sobrecarga mental no PGR — ou enfrentar multas."
+title: "MTE confirma início das autuações por riscos psicossociais em 26 de maio; não haverá novo adiamento"
+summary: "Após dois adiamentos em 2025 e um ano de fase educativa, a fiscalização da NR-1 relativa a riscos psicossociais passa a gerar multas a partir de 26 de maio de 2026. Empresas de todos os portes com ao menos um funcionário CLT estão obrigadas."
 category: "Legislativo"
 published_at: "2026-04-27"
 uf: null
@@ -24,83 +24,46 @@ stats:
     color: "violet"
 ---
 
-**BRASÍLIA** — Acabou o prazo para se preparar.
+**BRASÍLIA** — O Ministério do Trabalho e Emprego (MTE) confirmou que a fiscalização com autuações sobre riscos psicossociais no trabalho terá início em **26 de maio de 2026**, sem possibilidade de novo adiamento. A informação foi divulgada pelo ministro da pasta, que declarou não haver margem para nova prorrogação do prazo.
 
-Em **26 de maio de 2026**, as empresas que não documentaram saúde mental como risco do trabalho poderão ser autuadas pelo Ministério do Trabalho.
-
-O ministro foi direto, sem margem para interpretação:
-
-> *"Não haverá novo adiamento da medida."*
-
-Dois adiamentos em 2025. Um ano de fase educativa. Tudo isso ficou para trás.
+A medida decorre da atualização da **Norma Regulamentadora nº 1 (NR-1)**, publicada em 2024, que passou a exigir de todas as empresas com ao menos um funcionário regido pela CLT a inclusão de riscos psicossociais no **Programa de Gerenciamento de Riscos (PGR)** — documento obrigatório que antes contemplava apenas riscos físicos, químicos, biológicos e ergonômicos.
 
 ---
 
-## O que mudou na prática
+## Dois adiamentos e um ano de orientação
 
-A **NR-1** foi atualizada em 2024 para incluir os **riscos psicossociais** no mesmo nível dos riscos físicos, químicos e biológicos.
+A obrigação teve entrada em vigor prevista para maio de 2025, mas foi adiada duas vezes em razão de pressão de entidades empresariais. Entre maio de 2025 e abril de 2026, os auditores fiscais do trabalho atuaram em modo educativo — orientando empresas sobre as novas exigências sem lavrar autos de infração.
 
-Na prática: burnout, assédio e sobrecarga mental precisam estar documentados no **PGR** da empresa — o Programa de Gerenciamento de Riscos.
-
-Não basta dizer que a empresa se preocupa com o bem-estar dos funcionários.
-
-É preciso colocar no papel. Com metodologia. Com diagnóstico. Com medidas de controle.
+Essa fase se encerra em 25 de maio. A partir do dia seguinte, o descumprimento estará sujeito às penalidades previstas no Capítulo V da CLT, com multas que variam conforme o porte da empresa e a gravidade da infração.
 
 ---
 
-## O que precisa estar documentado
+## O que precisa estar no PGR
 
-Esses são os fatores que a fiscalização vai querer ver registrados:
+A NR-1 atualizada exige que as empresas identifiquem, avaliem e documentem os fatores de risco psicossocial presentes no ambiente de trabalho. Entre os elementos que a fiscalização verificará no PGR estão:
 
-- 🔴 **Burnout** — esgotamento profissional crônico
-- 🔴 **Sobrecarga de trabalho** e ritmo excessivo
-- 🟠 **Assédio moral e sexual**
-- 🟠 **Falta de autonomia** nas decisões do trabalho
-- 🟡 **Violência no trabalho** — física ou verbal
-- 🟡 **Qualidade das relações interpessoais** e liderança
+- **Esgotamento profissional (burnout)** e sobrecarga de trabalho
+- **Ritmo excessivo** imposto por metas ou sistemas de monitoramento
+- **Assédio moral e sexual** — ocorrências e políticas de prevenção
+- **Falta de autonomia** e ausência de controle sobre as próprias atividades
+- **Qualidade das relações interpessoais** e estilo de liderança
 
-> Documentos genéricos "copia-cola" não satisfazem a norma e podem ser glosados pela fiscalização. — Especialistas ouvidos pelo Portal Contábeis
-
----
-
-## Quem está obrigado?
-
-**Toda empresa com pelo menos um funcionário CLT.**
-
-Pequena. Média. Grande. Não importa.
-
-MEIs sem empregados estão fora. Todo o resto está dentro.
+Segundo especialistas consultados pelo Portal Contábeis, documentos genéricos elaborados com modelos de internet não satisfazem a exigência normativa e podem ser contestados em fiscalização. O MTE espera que o diagnóstico reflita a realidade específica de cada empresa.
 
 ---
 
-## Um ano de aviso. Acabou.
+## A quem se aplica
 
-Entre maio de 2025 e maio de 2026, os auditores fiscais orientavam. Explicavam. Educavam.
-
-Essa fase terminou na última semana.
-
-A partir de **26 de maio**, a Inspeção do Trabalho pode lavrar auto de infração. As multas seguem o **Capítulo V da CLT** — e podem chegar a dezenas de milhares de reais dependendo do porte da empresa e da gravidade.
+A obrigação recai sobre toda empresa que tenha pelo menos um empregado com carteira assinada — independentemente do porte ou setor de atividade. Microempreendedores Individuais (MEI) sem funcionários estão fora do escopo da norma.
 
 ---
 
-## 4 passos para não ser autuado
+## Riscos psicossociais no eSocial
 
-**1. Avaliação de riscos psicossociais**
-Contrate um psicólogo do trabalho ou acione o SESMT da empresa. Sem diagnóstico real, não há documentação válida.
-
-**2. Atualize o PGR**
-Inclua os riscos no inventário, com as medidas de controle específicas para a sua operação.
-
-**3. Documente com especificidade**
-A fiscalização vai pedir algo que descreva a sua realidade — não um modelo genérico copiado da internet.
-
-**4. Treine suas lideranças**
-Gestores precisam saber identificar e reportar situações de risco psicossocial. O risco não identificado não pode ser gerenciado.
+A atualização da NR-1 não criou eventos específicos no eSocial para riscos psicossociais. No entanto, quando um trabalhador for afastado por burnout, transtorno de ansiedade ou outra doença de origem ocupacional reconhecida, o afastamento deverá ser registrado nos eventos **S-2230** (afastamento temporário) e **S-2240** (condições ambientais do trabalho), da mesma forma que qualquer outra doença ocupacional.
 
 ---
 
-## E o eSocial?
+## O papel do SESMT e dos profissionais de saúde mental
 
-Por enquanto, riscos psicossociais **não exigem eventos específicos** no eSocial SST.
-
-Mas se um trabalhador for afastado por burnout ou transtorno de ansiedade ocupacional, o afastamento deve ser registrado nos eventos **S-2230** e **S-2240** — como qualquer outra doença ocupacional.
+Para elaborar o inventário de riscos psicossociais com validade técnica, o MTE orienta que as empresas contem com psicólogos do trabalho, médicos do trabalho ou outros profissionais habilitados em avaliação de saúde mental ocupacional. O SESMT — quando existente — pode coordenar o processo, mas a avaliação psicossocial em si demanda expertise específica em saúde mental.

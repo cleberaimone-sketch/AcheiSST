@@ -1,116 +1,79 @@
 ---
-title: "NR-12: Máquinas e Equipamentos — Proteções Obrigatórias e Responsabilidades"
-summary: "A NR-12 é uma das normas com maior volume de autuações no Brasil. Entenda quais proteções são obrigatórias, o que é exigido em documentação e como adequar máquinas antigas."
+title: "NR-12 exige proteções em zonas de perigo de máquinas e é uma das normas com mais autuações no país"
+summary: "A norma de segurança de máquinas e equipamentos se aplica a qualquer empresa com maquinário e exige proteções físicas, documentação técnica e treinamento dos operadores. Descumprimento resulta em presunção de culpa em acidentes."
 category: "Segurança"
 uf: null
 source_name: "Ministério do Trabalho e Emprego — NR-12"
 source_url: "https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-12"
 tags: ["NR-12", "máquinas", "equipamentos", "proteções", "AREI", "adequação"]
 published_at: "2026-03-22"
+image_url: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=1200&q=80"
+read_time: 5
 ---
 
-## Contexto
+**BRASÍLIA** — A **Norma Regulamentadora nº 12** estabelece as medidas de segurança obrigatórias para máquinas e equipamentos utilizados em qualquer setor produtivo. Com mais de 100 páginas e dezenas de anexos específicos por tipo de máquina, ela é uma das mais extensas do sistema SST brasileiro e figura entre as normas com maior volume de autuações do Ministério do Trabalho e Emprego (MTE). O descumprimento é também uma das principais causas de acidentes graves com amputações e óbitos na indústria.
 
-A **NR-12** estabelece referências técnicas, princípios fundamentais e medidas de proteção para garantir a saúde e integridade física dos trabalhadores que trabalham com máquinas e equipamentos. É uma das normas mais extensas do sistema SST brasileiro — com mais de 100 páginas e dezenas de anexos específicos por tipo de máquina.
+A norma se aplica desde uma guilhotina manual até centros de usinagem CNC — qualquer máquina que exponha o trabalhador a riscos de contato com partes móveis, ferramentas ou materiais.
 
-Ela se aplica a **qualquer máquina**, desde uma simples guilhotina manual até prensas industriais e centros de usinagem CNC. O descumprimento da NR-12 é uma das principais causas de acidentes graves com amputações e mortes na indústria brasileira.
+---
 
-## Princípios Fundamentais de Segurança
+## Hierarquia de proteções
 
-### 1. Hierarquia de Medidas de Proteção
+A NR-12 exige que as medidas de segurança sigam uma ordem de prioridade, da mais eficaz para a menos eficaz:
 
-A NR-12 exige que as medidas de segurança sigam esta ordem:
+1. **Proteção intrínseca** — eliminar o perigo no projeto da máquina
+2. **Proteções físicas e dispositivos de segurança** — proteções fixas, móveis com intertravamento
+3. **Informação, advertência e treinamento** — sinalização, EPIs, capacitação dos operadores
 
-1. **Medidas de proteção intrínseca** — eliminar o perigo no projeto da máquina
-2. **Proteções e dispositivos de segurança** — proteções físicas, dispositivos de intertravamento
-3. **Informação, advertência e treinamento** — sinalização, EPIs, capacitação
+O uso de EPI e sinalização como única medida de proteção só é aceito quando as opções anteriores não são tecnicamente viáveis — e essa justificativa deve ser documentada.
 
-O treinamento e o EPI só são aceitáveis quando as medidas anteriores não forem viáveis tecnicamente.
+---
 
-### 2. Zonas de Perigo
+## Tipos de proteção nas zonas de perigo
 
-Toda zona de perigo (área onde o trabalhador pode ser atingido por partes móveis, ferramentas ou materiais) deve ser protegida. As proteções podem ser:
-
-| Tipo | Descrição | Quando usar |
+| Tipo de proteção | Descrição | Quando usar |
 |---|---|---|
-| **Fixas** | Estruturas que só podem ser removidas com ferramentas | Quando o acesso à zona perigosa não é necessário durante operação |
-| **Móveis com intertravamento** | Abertura interrompe o movimento da máquina | Quando há necessidade de acesso frequente |
-| **Reguláveis** | Ajustáveis conforme o material processado | Serras circulares, plainas |
-| **Comandos bimanuais** | Exige uso das duas mãos para acionamento | Prensas, guilhotinas |
+| **Fixa** | Só removível com ferramentas | Acesso à zona perigosa não necessário durante operação |
+| **Móvel com intertravamento** | Abertura interrompe o movimento | Quando há acesso frequente à zona de risco |
+| **Regulável** | Ajustável conforme o material | Serras circulares, plainas |
+| **Comando bimanual** | Exige uso simultâneo das duas mãos | Prensas, guilhotinas |
 
-### 3. Distâncias de Segurança
+Proteção com intertravamento burlada — amarrada ou bloqueada — é a situação mais autuada em fiscalizações e a mais associada a acidentes graves.
 
-A NR-12 define fórmulas para calcular a distância mínima entre a proteção e a zona de perigo, considerando:
-- Velocidade de aproximação das mãos (padrão: 1.600 mm/s)
-- Tempo de parada da máquina após o sinal de segurança
+---
 
-## Documentação Obrigatória
+## Documentação obrigatória
 
-### Manual de Instruções
-Toda máquina deve ter manual em português com:
-- Especificações técnicas
-- Procedimentos de operação segura
-- Manutenção preventiva
-- Dispositivos de segurança existentes
+A NR-12 exige que cada empresa com maquinário mantenha:
 
-### Inventário de Máquinas
-A empresa deve manter inventário atualizado com:
-- Identificação (tag) de cada máquina
-- Tipo e modelo
-- Ano de fabricação
-- Riscos gerados
-- Medidas de segurança implementadas
+- **Manual de instruções em português** para cada máquina, com especificações técnicas, procedimentos de operação segura e manutenção preventiva
+- **Inventário de máquinas** atualizado, com identificação (tag), tipo, modelo, ano de fabricação, riscos e medidas de proteção implementadas
+- **Prontuário da máquina** reunindo nota fiscal, manual, relatórios de manutenção e certificados de calibração dos dispositivos de segurança
 
-### AREI — Análise de Risco de Equipamentos e Instalações
-Para máquinas construídas antes de 2012 (data da NR-12 atual) ou que sofreram modificações, é necessária uma **AREI** elaborada por profissional habilitado, que avalia os riscos e propõe as adequações necessárias.
+Para máquinas fabricadas antes de 2012 ou que sofreram modificações, é exigida uma **AREI (Análise de Risco de Equipamentos e Instalações)** elaborada por profissional habilitado.
 
-### Prontuário da Máquina
-Documento que reúne toda a documentação da máquina: nota fiscal, manual, relatórios de manutenção, certificados de calibração dos dispositivos de segurança, registro de treinamentos.
+---
 
-## Máquinas com Anexos Específicos
+## Máquinas com anexos específicos
 
-Alguns tipos de máquinas têm anexos próprios na NR-12 com exigências detalhadas:
+Alguns equipamentos têm anexos próprios na NR-12, com exigências detalhadas:
 
-| Máquina | Anexo NR-12 |
+| Tipo de máquina | Referência na NR-12 |
 |---|---|
 | Prensas e similares | Anexo VIII |
 | Serras circulares | Anexo XI |
 | Máquinas de panificação | Anexo XII |
-| Injetoras de plástico | Sem anexo específico (norma geral) |
-| Transportadores de correia | Sem anexo específico |
 
-## Treinamento Obrigatório
+---
 
-Trabalhadores que operam máquinas com risco de acidentes devem receber:
-- Treinamento **antes do início das atividades**
-- Capacitação teórica e prática
-- Registro de treinamento (nome, carga horária, conteúdo, assinatura)
-- **Reciclagem periódica** (prazo a ser definido no programa de treinamento da empresa)
+## Treinamento dos operadores
 
-## Adequação de Máquinas Antigas
+A norma exige que todos os trabalhadores que operam máquinas com risco de acidente recebam capacitação teórica e prática antes do início das atividades, com registro de treinamento — nome, carga horária, conteúdo e assinatura — e reciclagem periódica com prazo definido no programa interno da empresa.
 
-Um dos maiores desafios práticos. Para máquinas que não atendem à NR-12:
+---
 
-1. Realizar **AREI** para identificar lacunas
-2. Elaborar **Plano de Adequação** com priorização por criticidade do risco
-3. Implementar medidas temporárias (distância de segurança, sinalização, restrição de acesso) enquanto a adequação definitiva é feita
-4. Documentar cada etapa da adequação
+## Adequação de máquinas antigas
 
-> Importante: a empresa não é obrigada a sucatear máquinas antigas — mas precisa demonstrar que a adequação está em curso, com cronograma e medidas provisórias documentadas.
+Empresas com máquinas fabricadas antes de 2012 não são obrigadas a sucateá-las, mas precisam demonstrar que a adequação à NR-12 está em andamento, com cronograma documentado e medidas provisórias de proteção implementadas enquanto a adequação definitiva é realizada.
 
-## Impacto para a Empresa
-
-1. **Levantar todas as máquinas** e verificar se possuem proteções nas zonas de perigo — uma inspeção visual simples já identifica as não conformidades mais graves.
-2. **Elaborar ou atualizar o inventário de máquinas** — é um documento exigido em qualquer fiscalização da DRT em ambiente industrial.
-3. **Contratar AREI** para máquinas fabricadas antes de 2012 que não foram adequadas — e guardar o laudo como comprovante de diligência.
-4. **Verificar se os dispositivos de segurança estão operacionais** — proteção com intertravamento burlada (amarrada, bloqueada) é a situação mais autuada e a mais perigosa.
-5. **Treinar e documentar** o treinamento de todos os operadores antes de iniciar atividades nas máquinas.
-6. **Incluir inspeção de segurança de máquinas** na rotina do SESMT — mínimo mensal para máquinas de alto risco.
-
-> **Acidente com máquina sem conformidade com NR-12:** além da responsabilidade penal e civil, a empresa enfrenta a presunção de culpa na Justiça do Trabalho, o que praticamente elimina as chances de defesa.
-
-## Referências
-
-- [NR-12 — Texto completo e anexos](https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-12)
-- [Guia Técnico NR-12 — Fundacentro](https://www.fundacentro.gov.br)
-- [ABNT NBR ISO 13857 — Distâncias de Segurança](https://www.abnt.org.br)
+Em caso de acidente com máquina não conforme à NR-12, a empresa enfrenta presunção de culpa na Justiça do Trabalho, além de responsabilidade penal e civil — o que praticamente elimina as possibilidades de defesa.

@@ -1,23 +1,23 @@
 ---
-title: "NR-05: CIPA — Quando É Obrigatória, Como Eleger e Quais São as Atribuições"
-summary: "A CIPA é obrigatória para empresas com número mínimo de empregados conforme o CNAE. Entenda o processo de eleição, o mandato, as atribuições dos membros e a estabilidade garantida por lei."
+title: "NR-5 define quando a CIPA é obrigatória, como eleger membros e quais são suas atribuições"
+summary: "A Comissão Interna de Prevenção de Acidentes é exigida para empresas com número mínimo de empregados conforme o CNAE. A norma garante estabilidade ao representante eleito desde a candidatura até um ano após o mandato."
 category: "Legislativo"
 uf: null
 source_name: "Ministério do Trabalho e Emprego — NR-05"
 source_url: "https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-05"
 tags: ["NR-05", "CIPA", "eleição", "estabilidade", "Designado", "prevenção de acidentes"]
 published_at: "2026-03-18"
+image_url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80"
+read_time: 4
 ---
 
-## Contexto
+**BRASÍLIA** — A **Norma Regulamentadora nº 5** estabelece as condições para criação, funcionamento e atribuições da **Comissão Interna de Prevenção de Acidentes (CIPA)** nas empresas. A CIPA é obrigatória para empregadores que atingem determinados limiares de número de empregados, variáveis conforme o Grau de Risco da atividade econômica definida pelo CNAE. A ausência da comissão onde ela é exigida configura infração com multa de R$ 1.254,29 por empregado, podendo ser majorada por reincidência.
 
-A **Comissão Interna de Prevenção de Acidentes (CIPA)** é um dos mecanismos mais tradicionais de participação dos trabalhadores na gestão de SST. Regulamentada pela **NR-05**, ela representa trabalhadores e empregadores na identificação de riscos e proposição de medidas preventivas.
+---
 
-A CIPA não é apenas uma obrigação legal — quando bem implementada, ela é um canal direto entre o chão de fábrica e a gestão, identificando riscos que o SESMT muitas vezes não vê. Quando implementada apenas para cumprir a norma, torna-se um custo sem retorno.
+## Quando a CIPA é obrigatória
 
-## Quando a CIPA é Obrigatória
-
-A CIPA é exigida conforme o **Quadro I da NR-05**, que cruza o CNAE da empresa com o número mínimo de empregados:
+O Quadro I da NR-5 cruza o CNAE da empresa com o número mínimo de empregados para obrigatoriedade:
 
 | Grau de Risco | Mínimo de empregados para CIPA obrigatória |
 |---|---|
@@ -26,73 +26,42 @@ A CIPA é exigida conforme o **Quadro I da NR-05**, que cruza o CNAE da empresa 
 | 3 | A partir de 20 empregados |
 | 4 | A partir de 20 empregados |
 
-Abaixo desses limiares, a empresa deve designar um **Designado de Segurança** (trabalhador treinado responsável pelas ações preventivas) em substituição à CIPA.
+Abaixo desses limiares, a empresa deve designar um **Designado de Segurança** — trabalhador com treinamento específico — em substituição à comissão formal.
 
-## Composição da CIPA
+---
 
-A CIPA é composta por representantes do **empregador** (indicados) e dos **empregados** (eleitos). O número de representantes de cada parte é definido pelo Quadro I da NR-05, variando conforme o CNAE e o número de empregados.
+## Composição: representantes eleitos e indicados
 
-| Parte | Como escolhida | Mandato |
-|---|---|---|
-| Representantes dos empregados | Eleição direta, voto secreto | 1 ano, renovável por mais 1 |
-| Representantes do empregador | Indicação direta | 1 ano |
+A CIPA é formada por representantes do empregador — indicados pela empresa — e dos empregados, eleitos por voto secreto. O número de representantes de cada parte é definido pelo Quadro I da NR-5, com base no CNAE e no número de empregados. A presidência cabe ao empregador; a vice-presidência, ao representante eleito pelos trabalhadores.
 
-A CIPA tem um **Presidente** (indicado pelo empregador) e um **Vice-Presidente** (eleito pelos trabalhadores).
+O mandato é de um ano, renovável por mais um, e o treinamento de 20 horas deve ser concluído por todos os membros nos primeiros 30 dias após a posse.
 
-## Processo de Eleição
+---
 
-O processo eleitoral tem etapas obrigatórias:
+## Processo eleitoral: etapas obrigatórias
 
-1. **Convocação** — o empregador convoca eleição com 60 dias de antecedência ao término do mandato
-2. **Inscrição de candidatos** — mínimo 15 dias para inscrições, com garantia de sigilo
-3. **Eleição** — voto secreto em horário de trabalho, sem desconto salarial
-4. **Apuração e resultado** — em sessão aberta, com ata
-5. **Registro no MTE** — a ata e a composição da CIPA devem ser registradas no Ministério do Trabalho (hoje via sistema digital)
-6. **Treinamento** — membros eleitos e indicados devem receber treinamento de 20h dentro de 30 dias da posse
+A NR-5 detalha o processo eleitoral que deve ser seguido pelo empregador:
 
-## Atribuições da CIPA
+1. **Convocação** com 60 dias de antecedência ao término do mandato vigente
+2. **Período de inscrição** de no mínimo 15 dias, com garantia de sigilo aos candidatos
+3. **Eleição** em horário de trabalho, com voto secreto e sem desconto salarial
+4. **Apuração** em sessão aberta, com registro em ata
+5. **Registro no MTE** — a composição eleita deve ser informada ao Ministério por sistema digital
 
-- Identificar riscos no ambiente de trabalho e elaborar **Mapa de Riscos**
-- Elaborar plano de trabalho para implementação de ações preventivas
-- Realizar inspeções periódicas nos locais de trabalho
-- Investigar causas dos acidentes e elaborar relatórios
-- Divulgar informações de SST para os trabalhadores
-- Requerer ao empregador a paralisação de atividades com risco grave e iminente
-- Reunir-se mensalmente em caráter ordinário
+Falhas no processo — como eleição fora do horário remunerado ou ausência de registro no MTE — invalidam a CIPA e mantêm a empresa em situação irregular.
 
-## Estabilidade dos Membros Eleitos
+---
 
-Este é o ponto que gera mais dúvidas e litígios:
+## Atribuições da comissão
 
-- O representante eleito pelos empregados tem **estabilidade no emprego** desde a candidatura até **1 ano após o término do mandato**
-- Não pode ser demitido sem justa causa durante esse período
-- A estabilidade se aplica ao **titular e ao suplente**
-- A demissão do cipeiro sem justa causa durante a estabilidade pode resultar em **reintegração ao emprego ou pagamento de indenização substitutiva**
+Entre as funções formais da CIPA previstas na norma estão a identificação de riscos e elaboração do Mapa de Riscos, inspeções periódicas nos locais de trabalho, investigação de acidentes e elaboração de relatórios, reuniões mensais ordinárias com ata e a possibilidade de requisitar ao empregador a paralisação de atividades com risco grave e iminente.
 
-> **Atenção:** A estabilidade começa da candidatura — mesmo o candidato não eleito tem estabilidade durante o processo eleitoral.
+As atas de reuniões devem ser assinadas e arquivadas por no mínimo cinco anos.
 
-## Reuniões Extraordinárias
+---
 
-Além das reuniões mensais ordinárias, a CIPA deve reunir-se extraordinariamente quando:
-- Ocorrer acidente do trabalho grave ou fatal
-- Houver denúncia de risco grave e iminente
-- Por solicitação de qualquer membro
+## Estabilidade no emprego: ponto de maior litígio
 
-As atas de todas as reuniões devem ser assinadas e arquivadas por no mínimo 5 anos.
+O representante dos empregados eleito para a CIPA tem **estabilidade no emprego** desde o registro da candidatura até **um ano após o término do mandato** — o que inclui o suplente. A estabilidade não permite demissão sem justa causa durante todo esse período.
 
-## Impacto para a Empresa
-
-1. **Verificar se a empresa atinge o limiar** de empregados que torna a CIPA obrigatória — erro aqui pode resultar em autuação mesmo sem acidente.
-2. **Realizar o processo eleitoral corretamente** — falhas no processo (candidatura sem garantia de sigilo, eleição em horário não remunerado, falta de registro no MTE) invalidam a CIPA e mantêm a empresa irregular.
-3. **Garantir o treinamento de 20h** para todos os membros dentro do prazo de 30 dias após a posse.
-4. **Realizar reuniões mensais com ata** — a frequência e documentação das reuniões é verificada em toda fiscalização.
-5. **Nunca demitir membro eleito sem justa causa** durante o período de estabilidade — consulte o jurídico antes de qualquer desligamento de cipeiro.
-6. **Implementar as ações propostas pela CIPA** — empresa que registra as recomendações mas não as implementa cria passivo documental que pode ser usado contra ela em ações trabalhistas.
-
-> **Empresa sem CIPA obrigatória:** multa de R$ 1.254,29 por empregado, podendo ser majorada conforme o grau de risco da empresa e reincidência.
-
-## Referências
-
-- [NR-05 — Texto completo e Quadro I](https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-05)
-- [Sistema de Registro de CIPA — MTE](https://www.gov.br/trabalho)
-- [Guia para Eleição de CIPA — Fundacentro](https://www.fundacentro.gov.br)
+A demissão irregular de cipeiro pode resultar em reintegração ao emprego ou pagamento de indenização substitutiva, conforme consolidação da jurisprudência trabalhista. O período de proteção começa na candidatura — mesmo que o candidato não seja eleito.

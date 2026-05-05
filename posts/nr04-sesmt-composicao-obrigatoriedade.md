@@ -1,23 +1,23 @@
 ---
-title: "NR-04: SESMT — Quando É Obrigatório e Qual Deve Ser a Composição"
-summary: "A NR-04 define quando a empresa precisa ter SESMT (médico, engenheiro, enfermeiro, técnico de segurança) e quantos profissionais são necessários com base no CNAE e número de empregados."
+title: "NR-4 define quando empresas são obrigadas a ter equipe SST própria e qual deve ser sua composição"
+summary: "A norma que regula o SESMT cruza o CNAE da empresa com o número de empregados para definir quantos profissionais de segurança e saúde do trabalho são obrigatórios. Ausência da equipe é uma das infrações mais comuns em fiscalizações."
 category: "Legislativo"
 uf: null
 source_name: "Ministério do Trabalho e Emprego — NR-04"
 source_url: "https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-04"
 tags: ["NR-04", "SESMT", "técnico de segurança", "engenheiro de segurança", "médico do trabalho", "CNAE"]
 published_at: "2026-03-25"
+image_url: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=1200&q=80"
+read_time: 4
 ---
 
-## Contexto
+**BRASÍLIA** — A **Norma Regulamentadora nº 4** estabelece quando as empresas são obrigadas a manter um **Serviço Especializado em Engenharia de Segurança e em Medicina do Trabalho (SESMT)** e qual deve ser a composição mínima dessa equipe. O critério é calculado a partir do cruzamento entre o **Grau de Risco da atividade econômica** — determinado pelo CNAE da empresa — e o número de empregados. A ausência de SESMT obrigatório é uma das infrações mais frequentemente flagradas em fiscalizações da Delegacia Regional do Trabalho (DRT).
 
-O **Serviço Especializado em Engenharia de Segurança e em Medicina do Trabalho (SESMT)** é obrigatório para empresas que atingem determinados limiares de número de empregados, dependendo do grau de risco da atividade econômica.
+---
 
-A **NR-04** é a norma que regula esse serviço. Ela define o dimensionamento do SESMT por meio de uma tabela que cruza o **CNAE (Classificação Nacional de Atividade Econômica)** da empresa com o número de empregados. É a base legal para calcular quantos profissionais SST a empresa precisa ter.
+## Grau de risco determina o limiar de obrigatoriedade
 
-## Grau de Risco por CNAE
-
-O primeiro passo é identificar o **Grau de Risco** da empresa, que varia de 1 (menor risco) a 4 (maior risco):
+O primeiro parâmetro para aplicação da NR-4 é o Grau de Risco da empresa, que varia de 1 (menor risco) a 4 (maior risco) conforme o CNAE cadastrado na Receita Federal:
 
 | Grau | Exemplos de atividades |
 |---|---|
@@ -26,93 +26,63 @@ O primeiro passo é identificar o **Grau de Risco** da empresa, que varia de 1 (
 | **3** | Construção civil, indústria química, metalurgia leve |
 | **4** | Mineração, petróleo e gás, explosivos, indústria pesada |
 
-O CNAE da empresa está no Cartão CNPJ emitido pela Receita Federal. O Grau de Risco correspondente está no Quadro I da NR-04.
+Quanto maior o grau de risco, menor o número mínimo de empregados a partir do qual o SESMT se torna obrigatório. Empresas de Grau 4, por exemplo, já precisam de SESMT a partir de 51 trabalhadores.
 
-## Dimensionamento do SESMT
+---
 
-A tabela de dimensionamento (Quadro II da NR-04) define a composição obrigatória:
+## Composição mínima por faixa de empregados
 
-### Grau de Risco 1
-
-| Nº de Empregados | SESMT obrigatório |
-|---|---|
-| Até 50.000 | Não obrigatório |
-| Acima de 50.000 | Composição proporcional |
-
-### Grau de Risco 2
-
-| Nº de Empregados | Técnico Seg. | Engenheiro | Aux. Enfermagem | Enfermeiro | Médico |
-|---|---|---|---|---|---|
-| 501–1.000 | 1 | — | — | — | 1 (4h/sem) |
-| 1.001–2.000 | 2 | — | 1 | — | 1 (8h/sem) |
-| 2.001–3.500 | 3 | 1 | 2 | — | 1 (12h/sem) |
+O Quadro II da NR-4 detalha quantos profissionais de cada categoria são exigidos por faixa de empregados. A seguir, um resumo das faixas mais comuns:
 
 ### Grau de Risco 3
 
-| Nº de Empregados | Técnico Seg. | Engenheiro | Aux. Enfermagem | Enfermeiro | Médico |
-|---|---|---|---|---|---|
-| 101–250 | 1 | — | — | — | — |
-| 251–500 | 1 | — | 1 | — | 1 (3h/sem) |
-| 501–1.000 | 2 | 1 | 2 | — | 1 (6h/sem) |
-| 1.001–2.000 | 3 | 1 | 3 | 1 | 1 (12h/sem) |
+| Nº de Empregados | Técnico de Seg. | Engenheiro | Aux. Enfermagem | Médico |
+|---|---|---|---|---|
+| 101–250 | 1 | — | — | — |
+| 251–500 | 1 | — | 1 | 1 (3h/sem) |
+| 501–1.000 | 2 | 1 | 2 | 1 (6h/sem) |
+| 1.001–2.000 | 3 | 1 | 3 | 1 (12h/sem) |
 
 ### Grau de Risco 4
 
-| Nº de Empregados | Técnico Seg. | Engenheiro | Aux. Enfermagem | Enfermeiro | Médico |
-|---|---|---|---|---|---|
-| 51–100 | 1 | — | — | — | — |
-| 101–250 | 2 | 1 | 1 | — | 1 (3h/sem) |
-| 251–500 | 3 | 1 | 2 | — | 1 (6h/sem) |
-| 501–1.000 | 4 | 2 | 3 | 1 | 1 (12h/sem) |
+| Nº de Empregados | Técnico de Seg. | Engenheiro | Aux. Enfermagem | Médico |
+|---|---|---|---|---|
+| 51–100 | 1 | — | — | — |
+| 101–250 | 2 | 1 | 1 | 1 (3h/sem) |
+| 251–500 | 3 | 1 | 2 | 1 (6h/sem) |
+| 501–1.000 | 4 | 2 | 3 | 1 (12h/sem) |
 
-> Os valores acima são simplificados. Consulte o Quadro II completo da NR-04 para todas as faixas.
+Os valores acima são simplificados. O Quadro II completo da NR-4, disponível no portal do MTE, contempla todas as faixas e graus de risco.
 
-## Profissionais do SESMT
+---
 
-### Técnico de Segurança do Trabalho
-- Registro no MTE obrigatório (Portaria 3.214/78)
-- Graduação técnica em segurança do trabalho
-- Pode ser exclusivo ou compartilhado (para empresas menores)
+## Requisitos de registro profissional
 
-### Engenheiro de Segurança do Trabalho
-- Engenheiro com especialização em Engenharia de Segurança do Trabalho
-- Registro no CREA obrigatório
+A validade do SESMT para fins de fiscalização depende da regularidade dos registros profissionais de cada membro:
 
-### Médico do Trabalho
-- Médico com especialidade em Medicina do Trabalho
-- Registro no CRM e título de especialista (ANAMT/CFM)
-- Pode cumprir carga horária parcial (conforme tabela)
+- **Técnico de Segurança do Trabalho:** registro obrigatório no MTE (Portaria 3.214/78)
+- **Engenheiro de Segurança do Trabalho:** especialização reconhecida e registro ativo no CREA
+- **Médico do Trabalho:** CRM ativo e título de especialista em Medicina do Trabalho pela ANAMT ou CFM
+- **Enfermeiro do Trabalho:** especialização em Enfermagem do Trabalho
 
-### Enfermeiro do Trabalho
-- Enfermeiro com especialização em Enfermagem do Trabalho
+Profissional com registro irregular invalida o SESMT para fins de fiscalização, mesmo que esteja formalmente contratado.
 
-## SESMT Próprio x Contratado x Compartilhado
+---
 
-A NR-04 permite três modalidades:
+## SESMT próprio, contratado ou compartilhado
 
-| Modalidade | Quando usar |
+A NR-4 admite três modalidades de SESMT:
+
+| Modalidade | Quando se aplica |
 |---|---|
-| **Próprio** | Empresa com número de empregados acima do limiar obrigatório |
-| **Contratado** | Prestação de serviços de empresa especializada — válido apenas para empresas abaixo do limiar ou mediante negociação coletiva |
-| **Compartilhado** | Empresas do mesmo grupo econômico ou por acordo coletivo — profissional atende múltiplas unidades |
+| **Próprio** | Empresas acima do limiar obrigatório |
+| **Contratado** | Prestação de serviços de empresa especializada — válido apenas abaixo do limiar ou por negociação coletiva |
+| **Compartilhado** | Empresas do mesmo grupo econômico ou por acordo coletivo |
 
-## Escrituração no eSocial
+---
 
-Os profissionais do SESMT devem ser informados no eSocial. A ausência ou divergência entre os dados do SESMT e o número real de empregados é cruzada automaticamente nos eventos do ambiente SST.
+## Registro no eSocial
 
-## Impacto para a Empresa
+Os profissionais do SESMT devem ser informados no eSocial. O sistema cruza automaticamente os dados da equipe SST com o número de empregados registrado na empresa — divergências são identificadas sem necessidade de visita fiscal.
 
-1. **Verificar o CNAE principal** no cartão CNPJ e consultar o Grau de Risco correspondente no Quadro I da NR-04 — alguns CNAEs secundários podem elevar o grau de risco se representarem a atividade predominante.
-2. **Calcular o número de empregados** corretamente — inclui celetistas, aprendizes e (em alguns casos) terceirizados que trabalham habitualmente nas instalações.
-3. **Formalizar o contrato com o SESMT contratado** se não tiver SESMT próprio — e guardar comprovante de horas prestadas.
-4. **Registrar o médico do trabalho no PCMSO** com carga horária compatível com o dimensionamento da NR-04.
-5. **Verificar regularidade dos registros** — Técnico de Segurança no MTE, Engenheiro no CREA, Médico no CRM — profissional com registro irregular invalida o SESMT para fins de fiscalização.
-6. **Revisar o dimensionamento** ao contratar ou demitir em lotes — a empresa pode cruzar o limiar que exige ampliação do SESMT sem perceber.
-
-> **Ausência de SESMT obrigatório** é uma das infrações mais comuns flagradas pela DRT e pode resultar em multa proporcional ao número de empregados, além de responsabilização solidária em acidentes.
-
-## Referências
-
-- [NR-04 — Texto completo com Quadros I e II](https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-04)
-- [Portaria MTE 3.214/78 — Registro de Técnico de Segurança](https://www.gov.br/trabalho)
-- [ANAMT — Associação Nacional de Medicina do Trabalho](https://www.anamt.org.br)
+A multa por ausência de SESMT obrigatório é calculada proporcionalmente ao número de empregados e pode ser majorada em caso de reincidência ou quando a fiscalização ocorrer após acidente.

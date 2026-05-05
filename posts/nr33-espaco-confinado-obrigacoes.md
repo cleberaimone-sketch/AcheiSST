@@ -1,107 +1,59 @@
 ---
-title: "NR-33: Espaço Confinado — Quem Pode Entrar e Quais São as Exigências"
-summary: "A NR-33 regulamenta o trabalho em espaços confinados como fossas, tanques, cisternas e dutos. Entenda as funções obrigatórias, os procedimentos e as condições de entrada segura."
+title: "NR-33 exige permissão formal, funções definidas e plano de resgate para qualquer entrada em espaço confinado"
+summary: "A norma criou três funções específicas — supervisor, trabalhador autorizado e vigia — e tornou obrigatória a Permissão de Entrada e Trabalho antes de cada operação. A maioria das mortes em espaços confinados envolve o socorrista despreparado, não apenas quem entrou primeiro."
 category: "Segurança"
 uf: null
 source_name: "Ministério do Trabalho e Emprego — NR-33"
 source_url: "https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-33"
 tags: ["NR-33", "espaço confinado", "PET", "vigia", "atmosfera", "permissão de entrada"]
 published_at: "2026-04-01"
+image_url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80"
+read_time: 4
 ---
 
-## Contexto
+**BRASÍLIA** — Espaços confinados figuram entre os ambientes com maior taxa de mortalidade no trabalho no Brasil, não apenas pela periculosidade intrínseca dos locais, mas por um padrão recorrente de acidentes em cascata: o trabalhador que entra sem monitoramento adequado perde a consciência; um colega entra para socorrer sem equipamento e também é vítima. Estudos sobre acidentes em fossas, tanques e galerias subterrâneas mostram que a maioria das mortes envolve o socorrista espontâneo, não somente o primeiro a entrar.
 
-Espaço confinado é um dos ambientes de trabalho com maior taxa de mortalidade no Brasil. O principal fator de risco não é o ambiente em si — é a entrada **sem procedimentos adequados** e sem equipamentos de monitoramento. Estudos mostram que a maioria das mortes em espaços confinados envolve não apenas o trabalhador que entrou, mas também o **socorrista despreparado** que tentou resgatar.
+A **Norma Regulamentadora nº 33** foi criada para romper esse ciclo por meio de um sistema formal: funções definidas, medição atmosférica antes de cada entrada, Permissão de Entrada e Trabalho documentada e plano de resgate conhecido por todos os envolvidos. A norma se aplica a fossas, tanques, silos, caldeiras, dutos, poços, câmaras subterrâneas e qualquer outro espaço com abertura limitada, não projetado para ocupação contínua e com potencial de atmosfera perigosa.
 
-A **NR-33** foi criada justamente para quebrar esse ciclo. Ela exige um sistema formal de permissão, funções definidas e treinamento específico antes de qualquer entrada.
+---
 
-## O que é um Espaço Confinado
+## Três funções obrigatórias
 
-Pela NR-33, espaço confinado é qualquer área que:
+A NR-33 definiu funções específicas que não podem ser cumuladas em uma única pessoa durante a operação:
 
-1. Tem aberturas limitadas de entrada e saída
-2. Não foi projetado para ocupação humana contínua
-3. Pode ter atmosfera perigosa
+**Supervisor de Entrada** — autoriza e coordena a operação, emite e pode cancelar a Permissão de Entrada e Trabalho (PET) se as condições se alterarem. Exige treinamento mínimo de 16 horas com componente teórico e prático.
 
-Exemplos comuns: **fossas, tanques, silos, caldeiras, dutos, tubulações, poços, câmaras subterrâneas, porões de navios**.
+**Trabalhador Autorizado** — realiza o trabalho dentro do espaço confinado. Também exige treinamento mínimo de 16 horas. Deve conhecer os sinais de deterioração das condições internas e os procedimentos de saída rápida.
 
-## Classificação do Espaço
+**Vigia** — permanece externamente durante toda a operação, monitora o trabalhador e as condições ao redor do espaço e aciona o resgate em caso de emergência. Treinamento mínimo de 8 horas. A função do vigia é acionar o socorro — não entrar. A norma é explícita: o vigia não socorre em nenhuma circunstância.
 
-Antes de qualquer entrada, o espaço deve ser classificado:
+---
 
-| Classe | Características | Procedimento |
-|---|---|---|
-| **Não perigoso** | Sem risco identificado | Monitoramento básico, controle de acesso |
-| **Perigoso** | Risco real ou potencial de atmosfera perigosa, afogamento, soterramento ou aprisionamento | PET obrigatória |
+## Permissão de Entrada e Trabalho
 
-A classificação não é permanente — deve ser reavaliada antes de **cada entrada**, pois as condições internas mudam.
+A PET é o documento que formaliza cada entrada em espaço confinado classificado como perigoso. Deve ser preenchida antes de cada operação — mesmo que o mesmo espaço já tenha sido acessado na véspera, pois as condições atmosféricas internas podem ter mudado. O documento inclui a identificação dos trabalhadores autorizados, os resultados das medições atmosféricas, os EPIs e EPCs necessários, o procedimento de resgate e a assinatura do supervisor.
 
-## Funções Obrigatórias
+Os parâmetros mínimos para entrada segura são:
 
-A NR-33 cria três funções específicas para trabalho em espaço confinado:
-
-### Supervisor de Entrada
-- Responsável por autorizar e coordenar a entrada
-- Deve ter treinamento específico de 16h mínimo (teórico + prático)
-- Emite e cancela a Permissão de Entrada e Trabalho (PET)
-- Pode e deve cancelar a entrada se as condições mudarem
-
-### Trabalhador Autorizado
-- Realiza o trabalho dentro do espaço
-- Treinamento mínimo de 16h
-- Deve conhecer os sinais de perigo e como sair rapidamente
-
-### Vigia
-- Permanece **externamente** durante toda a operação
-- Monitora o trabalhador e as condições externas continuamente
-- Não pode entrar no espaço em nenhuma hipótese
-- Treinamento mínimo de 8h
-
-> **Regra crítica:** O vigia **não socorre** — ele aciona o resgate. A tentativa de socorrer sem equipamento adequado é a principal causa de mortes em cascata em espaços confinados.
-
-## Permissão de Entrada e Trabalho (PET)
-
-A PET é o documento que autoriza formalmente cada entrada. Deve conter:
-
-- Data, horário e local da entrada
-- Identificação dos trabalhadores autorizados
-- Resultado das medições atmosféricas (O₂, LEL, CO, H₂S no mínimo)
-- EPIs e EPCs necessários
-- Procedimento de resgate
-- Assinatura do supervisor
-- Prazo de validade (geralmente até o final do turno)
-
-### Parâmetros atmosféricos para entrada segura
-
-| Parâmetro | Valor seguro |
+| Parâmetro | Faixa segura |
 |---|---|
 | Oxigênio (O₂) | Entre 19,5% e 23,5% |
 | Limite inferior de explosividade (LEL) | Abaixo de 10% do LEL |
 | Monóxido de carbono (CO) | Abaixo de 35 ppm |
 | Gás sulfídrico (H₂S) | Abaixo de 10 ppm |
 
-## Plano de Resgate
+A medição exige detector de múltiplos gases. Equipamentos que monitoram apenas um parâmetro — como oxímetros simples ou detectores exclusivos de CO — não atendem plenamente a NR-33, uma vez que outros agentes podem estar presentes sem que a deficiência de oxigênio seja evidente.
 
-Toda operação em espaço confinado perigoso exige **plano de resgate documentado e testado**. O plano deve:
+---
 
-- Descrever o procedimento de resgate não-invasivo (primeiro: retirar sem entrar)
-- Listar os equipamentos disponíveis no local (trípode, arnês, linha de vida, maca, SCBA)
-- Definir responsáveis pelo acionamento de serviços externos (SAMU, Bombeiros)
-- Ser conhecido por todos os envolvidos antes da entrada
+## Plano de resgate
 
-## Impacto para a Empresa
+Toda operação em espaço confinado perigoso exige plano de resgate documentado e testado antes do início dos trabalhos. O plano deve descrever o procedimento de resgate não-invasivo como primeira opção — retirar o trabalhador sem entrar no espaço, com uso de trípode, arnês e linha de vida — e definir o fluxo de acionamento de serviços externos como SAMU e Corpo de Bombeiros quando o resgate interno não for possível.
 
-1. **Mapear todos os espaços confinados** nas instalações e classificá-los — a lista deve estar disponível e atualizada no PGR.
-2. **Treinar e certificar** supervisor, trabalhadores autorizados e vigias com a carga horária mínima exigida (cursos com certificação reconhecida pelo MTE).
-3. **Adquirir e calibrar detector de múltiplos gases** — detector de gás único (somente O₂ ou somente CO) não atende a NR-33 plenamente.
-4. **Elaborar e manter modelo de PET** específico para cada tipo de espaço confinado nas instalações.
-5. **Nunca terceirizar a responsabilidade** — quando empresas contratadas realizam trabalho em espaços confinados das instalações do contratante, **ambos são corresponsáveis**.
-6. **Testar o plano de resgate** periodicamente — simulado documentado é a melhor evidência de conformidade.
+A ausência de PET preenchida no momento da entrada, o acesso por trabalhador sem treinamento específico ou a entrada em espaço sem monitoramento atmosférico configuram **risco grave e iminente**, sujeito a interdição imediata pela Delegacia Regional do Trabalho, com embargo das atividades até a regularização.
 
-> **Atenção:** Ausência de PET preenchida no momento da entrada, trabalhador sem treinamento específico ou espaço não monitorado configuram **risco grave e iminente**, sujeito a interdição imediata pela DRT.
+---
 
-## Referências
+## Classificação do espaço antes de cada entrada
 
-- [NR-33 — Texto completo](https://www.gov.br/trabalho/pt-br/assuntos/inspecao/normas-regulamentadoras/nr-33)
-- [Fundacentro — Espaços Confinados](https://www.fundacentro.gov.br)
-- [Manual de Treinamento NR-33 — SENAI](https://www.senai.br)
+Antes de qualquer acesso, o espaço deve ser classificado como não perigoso ou perigoso. Essa avaliação não é permanente: as condições internas de um tanque ou fossa mudam conforme processos químicos, temperatura, decomposição de matéria orgânica ou atividades realizadas nas proximidades. A reclassificação é obrigatória antes de cada entrada, independentemente do histórico do local.
