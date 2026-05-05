@@ -58,21 +58,21 @@ export default function HeroSection() {
               <Link
                 key={label}
                 href={href}
-                className="group relative overflow-hidden bg-gradient-to-br from-white to-green-50 border border-green-100 rounded-2xl p-4 md:p-5 hover:-translate-y-1 hover:border-green-200 hover:shadow-[0_10px_28px_rgba(22,163,74,0.14)] transition-all duration-200"
+                className="group relative overflow-hidden bg-gradient-to-br from-white to-green-50 border border-green-100 rounded-2xl p-3.5 hover:-translate-y-1 hover:border-green-200 hover:shadow-[0_8px_24px_rgba(22,163,74,0.13)] transition-all duration-200 flex flex-col items-center text-center"
               >
                 {/* radial glow decoration */}
-                <div className="pointer-events-none absolute -bottom-5 -right-5 w-20 h-20 rounded-full bg-[radial-gradient(circle,rgba(74,222,128,0.18)_0%,transparent_70%)] group-hover:scale-150 transition-transform duration-300" />
+                <div className="pointer-events-none absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-[radial-gradient(circle,rgba(74,222,128,0.16)_0%,transparent_70%)] group-hover:scale-150 transition-transform duration-300" />
 
                 {/* icon: white+border → green gradient on hover */}
-                <div className="relative w-11 h-11 mb-3 flex items-center justify-center">
+                <div className="relative w-11 h-11 mb-2.5 flex items-center justify-center">
                   <div className="absolute inset-0 rounded-[12px] bg-white border border-green-200 group-hover:opacity-0 transition-opacity duration-200" />
-                  <div className="absolute inset-0 rounded-[12px] bg-gradient-to-br from-green-400 to-green-600 opacity-0 group-hover:opacity-100 shadow-[0_4px_14px_rgba(22,163,74,0.35)] transition-all duration-200" />
+                  <div className="absolute inset-0 rounded-[12px] bg-gradient-to-br from-green-400 to-green-600 opacity-0 group-hover:opacity-100 shadow-[0_4px_12px_rgba(22,163,74,0.32)] transition-all duration-200" />
                   <Icon className="relative z-10 w-5 h-5 text-green-600 group-hover:text-white transition-colors duration-200" strokeWidth={1.8} />
                 </div>
 
-                <h3 className="font-bold text-sm text-slate-900 mb-0.5 tracking-tight">{label}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed mb-2.5">{description}</p>
-                <span className="inline-block text-[10px] font-semibold text-green-700 bg-green-100 rounded-full px-2 py-0.5">
+                <h3 className="font-bold text-[13px] text-slate-900 mb-0.5 tracking-tight leading-tight">{label}</h3>
+                <p className="text-[11px] text-slate-500 leading-snug mb-2.5 relative z-10">{description}</p>
+                <span className="inline-block text-[10px] font-semibold text-green-700 bg-green-100 rounded-full px-2 py-0.5 relative z-10">
                   {badge}
                 </span>
               </Link>
