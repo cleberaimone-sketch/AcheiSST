@@ -69,8 +69,8 @@ export default async function FeaturedSection() {
   ])
 
   return (
-    <section className="bg-white py-10 md:py-14">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <section className="bg-white py-6 md:py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {/* ── Profissionais em Destaque ── */}
         <div>
@@ -122,16 +122,20 @@ export default async function FeaturedSection() {
                 <p className="text-xs text-green-700 font-medium mb-2 line-clamp-1">
                   {p.especialidade}
                 </p>
-                {p.avaliacao && (
-                  <div className="flex items-center gap-1 mb-1">
-                    <StarRating value={Number(p.avaliacao)} />
-                    {p.num_avaliacoes > 0 && (
-                      <span className="text-[10px] text-slate-400 font-medium">
-                        {formatCount(p.num_avaliacoes)}
-                      </span>
-                    )}
-                  </div>
-                )}
+                <div className="flex items-center gap-1 mb-1 min-h-[1.25rem]">
+                  {p.avaliacao ? (
+                    <>
+                      <StarRating value={Number(p.avaliacao)} />
+                      {p.num_avaliacoes > 0 && (
+                        <span className="text-[10px] text-slate-400 font-medium">
+                          {formatCount(p.num_avaliacoes)}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <StarRating value={0} />
+                  )}
+                </div>
                 {p.cidade && (
                   <span className="inline-flex items-center gap-0.5 text-[10px] text-slate-400">
                     <MapPin className="w-2.5 h-2.5" /> {p.cidade}, {p.uf}

@@ -20,7 +20,7 @@ const STATS = [
 
 export default function EPICalloutSection() {
   return (
-    <section className="relative overflow-hidden bg-slate-900 py-16 md:py-20">
+    <section className="relative overflow-hidden bg-slate-900 py-10 md:py-12">
       {/* Fundo decorativo */}
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
@@ -36,7 +36,7 @@ export default function EPICalloutSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-500/15 text-green-400 px-3 py-1.5 rounded-full text-xs font-bold mb-4">
               <HardHat className="w-3.5 h-3.5" />
@@ -63,7 +63,7 @@ export default function EPICalloutSection() {
         </div>
 
         {/* Grid de categorias EPI */}
-        <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 mb-10">
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 mb-6">
           {CATEGORIAS_EPI.map(({ emoji, label }) => (
             <Link
               key={label}

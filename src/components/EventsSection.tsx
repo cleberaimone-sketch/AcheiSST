@@ -10,21 +10,21 @@ const eventos = [
     emoji: "🎪",
     gradiente: "from-green-500 to-emerald-600",
     cor: "bg-green-500",
-    imagem: "https://eventosprotecao.com.br/wp-content/uploads/2026/02/Prevensul-2026_Home-site-eventos-1024x1024.png",
+    imagem: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&auto=format&fit=crop&q=80",
     descricao: "Uma das maiores feiras de SST do Sul do Brasil. Soluções, produtos e tecnologias para prevenção de acidentes.",
     site: "https://www.feiraprevensul.com.br/",
   },
   {
-    nome: "Proteminas – III Feira Mineira de Segurança",
-    data: "14–16 abr 2026",
-    local: "Belo Horizonte, MG",
-    tipo: "Feira",
-    emoji: "🎤",
+    nome: "SafetyCon 2026 – Segurança e Saúde na Construção Civil",
+    data: "27–28 mai 2026",
+    local: "Balneário Camboriú, SC",
+    tipo: "Congresso",
+    emoji: "🏗️",
     gradiente: "from-purple-500 to-violet-600",
     cor: "bg-purple-500",
-    imagem: "https://static.wixstatic.com/media/db074d_3ae05be7550b4ab7a3244c4dfdf91d21~mv2.jpg/v1/fill/w_845,h_324,al_c,q_80,enc_avif,quality_auto/db074d_3ae05be7550b4ab7a3244c4dfdf91d21~mv2.jpg",
-    descricao: "Estratégias, normas e ferramentas para aprimorar a prevenção. Focado em empresas e profissionais de MG.",
-    site: "https://www.proteminas.com.br/",
+    imagem: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop&q=80",
+    descricao: "Evento focado em SST na construção civil, promovido pelo CREA-SC. Debates sobre normas, ferramentas e boas práticas do setor.",
+    site: "https://portal.crea-sc.org.br/agenda_evento/safetycon-evento-aborda-seguranca-e-saude-do-trabalho-na-construcao-civil-em-balneario-camboriu/",
   },
   {
     nome: "3º Encontro SGG – Segurança, Saúde e Gestão",
@@ -34,7 +34,7 @@ const eventos = [
     emoji: "🏛️",
     gradiente: "from-blue-500 to-sky-600",
     cor: "bg-blue-500",
-    imagem: "https://d335luupugsy2.cloudfront.net/cms/files/54683/1745347824/$mbnlwv5cuf9",
+    imagem: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80",
     descricao: "Debate de boas práticas e estratégias de prevenção em segurança, saúde e gestão do trabalho.",
     site: "https://lp.sgg.net.br/3-encontro-sgg",
   },
@@ -46,7 +46,7 @@ const eventos = [
     emoji: "🔐",
     gradiente: "from-indigo-500 to-blue-700",
     cor: "bg-indigo-500",
-    imagem: "https://exposec.tmp.br/wp-content/uploads/2024/06/banner_exposec_2026.jpg",
+    imagem: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80",
     descricao: "27ª edição da maior feira de tecnologia em segurança da América Latina. Mais de 300 expositores no São Paulo Expo.",
     site: "https://exposec.tmp.br/",
   },
@@ -58,7 +58,7 @@ const eventos = [
     emoji: "🛡️",
     gradiente: "from-orange-500 to-amber-600",
     cor: "bg-orange-500",
-    imagem: "https://eventosprotecao.com.br/wp-content/uploads/2026/02/PreveNorl-2026_Home-site-eventos-1024x1024.png",
+    imagem: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&auto=format&fit=crop&q=80",
     descricao: "Maior evento de SST do Norte e Nordeste. Soluções e tecnologias para prevenção de acidentes.",
     site: "https://feiraprevenor.com.br/",
   },
@@ -70,7 +70,7 @@ const eventos = [
     emoji: "🌎",
     gradiente: "from-rose-500 to-pink-600",
     cor: "bg-rose-500",
-    imagem: "https://feirafisp.com.br/wp-content/uploads/2024/10/banner_fisp_2026.jpg",
+    imagem: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&auto=format&fit=crop&q=80",
     descricao: "O maior evento de segurança do trabalho da América Latina. Expositores de todo o mundo em São Paulo.",
     site: "https://feirafisp.com.br/",
   },
@@ -85,10 +85,10 @@ const tipoCor: Record<string, string> = {
 
 export default function EventsSection() {
   return (
-    <section id="eventos" className="bg-slate-50 py-12 md:py-16">
+    <section id="eventos" className="bg-slate-50 py-8 md:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="flex items-end justify-between mb-8 gap-4 flex-wrap">
+        <div className="flex items-end justify-between mb-5 gap-4 flex-wrap">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-1">
               📅 Agenda 2026

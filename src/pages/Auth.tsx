@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -69,6 +69,8 @@ function PasswordStrength({ password }: { password: string }) {
 
 const AuthPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams?.get('redirect') || '/painel';
   const { user, loading: authLoading } = useAuth();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [submitting, setSubmitting] = useState(false);
@@ -88,7 +90,7 @@ const AuthPage = () => {
   const [accountType, setAccountType]         = useState<typeof accountTypes[number]["value"]>("profissional");
 
   useEffect(() => {
-    if (!authLoading && user) router.replace("/conta");
+    if (!authLoading && user) router.replace(redirectTo);
   }, [user, authLoading, router]);
 
   const clearPasswords = () => {
@@ -188,7 +190,7 @@ const AuthPage = () => {
         }
 
         attempts.current = 0;
-        router.replace("/painel");
+        router.replace(redirectTo);
       }
     } finally {
       clearPasswords();

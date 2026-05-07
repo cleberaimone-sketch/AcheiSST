@@ -1,5 +1,6 @@
-import Logo from "@/components/Logo";
 'use client'
+
+import Logo from "@/components/Logo";
 
 import { useState, useEffect } from 'react'
 import { Loader2, Lock, CheckCircle2, AlertCircle } from 'lucide-react'
@@ -72,7 +73,7 @@ export default function RedefinirSenhaPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="bg-white rounded-2xl border border-slate-200 p-8 max-w-md w-full text-center shadow-sm">
-          <Loader2 className="w-8 h-8 animate-spin text-navy-600 mx-auto mb-4" />
+          <Loader2 className="w-8 h-8 animate-spin text-green-600 mx-auto mb-4" />
           <p className="text-slate-500 text-sm">Verificando link...</p>
         </div>
       </div>
@@ -92,7 +93,7 @@ export default function RedefinirSenhaPage() {
           </p>
           <a
             href="/painel/resetar-senha"
-            className="inline-block mt-6 text-navy-600 hover:underline font-medium text-sm"
+            className="inline-block mt-6 text-green-600 hover:underline font-medium text-sm"
           >
             Solicitar novo link
           </a>
@@ -151,7 +152,7 @@ export default function RedefinirSenhaPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mín. 8 caracteres"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -168,7 +169,7 @@ export default function RedefinirSenhaPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirme a nova senha"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -176,7 +177,7 @@ export default function RedefinirSenhaPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-navy-600 hover:bg-navy-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-sm mt-2"
+            className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-sm mt-2"
           >
             {loading
               ? <><Loader2 className="w-4 h-4 animate-spin" /> Redefinindo...</>

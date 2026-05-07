@@ -31,9 +31,9 @@ const NewsSection = ({ posts = [] }: NewsSectionProps) => {
   ];
 
   return (
-    <section id="novidades" className="bg-background py-20 md:py-28">
+    <section id="novidades" className="bg-background py-10 md:py-14">
       <div className="px-6 md:px-10 max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-12 gap-6 flex-wrap">
+        <div className="flex items-end justify-between mb-7 gap-6 flex-wrap">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-secondary mb-3 inline-flex items-center gap-2">
               <Newspaper className="w-3.5 h-3.5" /> Novidades em SST

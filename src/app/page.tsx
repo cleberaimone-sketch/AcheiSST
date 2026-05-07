@@ -29,11 +29,11 @@ export default async function Home() {
 
         {/* CTA Planos */}
         <FadeInSection>
-          <section className="bg-white py-10 border-t border-slate-100">
+          <section className="bg-white py-5 border-t border-slate-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="text-sm font-bold text-slate-900 mb-0.5">Quer aparecer em destaque no AcheiSST?</p>
-                <p className="text-sm text-slate-500">Planos a partir de R$ 0. Aumente sua visibilidade no maior hub de SST do Brasil.</p>
+                <p className="text-sm text-slate-500">Aumente sua visibilidade no maior hub de SST do Brasil.</p>
               </div>
               <a
                 href="/planos"

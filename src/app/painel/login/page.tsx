@@ -1,6 +1,6 @@
-import Logo from "@/components/Logo";
 'use client'
 
+import Logo from "@/components/Logo";
 import { useState } from 'react'
 import { Loader2, Mail, Lock, ShieldCheck } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -125,7 +125,7 @@ export default function PainelLoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="seu@email.com"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function PainelLoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function PainelLoginPage() {
           <button
             type="submit"
             disabled={loading || loadingGoogle}
-            className="w-full bg-navy-600 hover:bg-navy-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-sm"
+            className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-sm"
           >
             {loading
               ? <><Loader2 className="w-4 h-4 animate-spin" /> Entrando...</>
@@ -160,7 +160,7 @@ export default function PainelLoginPage() {
         </form>
 
         <div className="flex items-center justify-between mt-4 text-xs">
-          <a href="/painel/resetar-senha" className="text-navy-600 hover:underline font-medium">
+          <a href="/painel/resetar-senha" className="text-green-600 hover:underline font-medium">
             Esqueci minha senha
           </a>
         </div>
@@ -174,7 +174,7 @@ export default function PainelLoginPage() {
 
         <p className="text-xs text-slate-400 text-center mt-4">
           Não tem conta?{' '}
-          <a href="/painel/cadastrar" className="text-navy-600 hover:underline font-medium">
+          <a href="/painel/cadastrar" className="text-green-600 hover:underline font-medium">
             Criar conta
           </a>
         </p>

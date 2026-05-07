@@ -1,5 +1,6 @@
-import Logo from "@/components/Logo";
 'use client'
+
+import Logo from "@/components/Logo";
 
 import { useState } from 'react'
 import { Loader2, Mail, Lock, User, CheckCircle2 } from 'lucide-react'
@@ -103,7 +104,7 @@ export default function CadastrarPage() {
           </p>
           <a
             href="/painel/login"
-            className="inline-block mt-6 text-navy-600 hover:underline font-medium text-sm"
+            className="inline-block mt-6 text-green-600 hover:underline font-medium text-sm"
           >
             Voltar ao login
           </a>
@@ -166,7 +167,7 @@ export default function CadastrarPage() {
                 onChange={(e) => setNome(e.target.value)}
                 placeholder="Seu nome"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -183,7 +184,7 @@ export default function CadastrarPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="seu@email.com"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -200,7 +201,7 @@ export default function CadastrarPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mín. 8 caracteres"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -217,7 +218,7 @@ export default function CadastrarPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirme a senha"
                 required
-                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-navy-600/20 focus:border-navy-600"
+                className="w-full pl-10 pr-4 py-3 text-sm border border-slate-200 rounded-xl bg-slate-50 placeholder:text-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-600/20 focus:border-green-600"
               />
             </div>
           </div>
@@ -225,7 +226,7 @@ export default function CadastrarPage() {
           <button
             type="submit"
             disabled={loading || loadingGoogle}
-            className="w-full bg-navy-600 hover:bg-navy-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-sm mt-2"
+            className="w-full bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm shadow-sm mt-2"
           >
             {loading
               ? <><Loader2 className="w-4 h-4 animate-spin" /> Criando conta...</>
@@ -236,7 +237,7 @@ export default function CadastrarPage() {
 
         <p className="text-xs text-slate-400 text-center mt-6 pt-5 border-t border-slate-100">
           Já tem conta?{' '}
-          <a href="/painel/login" className="text-navy-600 hover:underline font-medium">
+          <a href="/painel/login" className="text-green-600 hover:underline font-medium">
             Entrar
           </a>
         </p>
