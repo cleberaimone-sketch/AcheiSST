@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { CheckCircle2, Loader2, ArrowRight, ArrowLeft, Building2, MapPin, Phone, LayoutDashboard } from 'lucide-react'
+import { CheckCircle2, Loader2, ArrowRight, ArrowLeft, Building2, MapPin, Phone, LayoutDashboard, AlertCircle } from 'lucide-react'
 import { createSupabaseBrowser } from '@/lib/supabase-browser'
 import type { User } from '@supabase/supabase-js'
 import Link from 'next/link'
@@ -40,18 +40,30 @@ const STEPS = [
 
 export function CadastrarForm() {
   const router = useRouter()
-  const [user, setUser]           = useState<User | null>(null)
+  const [user, setUser]               = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
+  const [hasEmpresa, setHasEmpresa]   = useState(false)
 
   useEffect(() => {
     const supabase = createSupabaseBrowser()
-    supabase.auth.getSession().then(({ data }) => {
+    supabase.auth.getSession().then(async ({ data }) => {
       const currentUser = data.session?.user ?? null
-      setUser(currentUser)
-      setAuthLoading(false)
       if (!currentUser) {
         router.replace('/auth?redirect=/cadastrar')
+        return
       }
+      setUser(currentUser)
+
+      // Verifica se já tem empresa cadastrada
+      const { data: existente } = await supabase
+        .from('empresas')
+        .select('id')
+        .eq('user_id', currentUser.id)
+        .limit(1)
+        .maybeSingle()
+
+      if (existente) setHasEmpresa(true)
+      setAuthLoading(false)
     })
   }, [router])
 
@@ -77,6 +89,35 @@ export function CadastrarForm() {
   }
 
   if (!user) return null
+
+  if (hasEmpresa) {
+    return (
+      <div className="text-center py-8">
+        <div className="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <AlertCircle className="w-7 h-7 text-amber-600" />
+        </div>
+        <h2 className="text-xl font-extrabold text-slate-900 mb-2">Você já tem um perfil cadastrado</h2>
+        <p className="text-slate-500 text-sm mb-6 max-w-sm mx-auto">
+          Sua empresa já está na plataforma. Acesse o painel para editar suas informações ou verificar o status.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            href="/painel"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-green-600 text-white text-sm font-bold rounded-xl hover:bg-green-700 transition-colors"
+          >
+            <LayoutDashboard className="w-4 h-4" />
+            Ir para o painel
+          </Link>
+          <Link
+            href="/fornecedores"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition-colors"
+          >
+            Ver fornecedores
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   async function handleSubmit() {
     if (!nome.trim() || !categoria || !uf || !cidade.trim()) {

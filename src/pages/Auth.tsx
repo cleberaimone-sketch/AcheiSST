@@ -155,8 +155,15 @@ const AuthPage = () => {
             lockedUntil.current = Date.now() + 60_000;
             attempts.current = 0;
           }
-          // Mensagem genérica para não vazar se o email já existe
-          setError("Não foi possível criar a conta. Verifique os dados e tente novamente.");
+          const isExisting =
+            signUpError.message?.toLowerCase().includes("already registered") ||
+            signUpError.message?.toLowerCase().includes("already exists") ||
+            (signUpError as { code?: string }).code === "user_already_exists";
+          if (isExisting) {
+            setError("__email_exists__");
+          } else {
+            setError("Não foi possível criar a conta. Verifique os dados e tente novamente.");
+          }
           return;
         }
 
@@ -262,9 +269,21 @@ const AuthPage = () => {
           </div>
 
           {/* Mensagem de erro */}
-          {error && (
+          {error && error !== "__email_exists__" && (
             <div className="mb-4 px-4 py-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
               {error}
+            </div>
+          )}
+          {error === "__email_exists__" && (
+            <div className="mb-4 px-4 py-3 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800">
+              Este e-mail já está cadastrado.{" "}
+              <button
+                type="button"
+                onClick={() => { switchMode(); setEmail(email); }}
+                className="font-bold underline hover:text-amber-900"
+              >
+                Entrar com este e-mail →
+              </button>
             </div>
           )}
 
