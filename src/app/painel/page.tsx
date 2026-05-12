@@ -1,13 +1,13 @@
 'use client'
 
 import Logo from "@/components/Logo";
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { createSupabaseBrowser } from '@/lib/supabase-browser'
 import {
   User, Phone, MapPin, Briefcase, BookOpen, Shield,
-  LogOut, Save, Loader2, CheckCircle2, Plus, X, Camera,
+  LogOut, Save, Loader2, CheckCircle2, Plus, X, Camera, Inbox,
 } from 'lucide-react'
 
 // ─── Constants ───────────────────────────────────────────────────────────────
@@ -48,7 +48,20 @@ const UFS = [
   'SP','SE','TO',
 ]
 
-type Section = 'perfil' | 'contato' | 'localizacao' | 'servicos' | 'nrs'
+type Section = 'perfil' | 'contato' | 'localizacao' | 'servicos' | 'nrs' | 'leads'
+
+interface Lead {
+  id: string
+  nome: string
+  email: string | null
+  telefone: string | null
+  cidade: string | null
+  uf: string | null
+  prazo: string | null
+  descricao: string | null
+  status: string
+  created_at: string
+}
 
 interface Profile {
   id: string
@@ -98,6 +111,10 @@ export default function PainelPage() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [loadingProfile, setLoadingProfile] = useState(true)
+  const [uploadingPhoto, setUploadingPhoto] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [leads, setLeads] = useState<Lead[]>([])
+  const [loadingLeads, setLoadingLeads] = useState(false)
 
   useEffect(() => {
     if (!authLoading && !user) router.replace('/painel/login')
@@ -106,25 +123,57 @@ export default function PainelPage() {
   useEffect(() => {
     if (!user) return
     const supabase = createSupabaseBrowser()
+    const empty: Profile = {
+      id: '', display_name: null, about: null, avatar_url: null,
+      ocupacao: null, registro_prof: null, anos_experiencia: null,
+      public_email: null, phone: null, whatsapp: null, linkedin_url: null,
+      website: null, city: null, state: null, atende_remoto: false,
+      especialidades: [], nrs_atendidas: [],
+    }
     supabase
       .from('profiles')
       .select('id,display_name,about,avatar_url,ocupacao,registro_prof,anos_experiencia,public_email,phone,whatsapp,linkedin_url,website,city,state,atende_remoto,especialidades,nrs_atendidas')
       .eq('user_id', user.id)
-      .single()
-      .then(({ data }) => {
-        if (data) {
-          const p = {
+      .maybeSingle()
+      .then(
+        ({ data }) => {
+          const p: Profile = data ? {
             ...data,
             especialidades: data.especialidades ?? [],
             nrs_atendidas: data.nrs_atendidas ?? [],
             atende_remoto: data.atende_remoto ?? false,
-          } as Profile
+          } : empty
           setProfile(p)
           setForm(p)
+          setLoadingProfile(false)
+        },
+        () => {
+          setForm(empty)
+          setLoadingProfile(false)
         }
-        setLoadingProfile(false)
-      })
+      )
   }, [user])
+
+  useEffect(() => {
+    if (section !== 'leads' || !profile?.id) return
+    setLoadingLeads(true)
+    const supabase = createSupabaseBrowser()
+    supabase
+      .from('leads')
+      .select('id,nome,email,telefone,cidade,uf,prazo,descricao,status,created_at')
+      .eq('profissional_id', profile.id)
+      .order('created_at', { ascending: false })
+      .then(({ data }) => {
+        setLeads(data ?? [])
+        setLoadingLeads(false)
+      }, () => setLoadingLeads(false))
+  }, [section, profile?.id])
+
+  async function updateLeadStatus(leadId: string, status: string) {
+    const supabase = createSupabaseBrowser()
+    await supabase.from('leads').update({ status }).eq('id', leadId)
+    setLeads(prev => prev.map(l => l.id === leadId ? { ...l, status } : l))
+  }
 
   async function handleSave() {
     if (!form || !profile) return
@@ -149,8 +198,24 @@ export default function PainelPage() {
     }).eq('id', profile.id)
     setProfile(form)
     setSaving(false)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2500)
+    router.push(`/profissionais/p/${profile.id}`)
+  }
+
+  async function handlePhotoUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file || !user || !profile?.id) return
+    setUploadingPhoto(true)
+    const supabase = createSupabaseBrowser()
+    const ext = file.name.split('.').pop()
+    const path = `${user.id}/avatar.${ext}`
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    if (!error) {
+      const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(path)
+      await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', profile.id)
+      set('avatar_url', publicUrl)
+      setProfile(f => f ? { ...f, avatar_url: publicUrl } : f)
+    }
+    setUploadingPhoto(false)
   }
 
   function set(key: keyof Profile, value: unknown) {
@@ -171,6 +236,7 @@ export default function PainelPage() {
     { id: 'localizacao', label: 'Localização',   icon: <MapPin className="w-4 h-4" /> },
     { id: 'servicos',    label: 'Serviços SST',  icon: <Briefcase className="w-4 h-4" /> },
     { id: 'nrs',         label: 'NRs',           icon: <BookOpen className="w-4 h-4" /> },
+    { id: 'leads',       label: 'Leads',         icon: <Inbox className="w-4 h-4" /> },
   ]
 
   if (authLoading || loadingProfile) {
@@ -188,7 +254,7 @@ export default function PainelPage() {
 
       {/* Top bar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="max-w-screen-2xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <Logo textClassName="text-2xl" />
           </a>
@@ -205,10 +271,10 @@ export default function PainelPage() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto w-full px-4 py-8 flex gap-6 flex-1">
+      <div className="max-w-screen-2xl mx-auto w-full px-6 py-8 flex gap-6 flex-1">
 
         {/* Sidebar */}
-        <aside className="w-56 flex-shrink-0 hidden md:block">
+        <aside className="w-64 xl:w-72 flex-shrink-0 hidden md:block">
           <div className="bg-white border border-slate-200 rounded-2xl p-3 sticky top-24">
 
             {/* Avatar + nome */}
@@ -221,9 +287,22 @@ export default function PainelPage() {
                     <User className="w-7 h-7 text-green-600" />
                   </div>
                 )}
-                <button className="absolute bottom-0 right-0 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center shadow">
-                  <Camera className="w-3 h-3 text-white" />
-                </button>
+                <label
+                  htmlFor="avatar-upload"
+                  className={`absolute bottom-0 right-0 w-6 h-6 bg-green-600 rounded-full flex items-center justify-center shadow cursor-pointer ${uploadingPhoto ? 'opacity-60 pointer-events-none' : 'hover:bg-green-700'}`}
+                >
+                  {uploadingPhoto
+                    ? <Loader2 className="w-3 h-3 text-white animate-spin" />
+                    : <Camera className="w-3 h-3 text-white" />
+                  }
+                </label>
+                <input
+                  id="avatar-upload"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="sr-only"
+                  onChange={handlePhotoUpload}
+                />
               </div>
               <div className="text-center">
                 <p className="text-sm font-bold text-slate-900 leading-tight">
@@ -255,7 +334,7 @@ export default function PainelPage() {
 
             <div className="mt-3 pt-3 border-t border-slate-100">
               <a
-                href={`/profissionais`}
+                href={profile ? `/profissionais/p/${profile.id}` : '#'}
                 className="flex items-center gap-2 px-3 py-2 text-xs text-slate-400 hover:text-green-600 transition-colors rounded-xl hover:bg-green-50"
               >
                 <Shield className="w-3.5 h-3.5" />
@@ -329,10 +408,10 @@ export default function PainelPage() {
                     <input className={inputCls} type="email" value={form.public_email ?? ''} onChange={e => set('public_email', e.target.value)} placeholder="contato@email.com" />
                   </Field>
                   <Field label="Telefone">
-                    <input className={inputCls} value={form.phone ?? ''} onChange={e => set('phone', e.target.value)} placeholder="(11) 99999-9999" />
+                    <input className={inputCls} value={form.phone ?? ''} onChange={e => set('phone', e.target.value.replace(/[^\d\s()\-+]/g, ''))} placeholder="(45) 99999-9999" maxLength={20} />
                   </Field>
                   <Field label="WhatsApp">
-                    <input className={inputCls} value={form.whatsapp ?? ''} onChange={e => set('whatsapp', e.target.value)} placeholder="(11) 99999-9999" />
+                    <input className={inputCls} value={form.whatsapp ?? ''} onChange={e => set('whatsapp', e.target.value.replace(/[^\d\s()\-+]/g, ''))} placeholder="(45) 99999-9999" maxLength={20} />
                   </Field>
                   <Field label="LinkedIn">
                     <input className={inputCls} value={form.linkedin_url ?? ''} onChange={e => set('linkedin_url', e.target.value)} placeholder="linkedin.com/in/seuperfil" />
@@ -450,8 +529,88 @@ export default function PainelPage() {
               </div>
             )}
 
+            {/* ── LEADS ── */}
+            {section === 'leads' && (
+              <div className="space-y-5">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-lg font-bold text-slate-900">Leads recebidos</h2>
+                  {leads.length > 0 && (
+                    <span className="text-xs font-semibold bg-green-100 text-green-700 px-2.5 py-1 rounded-full">
+                      {leads.length} lead{leads.length > 1 ? 's' : ''}
+                    </span>
+                  )}
+                </div>
+
+                {loadingLeads && (
+                  <div className="flex justify-center py-12">
+                    <Loader2 className="w-5 h-5 animate-spin text-green-600" />
+                  </div>
+                )}
+
+                {!loadingLeads && leads.length === 0 && (
+                  <div className="text-center py-14">
+                    <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                      <Inbox className="w-6 h-6 text-slate-400" />
+                    </div>
+                    <p className="text-slate-500 text-sm font-medium">Nenhum lead ainda</p>
+                    <p className="text-slate-400 text-xs mt-1">Quando alguém solicitar um orçamento pelo seu perfil, aparecerá aqui.</p>
+                  </div>
+                )}
+
+                {!loadingLeads && leads.length > 0 && (
+                  <div className="flex flex-col gap-4">
+                    {leads.map(lead => (
+                      <div key={lead.id} className={`border rounded-2xl p-5 transition-colors ${lead.status === 'novo' ? 'border-green-200 bg-green-50/40' : 'border-slate-200 bg-white'}`}>
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div>
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <p className="text-sm font-bold text-slate-900">{lead.nome}</p>
+                              {lead.status === 'novo' && (
+                                <span className="text-xs font-bold bg-green-600 text-white px-2 py-0.5 rounded-full">Novo</span>
+                              )}
+                            </div>
+                            <p className="text-xs text-slate-400">
+                              {new Date(lead.created_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                              {lead.cidade ? ` · ${lead.cidade}${lead.uf ? `/${lead.uf}` : ''}` : ''}
+                              {lead.prazo ? ` · ${lead.prazo}` : ''}
+                            </p>
+                          </div>
+                          <select
+                            value={lead.status}
+                            onChange={e => updateLeadStatus(lead.id, e.target.value)}
+                            className="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-600 focus:outline-none focus:ring-1 focus:ring-green-500 cursor-pointer flex-shrink-0"
+                          >
+                            <option value="novo">Novo</option>
+                            <option value="visualizado">Visualizado</option>
+                            <option value="respondido">Respondido</option>
+                          </select>
+                        </div>
+
+                        {lead.descricao && (
+                          <p className="text-sm text-slate-600 leading-relaxed mb-3 border-l-2 border-green-300 pl-3">{lead.descricao}</p>
+                        )}
+
+                        <div className="flex flex-wrap gap-3">
+                          {lead.email && (
+                            <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700">
+                              ✉️ {lead.email}
+                            </a>
+                          )}
+                          {lead.telefone && (
+                            <a href={`tel:${lead.telefone.replace(/\D/g, '')}`} className="flex items-center gap-1.5 text-xs font-medium text-green-600 hover:text-green-700">
+                              📞 {lead.telefone}
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Save button */}
-            <div className="flex items-center justify-end gap-3 mt-8 pt-6 border-t border-slate-100">
+            <div className={`flex items-center justify-end gap-3 mt-8 pt-6 border-t border-slate-100 ${section === 'leads' ? 'hidden' : ''}`}>
               {saved && (
                 <span className="flex items-center gap-1.5 text-sm text-green-600 font-semibold">
                   <CheckCircle2 className="w-4 h-4" />

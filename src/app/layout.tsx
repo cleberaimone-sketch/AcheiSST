@@ -40,13 +40,16 @@ export const metadata: Metadata = {
 }
 
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { AuthProvider } from '@/hooks/useAuth'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${playfair.variable} ${lora.variable}`}>
       <body className="font-sans antialiased bg-white text-slate-900">
         <ThemeProvider>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </ThemeProvider>
         {/* Google Analytics 4 */}
         <Script

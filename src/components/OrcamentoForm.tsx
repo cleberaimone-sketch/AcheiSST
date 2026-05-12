@@ -15,9 +15,11 @@ const PRAZOS = ['Urgente (até 48h)', 'Esta semana', 'Este mês', 'Sem prazo def
 interface Props {
   fornecedorId: string | null
   fornecedorSlug: string | null
+  profissionalId?: string | null
+  profissionalNome?: string | null
 }
 
-export function OrcamentoForm({ fornecedorId, fornecedorSlug }: Props) {
+export function OrcamentoForm({ fornecedorId, fornecedorSlug, profissionalId, profissionalNome }: Props) {
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [telefone, setTelefone] = useState('')
@@ -40,8 +42,9 @@ export function OrcamentoForm({ fornecedorId, fornecedorSlug }: Props) {
 
     const supabase = createSupabaseBrowser()
 
-    const { error: dbError } = await supabase.from('leads').insert({
-      fornecedor_id: fornecedorId,
+    const { data: insertedLead, error: dbError } = await supabase.from('leads').insert({
+      fornecedor_id: fornecedorId ?? null,
+      profissional_id: profissionalId ?? null,
       nome: nome.trim(),
       email: email.trim() || null,
       telefone: telefone.trim() || null,
@@ -50,7 +53,7 @@ export function OrcamentoForm({ fornecedorId, fornecedorSlug }: Props) {
       cidade: cidade.trim() || null,
       prazo: prazo || null,
       status: 'novo',
-    })
+    }).select('id').single()
 
     if (dbError) {
       setError('Erro ao enviar solicitação. Tente novamente.')
@@ -58,9 +61,16 @@ export function OrcamentoForm({ fornecedorId, fornecedorSlug }: Props) {
       return
     }
 
-    // Incrementa métrica de lead
+    // Incrementa métrica de lead e dispara email de notificação
     if (fornecedorId) {
       await supabase.rpc('incrementar_lead_recebido', { p_fornecedor_id: fornecedorId }).then(null, () => {})
+    }
+    if (insertedLead?.id) {
+      fetch('/api/notify-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ leadId: insertedLead.id }),
+      }).catch(() => {})
     }
 
     setSuccess(true)
@@ -77,6 +87,8 @@ export function OrcamentoForm({ fornecedorId, fornecedorSlug }: Props) {
         <p className="text-slate-500 text-sm mb-6">
           {fornecedorSlug
             ? 'O fornecedor receberá sua solicitação e entrará em contato em breve.'
+            : profissionalNome
+            ? `${profissionalNome} receberá sua solicitação e entrará em contato em breve.`
             : 'Sua solicitação foi registrada.'}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -89,10 +101,10 @@ export function OrcamentoForm({ fornecedorId, fornecedorSlug }: Props) {
             </a>
           )}
           <a
-            href="/fornecedores"
+            href={profissionalId ? '/profissionais' : '/fornecedores'}
             className="px-5 py-2.5 text-sm font-semibold bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
           >
-            Ver mais fornecedores
+            {profissionalId ? 'Ver mais profissionais' : 'Ver mais fornecedores'}
           </a>
         </div>
       </div>
