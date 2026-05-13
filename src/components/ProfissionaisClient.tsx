@@ -7,7 +7,7 @@ import {
   Users, X, ExternalLink, MessageCircle, Shield,
   Briefcase, GraduationCap, Stethoscope, HardHat, UserCheck, User,
 } from 'lucide-react'
-import type { Profissional } from '@/types'
+import type { ProfissionalUnificado } from '@/types'
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 const PER_PAGE = 12
@@ -117,26 +117,22 @@ function BenefitsSection() {
 }
 
 // ── Card ───────────────────────────────────────────────────────────────────────
-function ProfissionalCard({ prof }: { prof: Profissional }) {
+function ProfissionalCard({ prof }: { prof: ProfissionalUnificado }) {
   const whatsappNum = prof.whatsapp?.replace(/\D/g, '') || prof.telefone?.replace(/\D/g, '')
   const telefoneDisplay = prof.telefone || prof.whatsapp
+  const perfilUrl = prof.fonte === 'cadastrado' ? `/profissionais/p/${prof.id}` : `/profissionais/${prof.id}`
 
   return (
     <article className="group bg-white border border-slate-100 rounded-2xl overflow-hidden hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-slate-200 hover:-translate-y-0.5 transition-all duration-300 flex flex-col">
-      {/* Top strip — green for verified */}
-      {prof.verified && (
-        <div className="h-1 bg-gradient-to-r from-green-500 to-emerald-400" />
-      )}
+      {/* Top strip */}
+      <div className={`h-1 bg-gradient-to-r ${prof.fonte === 'cadastrado' ? 'from-green-500 to-emerald-400' : prof.verified ? 'from-green-500 to-emerald-400' : 'from-transparent to-transparent'}`} />
 
       <div className="p-5 flex flex-col flex-1">
         {/* Header */}
         <div className="flex gap-4 mb-4">
           {/* Avatar */}
           <div className="relative flex-shrink-0">
-            <div
-              className={`w-[68px] h-[68px] rounded-xl overflow-hidden flex items-center justify-center
-                ${prof.foto_url ? '' : 'bg-slate-100'}`}
-            >
+            <div className={`w-[68px] h-[68px] rounded-xl overflow-hidden flex items-center justify-center ${prof.foto_url ? '' : 'bg-slate-100'}`}>
               {prof.foto_url ? (
                 <img
                   src={prof.foto_url}
@@ -161,63 +157,61 @@ function ProfissionalCard({ prof }: { prof: Profissional }) {
 
           {/* Info */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2">
-              <a href={`/profissionais/${prof.id}`} className="group-hover:text-green-700 transition-colors">
-                <h3 className="font-bold text-slate-900 text-[15px] leading-snug line-clamp-1">
-                  {prof.nome}
-                </h3>
+            <div className="flex items-start gap-2 mb-0.5">
+              <a href={perfilUrl} className="group-hover:text-green-700 transition-colors flex-1 min-w-0">
+                <h3 className="font-bold text-slate-900 text-[15px] leading-snug line-clamp-1">{prof.nome}</h3>
               </a>
+              {prof.fonte === 'cadastrado' && (
+                <span className="flex-shrink-0 text-[10px] font-bold text-green-700 bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full">
+                  AcheiSST
+                </span>
+              )}
             </div>
 
             {/* Specialty badge */}
-            <div className="flex items-center gap-1.5 mt-1 mb-2">
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">
-                {ESPECIALIDADE_ICON[prof.especialidade] ?? <UserCheck className="w-3 h-3" />}
-                {prof.especialidade}
-              </span>
-            </div>
-
-            {/* Location + CRM */}
-            <div className="flex flex-col gap-0.5 text-xs text-slate-500">
-              <div className="flex items-center gap-1">
-                <MapPin className="w-3 h-3 flex-shrink-0 text-slate-400" />
-                <span>{prof.cidade ? `${prof.cidade}, ` : ''}<strong className="text-slate-700">{prof.uf}</strong></span>
+            {prof.especialidade && (
+              <div className="flex items-center gap-1.5 mt-1 mb-2">
+                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700 bg-green-50 border border-green-100 px-2 py-0.5 rounded-full">
+                  {ESPECIALIDADE_ICON[prof.especialidade] ?? <UserCheck className="w-3 h-3" />}
+                  {prof.especialidade}
+                </span>
               </div>
-              {prof.registro_profissional && (
+            )}
+
+            {/* Location + registro */}
+            <div className="flex flex-col gap-0.5 text-xs text-slate-500">
+              {(prof.cidade || prof.uf) && (
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-3 h-3 flex-shrink-0 text-slate-400" />
+                  <span>{prof.cidade ? `${prof.cidade}, ` : ''}<strong className="text-slate-700">{prof.uf}</strong></span>
+                </div>
+              )}
+              {prof.registro && (
                 <div className="flex items-center gap-1">
                   <Shield className="w-3 h-3 flex-shrink-0 text-slate-400" />
-                  <span className="font-mono text-slate-600 font-medium text-[11px]">{prof.registro_profissional}</span>
+                  <span className="font-mono text-slate-600 font-medium text-[11px]">{prof.registro}</span>
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Rating */}
-        {prof.avaliacao && prof.num_avaliacoes > 0 && (
-          <div className="mb-3">
-            <StarRating value={prof.avaliacao} count={prof.num_avaliacoes} />
-          </div>
-        )}
-
         {/* Bio */}
         {prof.bio && (
-          <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-4">
-            {prof.bio}
-          </p>
+          <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 mb-4">{prof.bio}</p>
         )}
 
         {/* NRs */}
-        {prof.nrs_expertise && prof.nrs_expertise.length > 0 && (
+        {prof.nrs.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
-            {prof.nrs_expertise.slice(0, 4).map((nr) => (
+            {prof.nrs.slice(0, 4).map((nr) => (
               <span key={nr} className="text-[11px] bg-slate-50 border border-slate-200 text-slate-600 px-2 py-0.5 rounded-md font-medium">
                 {nr}
               </span>
             ))}
-            {prof.nrs_expertise.length > 4 && (
+            {prof.nrs.length > 4 && (
               <span className="text-[11px] bg-slate-50 border border-slate-200 text-slate-400 px-2 py-0.5 rounded-md">
-                +{prof.nrs_expertise.length - 4}
+                +{prof.nrs.length - 4}
               </span>
             )}
           </div>
@@ -246,7 +240,7 @@ function ProfissionalCard({ prof }: { prof: Profissional }) {
           ) : null}
 
           <a
-            href={`/profissionais/${prof.id}`}
+            href={perfilUrl}
             className="inline-flex items-center justify-center gap-1.5 border border-slate-200 hover:border-green-300 hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-semibold py-2.5 px-3 rounded-xl transition-colors"
           >
             <ExternalLink className="w-3.5 h-3.5" />
@@ -330,7 +324,7 @@ function Pagination({ page, total, onChange }: { page: number; total: number; on
 
 // ── Main Component ─────────────────────────────────────────────────────────────
 interface Props {
-  profissionais: Profissional[]
+  profissionais: ProfissionalUnificado[]
 }
 
 export function ProfissionaisClient({ profissionais }: Props) {
@@ -352,7 +346,7 @@ export function ProfissionaisClient({ profissionais }: Props) {
       if (especialidade !== 'Todos' && p.especialidade !== especialidade) return false
       if (search.trim()) {
         const t = search.toLowerCase()
-        const text = [p.nome, p.especialidade, p.bio, p.registro_profissional, p.cidade]
+        const text = [p.nome, p.especialidade, p.bio, p.registro, p.cidade]
           .filter(Boolean).join(' ').toLowerCase()
         if (!text.includes(t)) return false
       }

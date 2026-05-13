@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { ProfissionaisClient } from '@/components/ProfissionaisClient'
 import { Navbar } from '@/components/Navbar'
-import type { Profissional } from '@/types'
+import type { ProfissionalUnificado } from '@/types'
 
 export const metadata = {
   title: 'Profissionais SST — AcheiSST',
@@ -11,13 +11,52 @@ export const metadata = {
 export const revalidate = 3600
 
 export default async function ProfissionaisPage() {
-  const { data } = await supabase
-    .from('profissionais')
-    .select('*')
-    .order('verified', { ascending: false })
-    .order('nome')
+  const [{ data: scraped }, { data: registered }] = await Promise.all([
+    supabase
+      .from('profissionais')
+      .select('id, nome, especialidade, uf, cidade, registro_profissional, bio, foto_url, telefone, whatsapp, nrs_expertise, verified')
+      .order('verified', { ascending: false })
+      .order('nome'),
+    supabase
+      .from('profiles')
+      .select('id, display_name, ocupacao, state, city, registro_prof, about, avatar_url, phone, whatsapp, nrs_atendidas, is_verified')
+      .not('display_name', 'is', null),
+  ])
 
-  const profissionais: Profissional[] = data ?? []
+  const cadastrados: ProfissionalUnificado[] = (registered ?? []).map(p => ({
+    id: p.id,
+    nome: p.display_name!,
+    especialidade: p.ocupacao ?? null,
+    uf: p.state ?? null,
+    cidade: p.city ?? null,
+    registro: p.registro_prof ?? null,
+    bio: p.about ?? null,
+    foto_url: p.avatar_url ?? null,
+    telefone: p.phone ?? null,
+    whatsapp: p.whatsapp ?? null,
+    nrs: p.nrs_atendidas ?? [],
+    verified: p.is_verified ?? false,
+    fonte: 'cadastrado',
+  }))
+
+  const scrapeados: ProfissionalUnificado[] = (scraped ?? []).map(p => ({
+    id: p.id,
+    nome: p.nome,
+    especialidade: p.especialidade ?? null,
+    uf: p.uf ?? null,
+    cidade: p.cidade ?? null,
+    registro: p.registro_profissional ?? null,
+    bio: p.bio ?? null,
+    foto_url: p.foto_url ?? null,
+    telefone: p.telefone ?? null,
+    whatsapp: p.whatsapp ?? null,
+    nrs: p.nrs_expertise ?? [],
+    verified: p.verified ?? false,
+    fonte: 'scraped',
+  }))
+
+  // Cadastrados primeiro (nossos usuários reais), depois scraped
+  const profissionais: ProfissionalUnificado[] = [...cadastrados, ...scrapeados]
 
   return (
     <>

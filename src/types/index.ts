@@ -75,6 +75,22 @@ export interface Fornecedor {
   created_at: string
 }
 
+export interface ProfissionalUnificado {
+  id: string
+  nome: string
+  especialidade: string | null
+  uf: string | null
+  cidade: string | null
+  registro: string | null
+  bio: string | null
+  foto_url: string | null
+  telefone: string | null
+  whatsapp: string | null
+  nrs: string[]
+  verified: boolean
+  fonte: 'scraped' | 'cadastrado'
+}
+
 export interface Profissional {
   id: string
   nome: string
