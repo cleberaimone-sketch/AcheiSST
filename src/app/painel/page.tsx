@@ -332,6 +332,33 @@ export default function PainelPage() {
               ))}
             </nav>
 
+            {/* Marketplace — links externos */}
+            <div className="mt-3 pt-3 border-t border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-3 mb-2">
+                Marketplace
+              </p>
+              <a
+                href="/painel/projetos"
+                className="flex items-center justify-between gap-2 px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-colors"
+              >
+                <span className="flex items-center gap-2.5">
+                  <span className="text-base">📋</span>
+                  Meus projetos
+                </span>
+                <span className="bg-green-100 text-green-700 text-[9px] font-bold px-1.5 py-0.5 rounded-full">NOVO</span>
+              </a>
+              <a
+                href="/painel/propostas"
+                className="flex items-center justify-between gap-2 px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-colors"
+              >
+                <span className="flex items-center gap-2.5">
+                  <span className="text-base">📨</span>
+                  Minhas propostas
+                </span>
+                <span className="bg-green-100 text-green-700 text-[9px] font-bold px-1.5 py-0.5 rounded-full">NOVO</span>
+              </a>
+            </div>
+
             <div className="mt-3 pt-3 border-t border-slate-100">
               <a
                 href={profile ? `/profissionais/p/${profile.id}` : '#'}

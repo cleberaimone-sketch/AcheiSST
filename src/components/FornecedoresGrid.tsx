@@ -219,17 +219,20 @@ function FornecedorCard({ f }: { f: Fornecedor }) {
 
 interface FornecedoresGridProps {
   fornecedores: Fornecedor[]
+  initialUF?: string
 }
 
 const PAGE_SIZE = 16
 
-export function FornecedoresGrid({ fornecedores }: FornecedoresGridProps) {
+export function FornecedoresGrid({ fornecedores, initialUF }: FornecedoresGridProps) {
   const { theme } = useTheme()
   const isV5 = theme === 'preview_5'
   const [categoria, setCategoria] = useState<FornecedorCategoria | 'Todos'>('Todos')
-  const [uf, setUf] = useState('')
+  const [uf, setUf] = useState(initialUF ?? '')
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
+
+  useEffect(() => { setUf(initialUF ?? '') }, [initialUF])
 
   const filtered = fornecedores.filter((f) => {
     const matchCat = categoria === 'Todos' || f.categoria === categoria

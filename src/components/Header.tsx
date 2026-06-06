@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Logo from "@/components/Logo";
 
 const navItems = [
+  { label: "Projetos",      to: "/projetos",                    isNew: true },
   { label: "Profissionais", to: "/profissionais"            },
   { label: "Clínicas",      to: "/fornecedores?cat=clinica" },
   { label: "Fornecedores",  to: "/fornecedores"             },
@@ -30,9 +31,14 @@ const Header = () => {
             <Link
               key={item.label}
               href={item.to}
-              className="hover:text-green-600 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-green-600 transition-colors"
             >
               {item.label}
+              {item.isNew && (
+                <span className="bg-green-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                  NOVO
+                </span>
+              )}
             </Link>
           ))}
           <Link

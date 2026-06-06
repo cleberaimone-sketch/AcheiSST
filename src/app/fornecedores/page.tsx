@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { Navbar } from '@/components/Navbar'
 import { FornecedoresGrid } from '@/components/FornecedoresGrid'
+import { FornecedoresMapFilter } from '@/components/FornecedoresMapFilter'
 import type { Fornecedor, FornecedorCategoria } from '@/types'
 
 export const metadata = {
@@ -38,12 +39,13 @@ function mapUrlCategory(urlCat: string | null): string | null {
 }
 
 interface FornecedoresPageProps {
-  searchParams: Promise<{ cat?: string }>
+  searchParams: Promise<{ cat?: string; uf?: string }>
 }
 
 export default async function FornecedoresPage({ searchParams }: FornecedoresPageProps) {
   const params = await searchParams
   const categoryFilter = mapUrlCategory(params.cat ?? null)
+  const ufFilter = params.uf?.toUpperCase() ?? null
 
   let query = supabase.from('fornecedores').select('*')
 
@@ -90,21 +92,19 @@ export default async function FornecedoresPage({ searchParams }: FornecedoresPag
       <Navbar />
       <main className="pt-20">
         {/* Hero da página */}
-        <div className="bg-white border-b border-slate-100 py-12">
+        <div className="bg-white border-b border-slate-100 py-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 text-slate-400 text-sm mb-5">
+            <div className="flex items-center gap-2 text-slate-400 text-sm mb-4">
               <a href="/" className="hover:text-green-600 transition-colors">Início</a>
               <span>/</span>
               <span className="text-slate-700 font-medium">Fornecedores</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2 tracking-tight">
               Fornecedores <span className="text-green-600">SST</span>
             </h1>
-            <p className="text-slate-500 text-lg max-w-2xl mb-8">
+            <p className="text-slate-500 text-base max-w-2xl mb-6">
               Encontre os melhores fornecedores de Saúde e Segurança do Trabalho do Brasil: EPI, clínicas, consultorias, treinamentos, softwares e mais.
             </p>
-
-            {/* Stats rápidas */}
             <div className="flex flex-wrap gap-6">
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold text-green-600">{stats.total}+</span>
@@ -122,7 +122,17 @@ export default async function FornecedoresPage({ searchParams }: FornecedoresPag
           </div>
         </div>
 
-        <FornecedoresGrid fornecedores={fornecedores} />
+        {/* Mapa filtro por estado */}
+        <FornecedoresMapFilter
+          selectedUF={ufFilter ?? undefined}
+          selectedCat={params.cat}
+        />
+
+        <FornecedoresGrid
+          key={ufFilter ?? 'all'}
+          fornecedores={fornecedores}
+          initialUF={ufFilter ?? undefined}
+        />
       </main>
     </>
   )

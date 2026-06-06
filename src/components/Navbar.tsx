@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 
 const NAV_LINKS = [
+  { label: 'Projetos',      href: '/projetos',                  isNew: true },
   { label: 'Profissionais', href: '/profissionais'            },
   { label: 'Clínicas',      href: '/fornecedores?cat=clinica' },
   { label: 'Fornecedores',  href: '/fornecedores'             },
@@ -53,15 +54,20 @@ export function Navbar() {
 
           {/* Desktop Nav — Centered */}
           <nav className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center gap-8 text-sm font-medium text-slate-600">
-            {NAV_LINKS.map(({ label, href }) => (
+            {NAV_LINKS.map(({ label, href, isNew }) => (
               <a
                 key={href}
                 href={href}
-                className={`transition-colors hover:text-green-600 ${
+                className={`inline-flex items-center gap-1.5 transition-colors hover:text-green-600 ${
                   pathname === href ? 'text-green-600 font-semibold' : ''
                 }`}
               >
                 {label}
+                {isNew && (
+                  <span className="bg-green-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                    NOVO
+                  </span>
+                )}
               </a>
             ))}
             <a

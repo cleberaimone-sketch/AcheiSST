@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import BrasilMapSection from "@/components/BrasilMapSection";
 import FeaturedSection from "@/components/FeaturedSection";
 import EPICalloutSection from "@/components/EPICalloutSection";
 import EventsSection from "@/components/EventsSection";
@@ -17,6 +18,9 @@ export default async function Home() {
       <Header />
       <main>
         <HeroSection />
+        <FadeInSection>
+          <BrasilMapSection />
+        </FadeInSection>
         <FadeInSection>
           <FeaturedSection />
         </FadeInSection>
