@@ -5,7 +5,9 @@ import type { FornecedorCategoria } from '@/types'
 import {
   MapPin, Globe, CheckCircle2, MessageCircle, Phone,
   ArrowLeft, Star, Shield, Mail, Clock, Users, Award,
+  BadgeCheck, ArrowRight,
 } from 'lucide-react'
+import Link from 'next/link'
 import { LikeButtonDetail } from '@/components/LikeButtonDetail'
 
 const FALLBACK_IMG: Record<string, string> = {
@@ -135,6 +137,40 @@ export default async function FornecedorPerfilPage({ params }: { params: Promise
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Banner Reivindicar / Verificado pelo dono */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+          {e.auth_user_id ? (
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                <BadgeCheck className="w-5 h-5 text-green-600" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-green-900">Perfil verificado pelo dono</p>
+                <p className="text-xs text-green-700">Essa empresa foi reivindicada e está sob gestão direta do responsável.</p>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                <Shield className="w-5 h-5 text-amber-700" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-amber-900">Esta empresa é sua?</p>
+                <p className="text-xs text-amber-700">
+                  Reivindique o perfil grátis e ganhe controle total: editar dados, receber leads diretos, aceitar projetos no marketplace.
+                </p>
+              </div>
+              <Link
+                href={`/fornecedores/${e.slug}/reivindicar`}
+                className="inline-flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-colors shrink-0 whitespace-nowrap"
+              >
+                Reivindicar perfil
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
